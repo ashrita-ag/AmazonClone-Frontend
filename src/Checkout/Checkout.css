@@ -1,0 +1,25 @@
+.checkout {
+  display: flex;
+}
+
+.checkoutLeft
+{
+
+}
+
+.leftHeading
+{
+  font-size: 25px;
+  font-weight: 750;
+}
+
+.checkoutRight
+{
+
+}
+
+.checkoutText {
+  font-size: 12px;
+  line-height: 15px;
+}
+

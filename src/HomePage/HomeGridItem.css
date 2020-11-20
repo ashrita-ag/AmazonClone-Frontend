@@ -1,0 +1,40 @@
+.homeGridItem {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.productGridImage {
+  margin: 10px;
+}
+
+.productGridImage > img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.signIn {
+  background-color: white;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signInHeading {
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.signInButton {
+  background-color: #fcad46;
+  font-size: 12px;
+  padding: 5px;
+
+  width: 100%;
+  border-radius: 2px;
+}

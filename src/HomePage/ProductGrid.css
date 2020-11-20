@@ -1,0 +1,13 @@
+.productGrid {
+  margin: -20% auto auto auto;
+  position: relative;
+  z-index: 1;
+  max-width: 1350px;
+
+}
+
+.col-lg, .col-md
+{
+  /* background-color: black; */
+  padding: 5px;
+}

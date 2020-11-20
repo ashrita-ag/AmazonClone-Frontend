@@ -1,0 +1,94 @@
+.header {
+  display: flex;
+  background-color: #131921;
+  background-color: pink;
+  height: 55px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: white;
+  /* justify-content: space-between; */
+}
+
+a.headerLink :hover {
+  border: 1px solid white;
+}
+
+a.headerLink div :hover {
+  border: none;
+}
+
+.header a {
+  text-decoration: none;
+}
+.headerLogo {
+  width: 100px;
+  object-fit: contain;
+  padding: 10px 10px 0 3px;
+  margin: 5px 30px 0px 2px;
+  border: 1px solid transparent;
+}
+
+.headerSearch {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.headerSearchInput {
+  width: 100%;
+  padding: 7px 0px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border: none;
+  color: #131921;
+}
+.headerSearchIcon {
+  padding: 7px;
+  background-color: #f8b257;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: content-box;
+}
+
+.headerNavbar {
+  display: flex;
+  /* justify-content: space-evenly;   */
+}
+.headerNavOption {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: auto 2px;
+  border: 1px solid transparent;
+  padding: 4px 13px;
+}
+.headerLanguageIcon {
+}
+.headerNavText1 {
+  font-size: 11px;
+}
+.headerNavText2 {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.headerCart {
+  color: white;
+  display: flex;
+  margin: auto 2px;
+  display: flex;
+  border: 1px solid transparent;
+  padding: 4px 13px;
+}
+.headerCartIcon {
+}
+
+.headerCartItems {
+  color: #f8b257;
+  font-size: 15px;
+  font-weight: 750;
+  margin-top: auto;
+}
