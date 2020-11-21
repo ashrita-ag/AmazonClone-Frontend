@@ -13,7 +13,7 @@ import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
 import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="app">
         <Header />
 
