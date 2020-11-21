@@ -13,27 +13,27 @@ function ProductGrid() {
         <Row noGutters md={3} lg={4}>
           <Col lg={{ order: 1 }} md={{ order: 1 }}>
             <Product
-              heading="Amazon fresh"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img18/Fresh/Event/Jupiter20-Phase4/diwali/DesktopGateway_CategoryCard_379X304._SY304_CB417134027_.jpg"
-              link="/detail1"
+              heading="Up to 50% off | Like-new products"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/in-certifiedrefurbished/gateway/Gateway_Unboxed_1209837_379x304._SY304_CB424157491_.jpg"
+              link="/like-new-products"
               class="productLink d-block"
             />
           </Col>
 
           <Col lg={{ order: 2 }} md={{ order: 2 }}>
             <Product
-              heading="Up to 50% off | Chimneys"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img19/Home/LA/LATVFdesktopQC/Chimney_GW_CC_379x304._SY304_CB427965740_.jpg"
-              link="www.amazon.in"
+              heading="For a productive home office"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/CEPC/GW/Dashboard/WFH_GW_DC_379x304._SY304_CB417122473_.jpg"
+              link="/home-office"
               class="productLink d-block"
             />
           </Col>
 
           <Col lg={{ order: 3 }} md={{ order: 3 }}>
             <Product
-              heading="For efficient home working"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/IMG19/Furniture/MSO/WFH_379x304._SY304_CB430182042_.jpg"
-              link="www.amazon.in"
+              heading="Additional items to explore"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Fashion/WRS_PC_June16/WRC_CC/Flexible_Desktop__Cat_Card_2X._SY304_CB429564537_.jpg"
+              link="/additional-items"
               class="productLink d-block"
             />
           </Col>
@@ -44,8 +44,8 @@ function ProductGrid() {
 
           <Col lg={{ order: 5 }} md={{ order: 4 }}>
             <Product
-              heading="Up to 50% off | Microwaves"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img19/Home/LA/LATVFdesktopQC/Desktop-category-card-adapt_379x304_2._SY304_CB429612182_.jpg"
+              heading="Up to 50% off | Refurbished speakers"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/in-certifiedrefurbished/gateway/Desktop_Speakers_1198382_379x304._SY304_CB448485373_.jpg"
               link="/"
               class="productLink d-block invisible"
             />
@@ -53,8 +53,8 @@ function ProductGrid() {
 
           <Col lg={{ order: 6 }} md={{ order: 5 }}>
             <Product
-              heading="Additional items to explore"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Fashion/WRS_PC_June16/WRC_CC/Flexible_Desktop__Cat_Card_2X._SY304_CB429564537_.jpg"
+              heading="Refurbished mobiles"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/in-certifiedrefurbished/gateway/Ver2_GW._SY304_CB446171261_.jpg"
               link="/"
               class="productLink d-block invisible"
             />
@@ -62,8 +62,8 @@ function ProductGrid() {
 
           <Col lg={{ order: 7 }} md={{ order: 7 }}>
             <Product
-              heading="Amazon fresh | Diwali essentials"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img18/Fresh/Event/Jupiter20-Phase4/diwali/DesktopGateway_CategoryCard_379X304._SY304_CB417134027_.jpg"
+              heading="Studio headphones, audio interfaces & more"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Camera/GoPro/Gateway/379x304_pc_cc._SY304_CB417124607_.jpg"
               link="/"
               class="productLink d-block invisible"
             />
@@ -80,8 +80,8 @@ function ProductGrid() {
 
           <Col lg={{ order: 9 }} md={{ order: 9 }} className="d-lg-none">
             <Product
-              heading="Amazon fresh | Diwali essentials"
-              image="https://images-eu.ssl-images-amazon.com/images/G/31/img18/Fresh/Event/Jupiter20-Phase4/diwali/DesktopGateway_CategoryCard_379X304._SY304_CB417134027_.jpg"
+              heading="Save up to 40% | Amazon Pantry"
+              image="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Pantry/MARCH_2020/BAU/GW/Dashboard/FlexibleDesktop_CatCard._SY304_CB422434412_.jpg"
               link="/"
               class="productLink d-block invisible"
             />

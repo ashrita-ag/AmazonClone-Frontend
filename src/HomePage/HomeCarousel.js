@@ -24,7 +24,7 @@ function HomeCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100 homeCarouselImage"
-            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/jupiter20/GWphase4/3day/Phase4_Unrec_PC_Hero_1x._CB416859894_.jpg"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/Rajeshwari/Oct/GW/DesktopHero_1500x600._CB402740210_.jpg"
             alt="First slide"
           />
         </Carousel.Item>
@@ -32,7 +32,15 @@ function HomeCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100 homeCarouselImage"
-            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/OHL_Discovery/Jupiter/11nov/PC_hero_1500x600-UNREC._CB416865976_.jpg"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Camera/Shutterbug/Fest/November/GW/1500x600_Shutterbug_fest_Nov._CB415529971_.jpg"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <img
+            className="d-block w-100 homeCarouselImage"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/img19/HeroNov/Mobile_multimodal---Hindi_3000x1200-1X._CB417289332_.jpg"
             alt="Third slide"
           />
         </Carousel.Item>
@@ -40,16 +48,8 @@ function HomeCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100 homeCarouselImage"
-            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Wireless/SamsungM/Phase4/Rv1_callouts2/M21/D18527732_Jupiter2020_Phase4_SamsungM21_DesktopHero_1500x600._CB416867348_.jpg"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Watches/GW/BTF/Nov/GW_PC_BUNK-1500-x-600._CB415678352_.jpg"
             alt="Fourth slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100 homeCarouselImage"
-            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Consumables/Jupiter20/Phase4/UrgencyNov11/DesktopHero_salesendin3days_starting99_1500x600._CB416847090_.jpg"
-            alt="Third slide"
           />
         </Carousel.Item>
       </Carousel>

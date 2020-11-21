@@ -6,28 +6,37 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header.js";
 import Home from "./HomePage/Home.js";
 import Footer from "./Footer";
-import Checkout from "./Checkout/Checkout.js";
-import Detail from "./ProductDetail/Detail.js";
+// import Checkout from "./Checkout/Checkout.js";
 
+import AddProducts from "./HomeProductLinks/AddProducts/AddProducts.js";
+import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
+import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 function App() {
   return (
     <Router>
       <div className="app">
         <Header />
-        <Home />
+
         <Switch>
           <Route exact path="/">
-            
+            <Home />
           </Route>
 
-          <Route exact path="/checkout">
+          {/* <Route exact path="/checkout">
             <Checkout />
+          </Route> */}
+
+          <Route exact path="/like-new-products">
+            <NewProducts />
           </Route>
 
-          <Route exact path="/detail1">
-           <Detail />
+          <Route exact path="/home-office">
+            <HomeOffice />
           </Route>
 
+          <Route exact path="/additional-items">
+            <AddProducts />
+          </Route>
         </Switch>
 
         <Footer />
