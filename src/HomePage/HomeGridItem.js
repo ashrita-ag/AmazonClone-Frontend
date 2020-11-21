@@ -5,15 +5,15 @@ import "./HomeGridItem.css";
 function HomeGridItem() {
   return (
     <div className="homeGridItem">
-      <div className="signIn">
-        <div className="signInHeading">Sign in for your best experience</div>
-        <button className="signInButton">Sign in securly.</button>
+      <div className="homeGridItemSignIn">
+        <div className="homeGridItemSignInHeading">Sign in for your best experience</div>
+        <button className="homeGridItemSignInButton">Sign in securly.</button>
       </div>
 
-      <div className="productGridImage">
+      <div className="homeGridItemImage">
         <img
           src="https://images-na.ssl-images-amazon.com/images/I/61hwdcuuW%2BL._SL1000_.jpg"
-          alt="productGridImage"
+          alt="homeGridItemImage"
         />
       </div>
     </div>
