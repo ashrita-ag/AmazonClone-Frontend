@@ -39,7 +39,7 @@ a.headerLink div :hover {
 
 .headerSearchInput {
   width: 100%;
-  padding: 7px 0px;
+  padding: 7px 5px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border: none;
@@ -51,6 +51,7 @@ a.headerLink div :hover {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   box-sizing: content-box;
+  color: #131921;
 }
 
 .headerNavbar {

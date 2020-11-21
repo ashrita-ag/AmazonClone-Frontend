@@ -12,7 +12,7 @@ function HomeGridItem() {
 
       <div className="productGridImage">
         <img
-          src="https://images-eu.ssl-images-amazon.com/images/G/31/Gateway/Zeitgeist/Nov20/Diwali/DesktopGateway_CategoryCard_379X304_Gifting_Purple._SY304_CB417108240_.jpg"
+          src="https://images-na.ssl-images-amazon.com/images/I/61hwdcuuW%2BL._SL1000_.jpg"
           alt="productGridImage"
         />
       </div>
