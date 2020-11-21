@@ -1,10 +1,18 @@
-.bannerImage
-{
-    
+.homeProductsContainer {
+  background-color: #e9e9e9a2;
+  padding-bottom: 150px;
 }
 
-.bannerImage img{
-    display : block;
-    margin: auto;
+.bannerImage {
+  /* background-color: brown; */
+  padding: 25px 0;
+  /* background-color: pink; */
+  margin: 5px auto;
+}
 
+.bannerImage img {
+  display: block;
+  margin: auto;
+  width: 70%;
+  height: auto;
 }
