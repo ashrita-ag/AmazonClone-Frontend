@@ -1,4 +1,4 @@
-.sidenav {
+.headerTogglerSideNav {
   height: 100%;
   width: 0;
   position: fixed;
@@ -11,30 +11,38 @@
   padding-top: 60px;
 }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
+.headerTogglerSideNav a {
+  padding: 10px 32px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 17px;
   color: #000000;
   display: block;
   transition: 0.3s;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(240, 240, 240);
 }
 
-.sidenav a:hover {
+.headerTogglerSideNav a.headerTogglerNavOption {
+  font-size: 14px;
+  color: gray;
+  font-weight: 400;
+  border: none;
+}
+
+.headerTogglerSideNav a:hover {
   background-color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+.headerTogglerSideNav .headerTogglerclosebtn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-  padding-right: 25px;
+  border: none;
 }
-.closebtn {
-}
-.togglerMenu {
+
+.headerTogglerMenu {
   margin: 0 5px;
   border: 1px solid #8d8d89;
   padding: 0px 5px 2px 5px;

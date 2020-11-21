@@ -3,12 +3,12 @@ import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
-import TogglerMenu from "./TogglerMenu.js";
+import HeaderTogglerMenu from "./HeaderTogglerMenu.js";
 
 export default function Header() {
   return (
     <div className="header">
-      <TogglerMenu />
+      <HeaderTogglerMenu />
 
       <Link to="/" className="headerLink">
         <img
@@ -23,10 +23,8 @@ export default function Header() {
         <SearchIcon className="headerSearchIcon" />
       </div>
 
-  
       <div className="headerNavbar">
         <div className="headerNavOption">
-           
           <img
             src="https://img.icons8.com/color/25/000000/india.png"
             alt="languageIcon"
