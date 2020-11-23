@@ -1,0 +1,17 @@
+.checkout {
+  margin: 15px 20px;
+}
+.checkoutContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkoutLine1 {
+  font-size: 13px;
+  font-weight: 700;
+}
+.checkoutLine2 {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+

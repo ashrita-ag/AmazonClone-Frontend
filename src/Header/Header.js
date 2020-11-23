@@ -56,7 +56,7 @@ export default function Header() {
         </Link>
       </div>
 
-      <Link to="/" className="headerLink">
+      <Link to="/checkout" className="headerLink">
         <div className="headerCart">
           <ShoppingCartIcon className="headerCartIcon" />
           <div className="headerCartItems">0</div> {/*Dynamic Update */}

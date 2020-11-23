@@ -1,10 +1,13 @@
 .app {
 }
-.amazonButton
-{
-    border: 1px solid;
-    background-color: #f1c04b;
-    border-radius: 2px;
-    color: #111111;
-    border-color:#a88734 #9c7e31 #846a29;
+.amazonButton {
+  border: 1px solid;
+  /* background-color: #f1c04b; */
+  background: linear-gradient(#f3d698, #f1c04b);
+  border-radius: 2px;
+  color: #111111;
+  border-color: #a88734 #9c7e31 #846a29;
+}
+.amazonButton:hover {
+  background: linear-gradient(#e7c780, #e9b53d);
 }

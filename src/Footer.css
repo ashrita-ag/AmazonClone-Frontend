@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: #37475a;
+  /* margin-bottom: 0; */
   /* margin-top: 100px; */
   /* position: sticky; */
 }

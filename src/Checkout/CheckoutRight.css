@@ -1,0 +1,24 @@
+.checkoutRightImage {
+    display: block;
+    width: 250px;
+  }
+  .checkoutRightBox {
+    border: 1px solid #c5c5c5;
+    padding: 15px;
+    background-color: #ebebfc;
+    font-size: 22px;
+    margin:15px auto;
+    border-radius: 2px;
+  }
+  
+  /* .checkoutRightBoxGift {
+    fontSize: "14px";
+  } */
+  
+  .checkoutRightBoxButton {
+    width: 100%;
+    padding: 5px;
+    font-size: 13px;
+    margin-top: 10px;
+    /* font-weight: 500; */
+  }

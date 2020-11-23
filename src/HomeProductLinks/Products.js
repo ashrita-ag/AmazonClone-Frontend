@@ -1,6 +1,10 @@
-import "./Products.css";
 import React from "react";
+import "./Products.css";
 // import Button from "react-bootstrap";
+
+const addToCart = (e) => {
+  console.log(e);
+};
 
 function Products(props) {
   return (
@@ -20,7 +24,9 @@ function Products(props) {
         </div>
 
         <div className="productButton ">
-          <button className="amazonButton">Add to Cart</button>
+          <button className="amazonButton" onClick={addToCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
