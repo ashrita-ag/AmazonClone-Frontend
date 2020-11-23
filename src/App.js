@@ -18,6 +18,7 @@ function App() {
       <div className="app">
         <Header />
 
+        <div id="overlay"></div>
         <div className="content">
         <Switch>
           <Route exact path="/" component={Home} />

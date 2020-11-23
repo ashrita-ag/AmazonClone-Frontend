@@ -3,16 +3,17 @@ import "./HeaderTogglerMenu.css";
 
 function headerTogglerOpenNav() {
   document.getElementById("headerTogglerSideNav").style.width = "250px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  document.getElementById("overlay").style.display = "block";
+
 }
 function headerTogglerCloseNav() {
   document.getElementById("headerTogglerSideNav").style.width = "0";
-  document.body.style.backgroundColor = "white";
+  document.getElementById("overlay").style.display = "none";
 }
 
 function HeaderTogglerMenu() {
   return (
-    <div>
+    <div className="headerTogglerMenu">
       <div id="headerTogglerSideNav" className="headerTogglerSideNav">
         <a
           href="# "
@@ -37,7 +38,7 @@ function HeaderTogglerMenu() {
         </a>
       </div>
       <div>
-        <span className="headerTogglerMenu" onClick={() => headerTogglerOpenNav()}>
+        <span className="headerTogglerMenuBtn" onClick={() => headerTogglerOpenNav()}>
           &#9776;
         </span>
       </div>

@@ -2,7 +2,6 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 101;
   top: 0;
   left: 0;
   background-color: #ffffff;
@@ -42,7 +41,7 @@
   border: none;
 }
 
-.headerTogglerMenu {
+.headerTogglerMenuBtn {
   margin: 0 5px;
   border: 1px solid #8d8d89;
   padding: 0px 5px 2px 5px;
