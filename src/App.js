@@ -13,7 +13,7 @@ import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
 import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <div className="app">
         <Header />
 
@@ -21,10 +21,6 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-
-          {/* <Route exact path="/checkout">
-            <Checkout />
-          </Route> */}
 
           <Route exact path="/like-new-products">
             <NewProducts />
