@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   background-color: #37475a;
-  /* margin-bottom: 0; */
-  /* margin-top: 100px; */
-  /* position: sticky; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
 }
 
 .footerLogo {
@@ -15,7 +16,7 @@
 }
 
 .footerText {
-  width: 100%;
+  /* width: 100%; */
   height: 50px;
   font-size: 12px;
   background-color: #131a22;

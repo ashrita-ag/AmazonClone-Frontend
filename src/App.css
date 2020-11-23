@@ -1,4 +1,9 @@
 .app {
+  min-height: 100vh;
+  position: relative;
+}
+.content {
+  padding-bottom: 85px;
 }
 .amazonButton {
   border: 1px solid;

@@ -18,6 +18,7 @@ function App() {
       <div className="app">
         <Header />
 
+        <div className="content">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/like-new-products" component={NewProducts} />
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/checkout" component={Checkout} />
 
         </Switch>
+        </div>
 
         <Footer />
       </div>
