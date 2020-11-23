@@ -19,8 +19,8 @@ function Products(props) {
           <div className="productDetailsRating">{props.rating}</div>
         </div>
 
-        <div className="productButton">
-          <button>Add to Cart</button>
+        <div className="productButton ">
+          <button className="amazonButton">Add to Cart</button>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ function HomeGridItem() {
     <div className="homeGridItem">
       <div className="homeGridItemSignIn">
         <div className="homeGridItemSignInHeading">Sign in for your best experience</div>
-        <button className="homeGridItemSignInButton">Sign in securly.</button>
+        <button className="homeGridItemSignInButton amazonButton">Sign in securly.</button>
       </div>
 
       <div className="homeGridItemImage">

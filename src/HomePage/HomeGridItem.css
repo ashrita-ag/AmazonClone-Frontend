@@ -26,11 +26,7 @@
 }
 
 .homeGridItemSignInButton {
-  background-color: #fcad46;
-  /* background-color:; */
   font-size: 12px;
   padding: 5px;
-
   width: 100%;
-  border-radius: 2px;
 }

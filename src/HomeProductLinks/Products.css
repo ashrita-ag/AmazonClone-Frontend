@@ -52,6 +52,8 @@
 }
 
 .productButton > button {
-  background-color: #fcad46;
-  width: 50%;
+  /* background-color: #fcad46; */
+  width: 40%;
+  font-size: 13px;
+  padding: 5px;
 }
