@@ -20,14 +20,13 @@ function App() {
 
         <div id="overlay"></div>
         <div className="content">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/like-new-products" component={NewProducts} />
-          <Route exact path="/home-office" component={HomeOffice} />
-          <Route exact path="/additional-items" component={AddProducts} />
-          <Route exact path="/checkout" component={Checkout} />
-
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/like-new-products" component={NewProducts} />
+            <Route exact path="/home-office" component={HomeOffice} />
+            <Route exact path="/additional-items" component={AddProducts} />
+            <Route exact path="/checkout" component={Checkout} />
+          </Switch>
         </div>
 
         <Footer />

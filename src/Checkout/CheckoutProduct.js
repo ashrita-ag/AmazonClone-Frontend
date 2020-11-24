@@ -1,8 +1,22 @@
 import "./CheckoutProduct.css";
 import React from "react";
 // import Dropdown from "react-bootstrap/Dropdown";
+import { UseCartValue } from "../StateProvider/CartContext.js";
 
 function CheckoutProduct(props) {
+  const [, dispatch] = UseCartValue();
+  //  [cart,dispatch]
+
+  const deleteProduct = () => {
+    dispatch({
+      type: "Delete_from_Cart",
+      item: {
+        heading: props.heading,
+        img: props.productImg,
+        price: props.price,
+      },
+    });
+  };
   return (
     <div className="checkoutProduct">
       <div className="checkoutProductLeft">
@@ -28,7 +42,9 @@ function CheckoutProduct(props) {
             This will be a gift.
           </div>
 
-          <button className="amazonButton">Delete</button>
+          <button className="amazonButton" onClick={deleteProduct}>
+            Delete
+          </button>
         </div>
       </div>
       <div className="checkoutProductRight">{props.price}.00</div>

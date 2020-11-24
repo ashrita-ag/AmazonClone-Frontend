@@ -1,12 +1,24 @@
 import React from "react";
 import "./Products.css";
+import { UseCartValue } from "../StateProvider/CartContext.js";
 // import Button from "react-bootstrap";
 
-const addToCart = (e) => {
-  console.log(e);
-};
-
 function Products(props) {
+  const [, dispatch] = UseCartValue(); 
+  //  [cart,dispatch]
+
+  const addToCart = () => {
+    dispatch({
+      type: "Add_to_Cart",
+      item: {
+        heading: props.heading,
+        img: props.productImg,
+        price: props.price,
+      },
+    });
+    // console.log(cart);
+  };
+
   return (
     <div className="products">
       <div className="productImg">

@@ -4,8 +4,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import HeaderTogglerMenu from "./HeaderTogglerMenu.js";
+import {UseCartValue} from "../StateProvider/CartContext.js" 
+
 
 export default function Header() {
+
+const [{cart},] =UseCartValue();
+
   return (
     <div className="header">
       <HeaderTogglerMenu />
@@ -59,7 +64,7 @@ export default function Header() {
       <Link to="/checkout" className="headerLink">
         <div className="headerCart">
           <ShoppingCartIcon className="headerCartIcon" />
-          <div className="headerCartItems">0</div> {/*Dynamic Update */}
+          <div className="headerCartItems">{cart.length}</div> {/*Dynamic Update */}
         </div>
       </Link>
     </div>
