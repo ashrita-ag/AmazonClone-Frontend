@@ -11,6 +11,7 @@ import AddProducts from "./HomeProductLinks/AddProducts/AddProducts.js";
 import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
 import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 import Checkout from "./Checkout/Checkout.js";
+import Login from "./LoginPage/Login.js";
 
 function App() {
   return (
@@ -21,11 +22,25 @@ function App() {
         <div id="overlay"></div>
         <div className="content">
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/like-new-products" component={NewProducts} />
-            <Route exact path="/home-office" component={HomeOffice} />
-            <Route exact path="/additional-items" component={AddProducts} />
-            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/">
+              <Home />
+            </Route>
+
+            <Route exact path="/like-new-products">
+              <NewProducts />
+            </Route>
+            <Route exact path="/home-office">
+              <HomeOffice />
+            </Route>
+            <Route exact path="/additional-items">
+              <AddProducts />
+            </Route>
+            <Route exact path="/checkout">
+              <Checkout />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
           </Switch>
         </div>
 
