@@ -3,6 +3,18 @@ import React from "react";
 // import Dropdown from "react-bootstrap/Dropdown";
 import { UseCartValue } from "../StateProvider/CartContext.js";
 
+function handleClickGiftBox() {
+  const checkedBoxes = document.querySelectorAll(
+    'input[name="checkoutProductGiftCheckbox"]:checked'
+  );
+  const targetBox = document.querySelector('input[name="giftCheckbox"]');
+  if (checkedBoxes.length > 0) targetBox.checked = true;
+  else targetBox.checked = false;
+
+  // console.log(checkedBoxes.length);
+  // console.log(targetBox.checked);
+}
+
 function CheckoutProduct(props) {
   const [{ cart }, dispatch] = UseCartValue();
   // //  [cart,dispatch]
@@ -36,6 +48,7 @@ function CheckoutProduct(props) {
               style={{
                 marginRight: "5px",
               }}
+              onClick={handleClickGiftBox}
             />
             This will be a gift.
           </div>

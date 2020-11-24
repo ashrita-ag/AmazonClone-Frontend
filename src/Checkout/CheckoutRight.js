@@ -2,6 +2,18 @@ import "./CheckoutRight.css";
 import React from "react";
 import { UseCartValue } from "../StateProvider/CartContext.js";
 
+function unCheckAll() {
+  const targetBox = document.querySelector('input[name="giftCheckbox"]');
+  const checkedBoxes = document.querySelectorAll(
+    'input[name="checkoutProductGiftCheckbox"]:checked'
+  );
+  if (targetBox.checked == false) {
+    checkedBoxes.forEach((box) => {
+      box.checked = false;
+    });
+  }
+}
+
 function CheckoutRight() {
   const [{ cart }] = UseCartValue();
 
@@ -28,6 +40,7 @@ function CheckoutRight() {
             style={{
               marginRight: "5px",
             }}
+            onChange={unCheckAll}
           />
           This order contains a gift.
         </div>
