@@ -1,0 +1,56 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.login > img {
+  display: block;
+  width: 150px;
+  height: auto;
+  padding: 5px;
+  margin: 5px auto 10px auto;
+}
+.loginForm {
+  border: 1px solid lightgray;
+  padding: 15px 20px;
+  border-radius: 5px;
+  width: 300px;
+}
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+}
+.loginContainer label {
+  margin: 5px auto 2px 0;
+}
+.loginContainer input {
+  border-radius: 2px;
+  border: 1px solid #9c9b9b;
+  padding: 5px;
+}
+.loginBoxHeading {
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.loginButton {
+  width: 100%;
+  margin: 10px auto;
+  padding: 5px;
+}
+.loginContainer div {
+  font-size: 11px;
+  line-height: 13px;
+  color: rgb(100, 98, 98);
+}
+.loginRemember input {
+  margin-right: 5px;
+  /* width: 20px; */
+}
+.loginRemember {
+  margin-top: 15px !important;
+  display: flex;
+  align-items: center;
+}
