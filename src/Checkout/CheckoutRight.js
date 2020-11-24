@@ -3,12 +3,10 @@ import React from "react";
 import { UseCartValue } from "../StateProvider/CartContext.js";
 
 function CheckoutRight() {
-  
   const [{ cart }] = UseCartValue();
-  var subtotal = parseInt(0);
-  cart.forEach((cartItem) => {
-    subtotal = subtotal + parseInt(cartItem.price);
-  });
+
+  const subtotal = (cart) =>
+    cart?.reduce((amt, item) => amt + parseInt(item.price), 0);
 
   return (
     <div className="checkoutRight">
@@ -19,7 +17,10 @@ function CheckoutRight() {
       />
       <div className="checkoutRightBox">
         <div> Subtotal ({cart.length} item): </div>
-        <div style={{ fontWeight: "bold" }}>{subtotal}.00 </div>
+        <div style={{ fontWeight: "bold" }}>
+          <sup className="productDetailsCurrency">&#8377;</sup>
+          {subtotal(cart)}.00
+        </div>
         <div style={{ fontSize: "14px" }}>
           <input
             type="checkbox"

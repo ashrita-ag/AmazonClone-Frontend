@@ -11,6 +11,7 @@ function Products(props) {
     dispatch({
       type: "Add_to_Cart",
       item: {
+        id :props.id,
         heading: props.heading,
         img: props.productImg,
         price: props.price,

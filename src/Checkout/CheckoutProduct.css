@@ -9,10 +9,17 @@
 .checkoutProductLeft {
   display: flex;
 }
+.checkoutProductImg {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .checkoutProductImg > img {
   display: block;
-  width: 180px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .checkoutProductText {

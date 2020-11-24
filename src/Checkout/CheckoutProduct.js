@@ -4,18 +4,16 @@ import React from "react";
 import { UseCartValue } from "../StateProvider/CartContext.js";
 
 function CheckoutProduct(props) {
-  const [, dispatch] = UseCartValue();
-  //  [cart,dispatch]
+  const [{ cart }, dispatch] = UseCartValue();
+  // //  [cart,dispatch]
 
-  const deleteProduct = () => {
+  const deleteFromCart = () => {
     dispatch({
       type: "Delete_from_Cart",
-      item: {
-        heading: props.heading,
-        img: props.productImg,
-        price: props.price,
-      },
+      id: props.id,
     });
+
+    console.log(cart);
   };
   return (
     <div className="checkoutProduct">
@@ -42,7 +40,7 @@ function CheckoutProduct(props) {
             This will be a gift.
           </div>
 
-          <button className="amazonButton" onClick={deleteProduct}>
+          <button className="amazonButton" onClick={deleteFromCart}>
             Delete
           </button>
         </div>

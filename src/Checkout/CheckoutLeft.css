@@ -15,3 +15,21 @@
 .checkoutLeftHeading2 {
   font-size: 13px;
 }
+
+.checkoutLeftEmptyCart {
+  display: flex;
+}
+.checkoutLeftEmptyCart img {
+  display: block;
+  width: 40%;
+  height: auto;
+}
+.emptyCartText1 {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px auto auto 15px;
+}
+.emptyCartText2 {
+  margin-left: 15px;
+  font-size: 14px;
+}
