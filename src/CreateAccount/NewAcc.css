@@ -1,0 +1,51 @@
+.newAcc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+a > img {
+  display: block;
+  width: 150px;
+  height: auto;
+  padding: 5px;
+  margin: 20px auto;
+}
+.newAccForm {
+  border: 1px solid lightgray;
+  padding: 15px;
+  border-radius: 5px;
+  width: 300px;
+}
+.newAccContainer {
+  display: flex;
+  flex-direction: column;
+}
+.newAccContainer label {
+  margin: 10px auto 2px 0;
+}
+.newAccContainer input {
+  border-radius: 3px;
+  border: 1px solid #afafaf;
+
+  padding: 4px;
+}
+.newAccBoxHeading {
+  font-size: 27px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.newAccButton {
+  width: 100%;
+  margin: 20px auto;
+  padding: 5px;
+}
+
+.newAccText {
+  border-top: 1px solid #e2e2e2;
+  /* margin: 15px 0; */
+  padding-top: 15px;
+  font-weight: 490;
+  color: #000000;
+}

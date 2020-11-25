@@ -2,12 +2,17 @@ import React from "react";
 import "./HomeGridItem.css";
 
 // THIS CONTAINS SIGN IN DISPLAYED ON HOMEPAGE
+function redirectSignIn ()
+{
+
+
+}
 function HomeGridItem() {
   return (
     <div className="homeGridItem">
       <div className="homeGridItemSignIn">
         <div className="homeGridItemSignInHeading">Sign in for your best experience</div>
-        <button className="homeGridItemSignInButton amazonButton">Sign in securly.</button>
+        <a href="/login"><button className="homeGridItemSignInButton amazonButton">Sign in securly.</button></a>
       </div>
 
       <div className="homeGridItemImage">

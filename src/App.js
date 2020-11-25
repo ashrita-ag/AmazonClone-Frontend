@@ -12,34 +12,41 @@ import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
 import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 import Checkout from "./Checkout/Checkout.js";
 import Login from "./LoginPage/Login.js";
+import NewAcc from "./CreateAccount/NewAcc";
 
 function App() {
   return (
     <Router basename="/">
       <div className="app">
-        <Header />
-
         <div id="overlay"></div>
         <div className="content">
           <Switch>
             <Route exact path="/">
+              <Header />
               <Home />
             </Route>
 
             <Route exact path="/like-new-products">
+              <Header />
               <NewProducts />
             </Route>
             <Route exact path="/home-office">
+              <Header />
               <HomeOffice />
             </Route>
             <Route exact path="/additional-items">
+              <Header />
               <AddProducts />
             </Route>
             <Route exact path="/checkout">
+              <Header />
               <Checkout />
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/create-new-account">
+              <NewAcc />
             </Route>
           </Switch>
         </div>

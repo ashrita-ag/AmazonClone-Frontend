@@ -5,12 +5,12 @@
   align-items: center;
   font-size: 12px;
 }
-.login > img {
+a > img {
   display: block;
   width: 150px;
   height: auto;
   padding: 5px;
-  margin: 5px auto 10px auto;
+  margin: 20px auto;
 }
 .loginForm {
   border: 1px solid lightgray;
@@ -31,7 +31,7 @@
   padding: 5px;
 }
 .loginBoxHeading {
-  font-size: 25px;
+  font-size: 27px;
   margin-bottom: 10px;
   font-weight: 500;
 }
@@ -43,7 +43,7 @@
 .loginContainer div {
   font-size: 11px;
   line-height: 13px;
-  color: rgb(100, 98, 98);
+  color: #4b4a4a;
 }
 .loginRemember input {
   margin-right: 5px;
@@ -53,4 +53,33 @@
   margin-top: 15px !important;
   display: flex;
   align-items: center;
+}
+.loginNewUserText {
+  margin: 25px 0 15px;
+  /* padding: 5px; */
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 11px;
+  color: #646262;
+  width: 300px;
+  text-align: center;
+  line-height: 0.1em;
+  font-weight: 490;
+}
+.loginNewUserText span {
+  background: #ffffff;
+  padding: 0 10px;
+}
+
+.newUserButton {
+  border: 1px solid;
+  background: linear-gradient(#f8f8f8, #e2e2e2);
+  border-radius: 2px;
+  color: #111111;
+  border-color: #b3b1b2;
+  padding: 5px 15px;
+  width: 300px;
+  font-weight: 490;
+}
+.newUserButton:hover {
+  background: linear-gradient(#e2e2e2, #dbdada);
 }
