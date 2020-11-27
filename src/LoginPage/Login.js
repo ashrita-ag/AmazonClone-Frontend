@@ -1,20 +1,35 @@
 import "./Login.css";
-
 import React, { useState } from "react";
+import axios from "../axios";
+import { useHistory } from "react-router-dom";
+
+const ERROR = "ErrorOccured";
+// const DONE = "TaskSuccesful";
+const FAIL = "TaskFailed"; //Not found
 
 function Login() {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const changeEmail = (e) => {
-    setEmail(e.target.value);
+  const changeErrorMsgNew = (error) => {
+    setErrorMsg(error);
   };
 
-  const changePwd = (e) => {
-    setPwd(e.target.value);
-  };
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault();
+    const user = {
+      email: email,
+      password: pwd,
+    };
 
-  // console.log(email+" "+pwd);
+    const message = await axios.post("/login", { user });
+    if (message.data === ERROR || message.data === FAIL)
+      changeErrorMsgNew(message.data);
+    else history.goBack();
+  };
 
   return (
     <div className="login">
@@ -25,7 +40,7 @@ function Login() {
         />
       </a>
 
-      <form className="loginForm">
+      <form className="loginForm" onSubmit={handleSubmitLogin}>
         <div className="loginBoxHeading">Login</div>
 
         <div className="loginContainer">
@@ -36,7 +51,7 @@ function Login() {
             type="text"
             name="email"
             value={email}
-            onChange={changeEmail}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <label htmlFor="pwd">
@@ -46,9 +61,10 @@ function Login() {
             type="password"
             name="pwd"
             value={pwd}
-            onChange={changePwd}
+            onChange={(e) => setPwd(e.target.value)}
             required
           />
+          <div className="loginErrorMsg">{errorMsg}</div>
           <button type="submit" className="loginButton amazonButton">
             Login
           </button>

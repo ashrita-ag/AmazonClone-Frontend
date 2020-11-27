@@ -1,7 +1,38 @@
 import "./NewAcc.css";
-import React from "react";
+import axios from "../axios";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+const ERROR = "ErrorOccured";
+// const DONE = "TaskSuccesful";
+const FAIL = "TaskFailed"; //Not found
 
 function NewAcc() {
+  const history = useHistory();
+  const [errorMsg, setErrorMsg] = useState("");
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [name, setName] = useState("");
+
+  const changeErrorMsgNew = (error) => {
+    setErrorMsg(error);
+  };
+
+  const handleSubmitNew = async (e) => {
+    e.preventDefault();
+
+    const user = {
+      name: name,
+      email: email,
+      password: pwd,
+    };
+
+    const message = await axios.post("/create-new-account", { user });
+    if (message.data === ERROR || message.data === FAIL)
+      changeErrorMsgNew(message.data);
+    else history.goBack();
+  };
+
   return (
     <div className="newAcc">
       <a href="/">
@@ -10,24 +41,35 @@ function NewAcc() {
           alt="AmazonLogo"
         />
       </a>
-      <form className="newAccForm">
+      <form className="newAccForm" onSubmit={handleSubmitNew}>
         <div className="newAccBoxHeading">Create Account</div>
 
         <div className="newAccContainer">
           <label htmlFor="name">
             <b>Your name</b>
           </label>
-          <input type="text" name="name" required />
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-          <label htmlFor="phone">
+          {/* <label htmlFor="phone">
             <b>Mobile number</b>
           </label>
-          <input type="text" name="phone" required />
+          <input type="text" name="phone" required /> */}
 
           <label htmlFor="email">
-            <b>Email (optional) </b>
+            <b>Email (optional)</b>
           </label>
-          <input type="text" name="email" />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
           <label htmlFor="pwd">
             <b>Password</b>
@@ -35,9 +77,13 @@ function NewAcc() {
           <input
             type="password"
             name="pwd"
+            value={pwd}
+            onChange={(e) => setPwd(e.target.value)}
             placeholder="At least 6 characters"
             required
           />
+
+          <div className="errorMsgNew"> {errorMsg}</div>
 
           <button type="submit" className="newAccButton amazonButton">
             Create your Amazon Account
