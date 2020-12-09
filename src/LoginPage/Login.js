@@ -1,11 +1,7 @@
 import "./Login.css";
 import React, { useState } from "react";
-import axios from "../axios";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
-
-const ERROR = "ErrorOccured";
-// const DONE = "TaskSuccesful";
-const FAIL = "TaskFailed"; //Not found
 
 function Login() {
   const history = useHistory();
@@ -23,12 +19,9 @@ function Login() {
     const user = {
       email: email,
       password: pwd,
-    };
-
-    const message = await axios.post("/login", { user });
-    if (message.data === ERROR || message.data === FAIL)
-      changeErrorMsgNew(message.data);
-    else history.goBack();
+    }
+    const message = await axios.post("http://localhost:5000/users/login",user); 
+    console.log(message.data);    
   };
 
   return (
@@ -73,10 +66,6 @@ function Login() {
             <a href="# ">Conditions of Use</a> and{" "}
             <a href="# ">Privacy Notice.</a>
           </div>
-          {/* <label className="loginRemember">
-            <input type="checkbox" name="remember" />
-            Remember me
-          </label> */}
         </div>
       </form>
       <div className="loginNewUserText">

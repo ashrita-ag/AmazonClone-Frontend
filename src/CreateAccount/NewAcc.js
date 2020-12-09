@@ -1,11 +1,7 @@
 import "./NewAcc.css";
-import axios from "../axios";
+import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-const ERROR = "ErrorOccured";
-// const DONE = "TaskSuccesful";
-const FAIL = "TaskFailed"; //Not found
 
 function NewAcc() {
   const history = useHistory();
@@ -25,12 +21,10 @@ function NewAcc() {
       name: name,
       email: email,
       password: pwd,
-    };
+    }
+    const message = await axios.post("http://localhost:5000/users/create_new",user); 
+    console.log(message.data);    
 
-    const message = await axios.post("/create-new-account", { user });
-    if (message.data === ERROR || message.data === FAIL)
-      changeErrorMsgNew(message.data);
-    else history.goBack();
   };
 
   return (

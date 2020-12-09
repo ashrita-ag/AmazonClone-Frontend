@@ -7,7 +7,7 @@ function unCheckAll() {
   const checkedBoxes = document.querySelectorAll(
     'input[name="checkoutProductGiftCheckbox"]:checked'
   );
-  if (targetBox.checked == false) {
+  if (targetBox.checked === false) {
     checkedBoxes.forEach((box) => {
       box.checked = false;
     });
