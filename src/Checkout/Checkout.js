@@ -2,7 +2,7 @@ import React from "react";
 import "./Checkout.css";
 import CheckoutLeft from "./CheckoutLeft";
 import CheckoutRight from "./CheckoutRight.js";
-import { UseCartValue } from "../StateProvider/CartContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
 
 const emptyCart = () => (
   <div className="checkoutLeftEmptyCart">
@@ -27,7 +27,7 @@ const checkoutComponents = () => (
 );
 
 function Checkout() {
-  const [{ cart }] = UseCartValue();
+  const [{ cart }] = UseStateValue();
   return (
     <div className="checkout">
       <div className="checkoutLine1">

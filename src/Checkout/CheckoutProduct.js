@@ -1,7 +1,7 @@
 import "./CheckoutProduct.css";
 import React from "react";
 // import Dropdown from "react-bootstrap/Dropdown";
-import { UseCartValue } from "../StateProvider/CartContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function handleClickGiftBox() {
   const checkedBoxes = document.querySelectorAll(
@@ -16,7 +16,7 @@ function handleClickGiftBox() {
 }
 
 function CheckoutProduct(props) {
-  const [{ cart }, dispatch] = UseCartValue();
+  const [{ cart }, dispatch] = UseStateValue();
   // //  [cart,dispatch]
 
   const deleteFromCart = () => {

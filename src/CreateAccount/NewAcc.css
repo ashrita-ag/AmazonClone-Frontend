@@ -49,3 +49,7 @@ a > img {
   font-weight: 490;
   color: #000000;
 }
+.errorMsgNew{
+  color:red;
+  /* font-size: 10px; */
+}

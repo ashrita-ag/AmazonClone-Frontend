@@ -4,12 +4,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import HeaderTogglerMenu from "./HeaderTogglerMenu.js";
-import {UseCartValue} from "../StateProvider/CartContext.js" 
+import {UseStateValue} from "../StateProvider/StateContext.js" 
 
 
 export default function Header() {
 
-const [{cart},] =UseCartValue();
+const [{cart},] =UseStateValue();
 
   return (
     <div className="header">

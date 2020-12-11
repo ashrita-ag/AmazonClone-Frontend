@@ -1,10 +1,10 @@
 import React from "react";
 import "./Products.css";
-import { UseCartValue } from "../StateProvider/CartContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
 // import Button from "react-bootstrap";
 
 function Products(props) {
-  const [, dispatch] = UseCartValue(); 
+  const [, dispatch] = UseStateValue(); 
   //  [cart,dispatch]
 
   const addToCart = () => {

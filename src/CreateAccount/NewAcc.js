@@ -1,10 +1,10 @@
 import "./NewAcc.css";
-import axios from "axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import axios from "axios";
+// import { useHistory } from "react-router-dom";
 
 function NewAcc() {
-  const history = useHistory();
+  // const history = useHistory();
   const [errorMsg, setErrorMsg] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -14,17 +14,11 @@ function NewAcc() {
     setErrorMsg(error);
   };
 
-  const handleSubmitNew = async (e) => {
+  const handleSubmitNew = (e) => {
     e.preventDefault();
 
-    const user = {
-      name: name,
-      email: email,
-      password: pwd,
-    }
-    const message = await axios.post("http://localhost:5000/users/create_new",user); 
-    console.log(message.data);    
-
+    changeErrorMsgNew("error");
+    //email,pwd,name
   };
 
   return (

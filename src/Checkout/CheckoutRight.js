@@ -1,6 +1,6 @@
 import "./CheckoutRight.css";
 import React from "react";
-import { UseCartValue } from "../StateProvider/CartContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function unCheckAll() {
   const targetBox = document.querySelector('input[name="giftCheckbox"]');
@@ -15,7 +15,7 @@ function unCheckAll() {
 }
 
 function CheckoutRight() {
-  const [{ cart }] = UseCartValue();
+  const [{ cart }] = UseStateValue();
 
   const subtotal = (cart) =>
     cart?.reduce((amt, item) => amt + parseInt(item.price), 0);

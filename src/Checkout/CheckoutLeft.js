@@ -1,10 +1,10 @@
 import "./CheckoutLeft.css";
 import React from "react";
 import CheckoutProduct from "./CheckoutProduct.js";
-import { UseCartValue } from "../StateProvider/CartContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function CheckoutLeft() {
-  const [{ cart }] = UseCartValue();
+  const [{ cart }] = UseStateValue();
 
   const displayCartItems = (cart) =>
     cart.map((cartItem) => (

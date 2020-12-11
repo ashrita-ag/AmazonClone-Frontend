@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import reducer,{initialState} from "./StateProvider/reducer.js"
-import {CartProvider} from "./StateProvider/CartContext.js"
+import reducer, { initialState } from "./StateProvider/reducer.js";
+import { StateProvider } from "./StateProvider/StateContext.js";
 
 ReactDOM.render(
-  <CartProvider initialState={initialState} reducer={reducer}>
+  <StateProvider initialState={initialState} reducer={reducer}>
     <App />
-  </CartProvider>,
+  </StateProvider>,
   document.getElementById("root")
 );
 

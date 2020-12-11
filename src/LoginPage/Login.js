@@ -1,10 +1,10 @@
 import "./Login.css";
 import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+// require("dotenv").config();
 
 function Login() {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -14,14 +14,11 @@ function Login() {
     setErrorMsg(error);
   };
 
-  const handleSubmitLogin = async (e) => {
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
-    const user = {
-      email: email,
-      password: pwd,
-    }
-    const message = await axios.post("http://localhost:5000/users/login",user); 
-    console.log(message.data);    
+
+    changeErrorMsgNew("error");
+    //email,pwd,name
   };
 
   return (
