@@ -2,6 +2,7 @@ import "./CheckoutProduct.css";
 import React from "react";
 // import Dropdown from "react-bootstrap/Dropdown";
 import { UseStateValue } from "../StateProvider/StateContext.js";
+import { DeleteFromCart } from "../ActionType";
 
 function handleClickGiftBox() {
   const checkedBoxes = document.querySelectorAll(
@@ -10,9 +11,6 @@ function handleClickGiftBox() {
   const targetBox = document.querySelector('input[name="giftCheckbox"]');
   if (checkedBoxes.length > 0) targetBox.checked = true;
   else targetBox.checked = false;
-
-  // console.log(checkedBoxes.length);
-  // console.log(targetBox.checked);
 }
 
 function CheckoutProduct(props) {
@@ -21,7 +19,7 @@ function CheckoutProduct(props) {
 
   const deleteFromCart = () => {
     dispatch({
-      type: "Delete_from_Cart",
+      type: DeleteFromCart,
       id: props.id,
     });
 

@@ -1,15 +1,20 @@
+import { AddToCart, DeleteFromCart } from "../ActionType";
+
 export const initialState = {
+  name: null,
+  email: null,
+  isLoggedIn: null,
   cart: [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "Add_to_Cart":
+    case AddToCart:
       return {
         ...state,
         cart: [...state.cart, action.item],
       };
-    case "Delete_from_Cart":
+    case DeleteFromCart:
       const index = state.cart.findIndex(
         (cartItem) => cartItem.id === action.id
       );
@@ -18,6 +23,8 @@ const reducer = (state, action) => {
         state.cart.splice(index, 1);
       }
       return { ...state, cart: state.cart };
+
+      
     default:
       return state;
   }

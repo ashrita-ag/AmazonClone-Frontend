@@ -2,6 +2,9 @@ import React from "react";
 import "./Products.css";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 // import Button from "react-bootstrap";
+import { AddToCart } from "../ActionType";
+import StarRateIcon from '@material-ui/icons/StarRate';
+
 
 function Products(props) {
   const [, dispatch] = UseStateValue(); 
@@ -9,7 +12,7 @@ function Products(props) {
 
   const addToCart = () => {
     dispatch({
-      type: "Add_to_Cart",
+      type: AddToCart,
       item: {
         id :props.id,
         heading: props.heading,
@@ -17,8 +20,10 @@ function Products(props) {
         price: props.price,
       },
     });
-    // console.log(cart);
   };
+
+const rating = [];
+for(let i=0;i<props.rating;i++) rating.push(<StarRateIcon key={i} />);  
 
   return (
     <div className="products">
@@ -33,7 +38,8 @@ function Products(props) {
             <sup className="productDetailsCurrency">&#8377;</sup>
             {props.price}.00
           </div>
-          <div className="productDetailsRating">{props.rating}</div>
+          <div className="productDetailsRating"> {rating}
+          </div>
         </div>
 
         <div className="productButton ">
