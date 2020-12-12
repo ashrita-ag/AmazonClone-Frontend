@@ -50,6 +50,7 @@ a > img {
   color: #000000;
 }
 .errorMsgNew{
-  color:red;
-  /* font-size: 10px; */
+  color:red !important;
+  font-size: 12px !important;
+  text-align: right !important;
 }

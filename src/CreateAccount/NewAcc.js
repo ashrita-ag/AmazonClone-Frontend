@@ -1,10 +1,10 @@
 import "./NewAcc.css";
 import React, { useState } from "react";
-// import axios from "axios";
-// import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function NewAcc() {
-  // const history = useHistory();
+  const history = useHistory();
   const [errorMsg, setErrorMsg] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -17,8 +17,22 @@ function NewAcc() {
   const handleSubmitNew = (e) => {
     e.preventDefault();
 
-    changeErrorMsgNew("error");
-    //email,pwd,name
+    axios
+      .post("http://localhost:5000/user/register", {
+        name: name,
+        email: email,
+        password: pwd,
+      })
+      .then((m) => {
+        const msg = m.data.msg;
+        if (msg) changeErrorMsgNew(msg);
+        else {
+          // const accesstoken = m.data.accesstoken;
+          //ACCESS TOKENNNN
+          history.push("/");
+        }
+      })
+      .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
   };
 
   return (

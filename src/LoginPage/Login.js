@@ -1,10 +1,14 @@
 import "./Login.css";
+import { useHistory } from "react-router-dom";
+import { UseStateValue } from "../StateProvider/StateContext.js";
+import { LoginSuccess } from "../ActionType";
+
+
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// require("dotenv").config();
+const axios = require("axios");
 
 function Login() {
-  // const history = useHistory();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -17,8 +21,28 @@ function Login() {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
 
-    changeErrorMsgNew("error");
-    //email,pwd,name
+    axios
+      .post("http://localhost:5000/user/login", {
+        email: email,
+        password: pwd,
+      })
+      .then((m) => {
+        const msg = m.data.msg;
+        if (msg) changeErrorMsgNew(msg);
+        else {
+          // const accesstoken = m.data.accesstoken;
+          //ACCESS TOKENNNN
+        
+        const id = 5;
+        const [dispatch] = UseStateValue();
+        dispatch({
+          type: LoginSuccess,
+          id: id,
+        });
+          history.push("/");
+        }
+      })
+      .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
   };
 
   return (
@@ -54,7 +78,7 @@ function Login() {
             onChange={(e) => setPwd(e.target.value)}
             required
           />
-          <div className="loginErrorMsg">{errorMsg}</div>
+          <div className="errorMsgNew"> {errorMsg}</div>
           <button type="submit" className="loginButton amazonButton">
             Login
           </button>

@@ -1,4 +1,10 @@
-import { AddToCart, DeleteFromCart } from "../ActionType";
+import {
+  AddToCart,
+  DeleteFromCart,
+  LoginSuccess,
+  RegisterSuccess,
+  LogoutSuccess,
+} from "../ActionType";
 
 export const initialState = {
   name: null,
@@ -14,6 +20,7 @@ const reducer = (state, action) => {
         ...state,
         cart: [...state.cart, action.item],
       };
+    // break;
     case DeleteFromCart:
       const index = state.cart.findIndex(
         (cartItem) => cartItem.id === action.id
@@ -24,7 +31,15 @@ const reducer = (state, action) => {
       }
       return { ...state, cart: state.cart };
 
-      
+    case LoginSuccess:
+      return {};
+
+    case LogoutSuccess:
+      return {};
+
+    case RegisterSuccess:
+      return {};
+
     default:
       return state;
   }
