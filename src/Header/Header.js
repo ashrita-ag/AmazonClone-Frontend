@@ -9,7 +9,10 @@ import {UseStateValue} from "../StateProvider/StateContext.js"
 
 export default function Header() {
 
-const [{cart},] =UseStateValue();
+const state =UseStateValue();
+const [cart]= state.cart;
+const [name]=state.name;
+const [isLogged]=state.isLogged;
 
   return (
     <div className="header">
@@ -40,7 +43,7 @@ const [{cart},] =UseStateValue();
         <Link to="/" className="headerLink">
           <div className="headerNavOption">
             {/*DROPDOWN */}
-            <div className="headerNavText1">Hello,Sign in</div>
+            <div className="headerNavText1">Hello{isLogged?name:' '},Sign in</div>
             <div className="headerNavText2">Account & Lists</div>
           </div>
         </Link>

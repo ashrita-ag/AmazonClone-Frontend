@@ -29,26 +29,10 @@ function Login() {
         const msg = m.data.msg;
         if (msg) changeErrorMsgNew(msg);
         else {
-          // const accesstoken = m.data.accesstoken;
-
-          // axios
-          //   .get("http://localhost:5000/user/info", {
-          //     headers: { Authorization: accesstoken },
-          //   })
-          //   .then((res) => {
           localStorage.setItem("firstLogin", true);
 
-          // dispatch({
-          //   type: LoginSuccess,
-          //   user: {
-          //     name: res.Fname,
-          //     email: res.email,
-          //     cart: res.cart,
-          //   },
-          // });
-          // })
-          // .catch((e) => console.log(e));
-          history.push("/");
+          // history.push("/");
+          console.log("login");
         }
       })
       .catch(() => changeErrorMsgNew("Some error oocured. Try again."));

@@ -1,7 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useEffect } from "react";
 
 // Components
 import Header from "./Header/Header.js";
@@ -16,7 +15,6 @@ import NewAcc from "./CreateAccount/NewAcc";
 // import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function App() {
-  // useEffect(() => console.log("UseState"), []);
 
   return (
     <Router basename="/">
