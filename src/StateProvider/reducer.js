@@ -1,3 +1,4 @@
+// import userEvent from "@testing-library/user-event";
 import {
   AddToCart,
   DeleteFromCart,
@@ -11,6 +12,7 @@ export const initialState = {
   email: null,
   isLoggedIn: null,
   cart: [],
+  token: null,
 };
 
 const reducer = (state, action) => {
@@ -32,7 +34,13 @@ const reducer = (state, action) => {
       return { ...state, cart: state.cart };
 
     case LoginSuccess:
-      return {};
+      return {
+        ...state,
+        name: action.user.name,
+        email: action.user.email,
+        isLoggedIn: true,
+        cart: [1, 2],
+      };
 
     case LogoutSuccess:
       return {};

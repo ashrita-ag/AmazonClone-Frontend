@@ -1,15 +1,14 @@
 import "./Login.css";
 import { useHistory } from "react-router-dom";
-import { UseStateValue } from "../StateProvider/StateContext.js";
-import { LoginSuccess } from "../ActionType";
-
+// import { UseStateValue } from "../StateProvider/StateContext.js";
+// import { LoginSuccess } from "../ActionType";
 
 import React, { useState } from "react";
 const axios = require("axios");
 
 function Login() {
   const history = useHistory();
-
+  // const [, dispatch] = UseStateValue();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -31,14 +30,24 @@ function Login() {
         if (msg) changeErrorMsgNew(msg);
         else {
           // const accesstoken = m.data.accesstoken;
-          //ACCESS TOKENNNN
-        
-        const id = 5;
-        const [dispatch] = UseStateValue();
-        dispatch({
-          type: LoginSuccess,
-          id: id,
-        });
+
+          // axios
+          //   .get("http://localhost:5000/user/info", {
+          //     headers: { Authorization: accesstoken },
+          //   })
+          //   .then((res) => {
+          localStorage.setItem("firstLogin", true);
+
+          // dispatch({
+          //   type: LoginSuccess,
+          //   user: {
+          //     name: res.Fname,
+          //     email: res.email,
+          //     cart: res.cart,
+          //   },
+          // });
+          // })
+          // .catch((e) => console.log(e));
           history.push("/");
         }
       })

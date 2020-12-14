@@ -1,11 +1,11 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useEffect } from "react";
 
 // Components
 import Header from "./Header/Header.js";
 import Footer from "./Footer";
-
 import Home from "./HomePage/Home.js";
 import AddProducts from "./HomeProductLinks/AddProducts/AddProducts.js";
 import HomeOffice from "./HomeProductLinks/HomeOffice/HomeOffice.js";
@@ -13,8 +13,11 @@ import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 import Checkout from "./Checkout/Checkout.js";
 import Login from "./LoginPage/Login.js";
 import NewAcc from "./CreateAccount/NewAcc";
+// import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function App() {
+  // useEffect(() => console.log("UseState"), []);
+
   return (
     <Router basename="/">
       <div className="app">
