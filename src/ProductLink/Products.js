@@ -1,27 +1,40 @@
 import React from "react";
 import "./Products.css";
-// import { UseStateValue } from "../StateProvider/StateContext.js";
-import StarRateIcon from '@material-ui/icons/StarRate';
-
+import { UseStateValue } from "../StateProvider/StateContext.js";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import axios from "axios";
 
 function Products(props) {
-  // const [, dispatch] = UseStateValue(); 
-  //  //[cart,dispatch]
+  const state = UseStateValue();
+  const [, setCart] = state.cart; //cart
+  const [isLogged] = state.isLogged;
+  const [token] = state.token;
 
   const addToCart = () => {
-    // dispatch({
-    //   type: AddToCart,
-    //   item: {
-    //     id :props.id,
-    //     heading: props.heading,
-    //     img: props.productImg,
-    //     price: props.price,
-    //   },
-    // });
+    if (isLogged) {
+      // console.log(props.id);
+      axios
+        .patch(
+          "/user/cart/add",
+          { cart: props.id },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((e) => {
+          // console.log(e.data);
+          setCart(e.data);
+        })
+        .catch((e) => console.log(e));
+    } else {
+      alert("Please Login Or Create an account");
+    }
   };
 
-const rating = [];
-for(let i=0;i<props.rating;i++) rating.push(<StarRateIcon key={i} />);  
+  const rating = [];
+  for (let i = 0; i < props.rating; i++) rating.push(<StarRateIcon key={i} />);
 
   return (
     <div className="products">
@@ -36,8 +49,7 @@ for(let i=0;i<props.rating;i++) rating.push(<StarRateIcon key={i} />);
             <sup className="productDetailsCurrency">&#8377;</sup>
             {props.price}.00
           </div>
-          <div className="productDetailsRating"> {rating}
-          </div>
+          <div className="productDetailsRating"> {rating}</div>
         </div>
 
         <div className="productButton ">
