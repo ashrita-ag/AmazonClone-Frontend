@@ -12,12 +12,13 @@ export const StateProvider = ({ children }) => {
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
+    console.log('Inside use Effect')
     if (firstLogin) {
       const refreshToken = async () => {
         const response = await axios.get("http://localhost:5000/user/token", {
           withCredentials: true
         });
-        // console.log("firstLogin");
+        console.log("firstLogin");
         console.log("AccessTOken   " + response.data.accesstoken);
 
         setToken(response.data.accesstoken);
@@ -39,14 +40,13 @@ export const StateProvider = ({ children }) => {
             headers: { Authorization: token },
             withCredentials:true,
           });
-          // console.log(token);
           console.log("THis os for token");
-          // console.log(res.data);
 
           setIsLogged(true);
           setCart(res.data.cart);
           setName(res.data.Fname);
           setEmail(res.data.email);
+
         } catch (err) {
           alert(err.response.data.msg);
         }

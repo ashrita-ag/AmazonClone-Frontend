@@ -1,19 +1,15 @@
 import React from "react";
 import "./HomeGridItem.css";
+import HomesigninBox from "./signinBox.js";
+import {UseStateValue} from "../StateProvider/StateContext.js" 
+import HomesignoutBox from './HomesignoutBox.js'
 
 function HomeGridItem() {
+  const [isLogged]   = UseStateValue().isLogged;
+
   return (
     <div className="homeGridItem">
-      <div className="homeGridItemSignIn">
-        <div className="homeGridItemSignInHeading">
-          Sign in for your best experience
-        </div>
-        <a href="/login">
-          <button className="homeGridItemSignInButton amazonButton">
-            Sign in securly.
-          </button>
-        </a>
-      </div>
+      {!isLogged?<HomesigninBox />:<HomesignoutBox/>}
 
       <div className="homeGridItemImage">
         <img

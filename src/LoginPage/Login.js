@@ -1,5 +1,5 @@
 import "./Login.css";
-import { useHistory } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 // import { UseStateValue } from "../StateProvider/StateContext.js";
 // import { LoginSuccess } from "../ActionType";
 
@@ -8,7 +8,7 @@ const axios = require("axios");
 
 
 function Login() {
-  const history = useHistory();
+  // const history = useHistory();
   // const [, dispatch] = UseStateValue();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -34,7 +34,7 @@ function Login() {
         else {
           localStorage.setItem("firstLogin", true);
 
-          // history.push("/");
+          window.location.href='/';
           console.log("login");
         }
       })

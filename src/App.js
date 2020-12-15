@@ -12,10 +12,10 @@ import NewProducts from "./HomeProductLinks/NewProducts/NewProducts.js";
 import Checkout from "./Checkout/Checkout.js";
 import Login from "./LoginPage/Login.js";
 import NewAcc from "./CreateAccount/NewAcc";
+import Logout from "./AuthPages/Logout.js";
 // import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function App() {
-
   return (
     <Router basename="/">
       <div className="app">
@@ -48,6 +48,9 @@ function App() {
             </Route>
             <Route exact path="/create-new-account">
               <NewAcc />
+            </Route>
+            <Route exact path="/logout">
+              <Logout />
             </Route>
           </Switch>
         </div>

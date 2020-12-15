@@ -43,7 +43,7 @@ const [isLogged]=state.isLogged;
         <Link to="/" className="headerLink">
           <div className="headerNavOption">
             {/*DROPDOWN */}
-            <div className="headerNavText1">Hello{isLogged?name:' '},Sign in</div>
+            <div className="headerNavText1">Hello{isLogged?' '+name:',Sign In'}</div>
             <div className="headerNavText2">Account & Lists</div>
           </div>
         </Link>
