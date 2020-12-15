@@ -14,7 +14,9 @@ function Logout() {
       })
       .catch((e) => console.log(e));
   };
-  return <div>{logout()}</div>;
+  return <div>
+  <h2>Logging out...</h2>
+  {logout()}</div>;
 }
 
 export default Logout;

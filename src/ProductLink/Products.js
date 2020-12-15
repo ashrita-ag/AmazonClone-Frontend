@@ -1,25 +1,23 @@
 import React from "react";
 import "./Products.css";
-import { UseStateValue } from "../StateProvider/StateContext.js";
-// import Button from "react-bootstrap";
-import { AddToCart } from "../ActionType";
+// import { UseStateValue } from "../StateProvider/StateContext.js";
 import StarRateIcon from '@material-ui/icons/StarRate';
 
 
 function Products(props) {
-  const [, dispatch] = UseStateValue(); 
-  //  [cart,dispatch]
+  // const [, dispatch] = UseStateValue(); 
+  //  //[cart,dispatch]
 
   const addToCart = () => {
-    dispatch({
-      type: AddToCart,
-      item: {
-        id :props.id,
-        heading: props.heading,
-        img: props.productImg,
-        price: props.price,
-      },
-    });
+    // dispatch({
+    //   type: AddToCart,
+    //   item: {
+    //     id :props.id,
+    //     heading: props.heading,
+    //     img: props.productImg,
+    //     price: props.price,
+    //   },
+    // });
   };
 
 const rating = [];

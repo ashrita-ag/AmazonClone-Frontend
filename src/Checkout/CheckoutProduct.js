@@ -1,10 +1,9 @@
 import "./CheckoutProduct.css";
 import React from "react";
-// import Dropdown from "react-bootstrap/Dropdown";
-import { UseStateValue } from "../StateProvider/StateContext.js";
-import { DeleteFromCart } from "../ActionType";
+// import { UseStateValue } from "../StateProvider/StateContext.js";
 
-function handleClickGiftBox() {
+function handleClickGiftBox() 
+{
   const checkedBoxes = document.querySelectorAll(
     'input[name="checkoutProductGiftCheckbox"]:checked'
   );
@@ -14,16 +13,16 @@ function handleClickGiftBox() {
 }
 
 function CheckoutProduct(props) {
-  const [{ cart }, dispatch] = UseStateValue();
-  // //  [cart,dispatch]
+  // const [{ cart }, dispatch] = UseStateValue();
+  // // //  [cart,dispatch]
 
   const deleteFromCart = () => {
-    dispatch({
-      type: DeleteFromCart,
-      id: props.id,
-    });
+    // dispatch({
+    //   type: DeleteFromCart,
+    //   id: props.id,
+    // });
 
-    console.log(cart);
+  //   console.log(cart);
   };
   return (
     <div className="checkoutProduct">
