@@ -1,15 +1,10 @@
 import "./Login.css";
-// import { Redirect } from "react-router-dom";
-// import { UseStateValue } from "../StateProvider/StateContext.js";
-// import { LoginSuccess } from "../ActionType";
-
 import React, { useState } from "react";
 const axios = require("axios");
 
 
 function Login() {
-  // const history = useHistory();
-  // const [, dispatch] = UseStateValue();
+  
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");

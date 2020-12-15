@@ -1,10 +1,8 @@
 import "./NewAcc.css";
 import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+const axios = require("axios");
 
 function NewAcc() {
-  const history = useHistory();
   const [errorMsg, setErrorMsg] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -18,18 +16,25 @@ function NewAcc() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/user/register", {
-        name: name,
-        email: email,
-        password: pwd,
-      })
+      .post(
+        "/user/register",
+        {
+          name: name,
+          email: email,
+          password: pwd,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((m) => {
         const msg = m.data.msg;
         if (msg) changeErrorMsgNew(msg);
         else {
-          // const accesstoken = m.data.accesstoken;
-          //ACCESS TOKENNNN
-          history.push("/");
+          localStorage.setItem("firstLogin", true);
+
+          window.location.href = "/";
+          console.log("New Account");
         }
       })
       .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
