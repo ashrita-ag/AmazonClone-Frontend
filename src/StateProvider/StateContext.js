@@ -12,19 +12,13 @@ export const StateProvider = ({ children }) => {
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-
     if (firstLogin) {
       const refreshToken = async () => {
         const response = await axios.get("http://localhost:5000/user/token", {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-          },
+          withCredentials: true
         });
-        console.log("firstLogin");
-
-        console.log(response.data);
+        // console.log("firstLogin");
+        console.log("AccessTOken   " + response.data.accesstoken);
 
         setToken(response.data.accesstoken);
 
@@ -38,11 +32,15 @@ export const StateProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
+      console.log("inside Token")
       const currUser = async () => {
         try {
           const res = await axios.get("http://localhost:5000/user/info", {
             headers: { Authorization: token },
+            withCredentials:true,
           });
+          // console.log(token);
+          console.log("THis os for token");
           // console.log(res.data);
 
           setIsLogged(true);

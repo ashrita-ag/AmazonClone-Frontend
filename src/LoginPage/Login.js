@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 const axios = require("axios");
 
+
 function Login() {
   const history = useHistory();
   // const [, dispatch] = UseStateValue();
@@ -21,9 +22,11 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/user/login", {
+      .post("/user/login", {
         email: email,
         password: pwd,
+      },{
+        withCredentials:true,
       })
       .then((m) => {
         const msg = m.data.msg;
