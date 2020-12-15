@@ -1,33 +1,12 @@
 import React from "react";
 import "./Checkout.css";
-import CheckoutLeft from "./CheckoutLeft";
-import CheckoutRight from "./CheckoutRight.js";
+
 import { UseStateValue } from "../StateProvider/StateContext.js";
-
-const emptyCart = () => (
-  <div className="checkoutLeftEmptyCart">
-    <img
-      src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg"
-      alt="emptyCartImg"
-    />
-    <div>
-      <div className="emptyCartText1">Your Shopping Cart is Empty.</div>
-      <div className="emptyCartText2">
-        Continue shopping on <a href="/">Amazon.in</a>
-      </div>
-    </div>
-  </div>
-);
-
-const checkoutComponents = () => (
-  <div className="checkoutContainer">
-    <CheckoutLeft />
-    <CheckoutRight />
-  </div>
-);
+import EmptyCart from "./EmptyCart";
+import CheckoutComponents from "./CheckoutComponents.js";
 
 function Checkout() {
-  const [{ cart }] = UseStateValue();
+  const [cart] = UseStateValue().cart;
   return (
     <div className="checkout">
       <div className="checkoutLine1">
@@ -39,7 +18,7 @@ function Checkout() {
         Get Instant refund on cancellations | Zero payment failures
       </div>
 
-      {cart.length > 0 ? checkoutComponents() : emptyCart()}
+      {cart.length > 0 ? <CheckoutComponents /> : <EmptyCart />}
     </div>
   );
 }

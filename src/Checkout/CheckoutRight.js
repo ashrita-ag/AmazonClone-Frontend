@@ -2,7 +2,7 @@ import "./CheckoutRight.css";
 import React from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 
-function unCheckAll() {
+const unCheckAll = () => {
   const targetBox = document.querySelector('input[name="giftCheckbox"]');
   const checkedBoxes = document.querySelectorAll(
     'input[name="checkoutProductGiftCheckbox"]:checked'
@@ -12,10 +12,10 @@ function unCheckAll() {
       box.checked = false;
     });
   }
-}
+};
 
 function CheckoutRight() {
-  const [{ cart }] = UseStateValue();
+  const [cart] = UseStateValue().cart;
 
   const subtotal = (cart) =>
     cart?.reduce((amt, item) => amt + parseInt(item.price), 0);
