@@ -14,18 +14,25 @@ function Products(props) {
     if (isLogged) {
       // console.log(props.id);
       axios
-        .patch(
-          "/user/cart/add",
-          { cart: props.id },
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((e) => {
-          // console.log(e.data);
-          setCart(e.data);
+        .get("/product/detail/" + props.id)
+        .then((detail) => {
+          // console.log(detail.data);
+
+          axios
+            .patch(
+              "/user/cart/add",
+              { cart: detail.data },
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
+            )
+            .then((e) => {
+              console.log(e.data);
+              setCart(e.data);
+            })
+            .catch((e) => console.log(e));
         })
         .catch((e) => console.log(e));
     } else {

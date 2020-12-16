@@ -1,9 +1,9 @@
 import "./CheckoutProduct.css";
 import React from "react";
-// import { UseStateValue } from "../StateProvider/StateContext.js";
+import { UseStateValue } from "../StateProvider/StateContext.js";
+import axios from "axios";
 
-function handleClickGiftBox() 
-{
+function handleClickGiftBox() {
   const checkedBoxes = document.querySelectorAll(
     'input[name="checkoutProductGiftCheckbox"]:checked'
   );
@@ -13,16 +13,32 @@ function handleClickGiftBox()
 }
 
 function CheckoutProduct(props) {
-  // const [{ cart }, dispatch] = UseStateValue();
-  // // //  [cart,dispatch]
+  const [cart, setCart] = UseStateValue().cart;
+  const [token] = UseStateValue().token;
 
   const deleteFromCart = () => {
-    // dispatch({
-    //   type: DeleteFromCart,
-    //   id: props.id,
-    // });
+    const index = cart.findIndex((cartItem) => cartItem._id === props.id);
 
-  //   console.log(cart);
+    if (index > -1) {
+      console.log(cart[index]);
+
+      axios
+        .patch(
+          "/user/cart/delete",
+          { cart: cart[index] },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((e) => {
+          console.log(e.data);
+          setCart(e.data);
+        })
+        .catch((e) => console.log(e));
+    }
+    // console.log(cart);
   };
   return (
     <div className="checkoutProduct">
