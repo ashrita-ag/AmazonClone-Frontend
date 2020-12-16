@@ -1,7 +1,8 @@
 import "./CheckoutProduct.css";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import axios from "axios";
+// import DeleteIcon from "@material-ui/icons/Delete";
 
 function handleClickGiftBox() {
   const checkedBoxes = document.querySelectorAll(
@@ -13,14 +14,48 @@ function handleClickGiftBox() {
 }
 
 function CheckoutProduct(props) {
-  const [count,setCount]=useState(0);  
+  const [count, setCount] = useState(props.count);
   const [cart, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
-  
+
+  const decrement = () => {
+    if (count === 1) deleteFromCart();
+    else updateCart(count - 1);
+
+    setCount(count - 1);
+    console.log(count);
+  };
+
+  const increment = () => {
+    updateCart(count + 1);
+
+    setCount(count + 1);
+  };
+
+  const updateCart = (c) => {
+    const index = cart.findIndex((cartItem) => cartItem._id === props.id);
+    if (index > -1) {
+      console.log(cart[index]);
+    }
+    axios
+      .patch(
+        "/user/cart/update",
+        { count: c, product: props.id },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((e) => {
+        console.log("e");
+        console.log(e.data);
+        setCart(e.data);
+      });
+  };
 
   const deleteFromCart = () => {
     const index = cart.findIndex((cartItem) => cartItem._id === props.id);
-
     if (index > -1) {
       console.log(cart[index]);
 
@@ -40,8 +75,8 @@ function CheckoutProduct(props) {
         })
         .catch((e) => console.log(e));
     }
-    // console.log(cart);
   };
+
   return (
     <div className="checkoutProduct">
       <div className="checkoutProductLeft">
@@ -67,12 +102,17 @@ function CheckoutProduct(props) {
             />
             This will be a gift.
           </div>
-          <button className="countButton" onClick={()=>setCount(count-1)}>-</button>
-          <span className="count">{count}</span>
-          <button className="countButton" onClick={()=>setCount(count+1)}>+</button>
+          <button className="countButton" onClick={decrement}>
+            -
+          </button>
+          <span className="count">{props.count}</span>
+          <button className="countButton" onClick={increment}>
+            +
+          </button>
 
+          {/* <DeleteIcon /> */}
 
-          <button className="amazonButton" onClick={deleteFromCart}>
+          <button className="deletebtn amazonButton" onClick={deleteFromCart}>
             Delete
           </button>
         </div>

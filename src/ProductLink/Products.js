@@ -6,35 +6,53 @@ import axios from "axios";
 
 function Products(props) {
   const state = UseStateValue();
-  const [, setCart] = state.cart; //cart
+  const [cart, setCart] = state.cart; //cart
   const [isLogged] = state.isLogged;
   const [token] = state.token;
 
   const addToCart = () => {
     if (isLogged) {
-      // console.log(props.id);
-      axios
-        .get("/product/detail/" + props.id)
-        .then((detail) => {
-          // console.log(detail.data);
-
-          axios
-            .patch(
-              "/user/cart/add",
-              { cart: detail.data },
-              {
-                headers: {
-                  Authorization: token,
-                },
-              }
-            )
-            .then((e) => {
-              console.log(e.data);
-              setCart(e.data);
-            })
-            .catch((e) => console.log(e));
-        })
-        .catch((e) => console.log(e));
+      const index = cart.findIndex((cartItem) => cartItem._id === props.id);
+      if (index > -1) {
+        console.log(cart[index]);
+        axios
+          .patch(
+            "/user/cart/update",
+            { count: cart[index].count + 1, product: props.id },
+            {
+              headers: {
+                Authorization: token,
+              },
+            }
+          )
+          .then((e) => {
+            console.log("e");
+            console.log(e.data);
+            setCart(e.data);
+          });
+      } else {
+        axios
+          .get("/product/detail/" + props.id)
+          .then((detail) => {
+            detail.data["count"] = 1;
+            axios
+              .patch(
+                "/user/cart/add",
+                { cart: detail.data },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              )
+              .then((e) => {
+                console.log(e.data);
+                setCart(e.data);
+              })
+              .catch((e) => console.log(e));
+          })
+          .catch((e) => console.log(e));
+      }
     } else {
       alert("Please Login Or Create an account");
     }

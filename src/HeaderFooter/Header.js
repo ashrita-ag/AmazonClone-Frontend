@@ -4,15 +4,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import HeaderTogglerMenu from "./HeaderTogglerMenu.js";
-import {UseStateValue} from "../StateProvider/StateContext.js" 
-
+import { UseStateValue } from "../StateProvider/StateContext.js";
 
 export default function Header() {
-
-const state =UseStateValue();
-const [cart]= state.cart;
-const [name]=state.name;
-const [isLogged]=state.isLogged;
+  const state = UseStateValue();
+  const [name] = state.name;
+  const [isLogged] = state.isLogged;
+  const [totalItems] = state.totalItems;
 
   return (
     <div className="header">
@@ -43,7 +41,9 @@ const [isLogged]=state.isLogged;
         <Link to="/" className="headerLink">
           <div className="headerNavOption">
             {/*DROPDOWN */}
-            <div className="headerNavText1">Hello{isLogged?' '+name:',Sign In'}</div>
+            <div className="headerNavText1">
+              Hello{isLogged ? " " + name : ",Sign In"}
+            </div>
             <div className="headerNavText2">Account & Lists</div>
           </div>
         </Link>
@@ -67,7 +67,8 @@ const [isLogged]=state.isLogged;
       <Link to="/checkout" className="headerLink">
         <div className="headerCart">
           <ShoppingCartIcon className="headerCartIcon" />
-          <div className="headerCartItems">{cart.length}</div> {/*Dynamic Update */}
+          <div className="headerCartItems">{totalItems}</div>{" "}
+          {/*Dynamic Update */}
         </div>
       </Link>
     </div>

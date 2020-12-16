@@ -16,9 +16,13 @@ const unCheckAll = () => {
 
 function CheckoutRight() {
   const [cart] = UseStateValue().cart;
+  const [totalItems] = UseStateValue().totalItems;
 
   const subtotal = (cart) =>
-    cart?.reduce((amt, item) => amt + parseInt(item.price), 0);
+    cart?.reduce(
+      (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
+      0
+    );
 
   return (
     <div className="checkoutRight">
@@ -28,7 +32,7 @@ function CheckoutRight() {
         className="checkoutRightImage"
       />
       <div className="checkoutRightBox">
-        <div> Subtotal ({cart.length} item): </div>
+        <div> Subtotal ({totalItems} item): </div>
         <div style={{ fontWeight: "bold" }}>
           <sup className="productDetailsCurrency">&#8377;</sup>
           {subtotal(cart)}.00

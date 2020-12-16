@@ -14,6 +14,7 @@ function CheckoutLeft() {
         img={cartItem.imageUrl}
         heading={cartItem.title}
         price={cartItem.price}
+        count={cartItem.count}
       />
     ));
 

@@ -9,6 +9,7 @@ export const StateProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
@@ -19,7 +20,6 @@ export const StateProvider = ({ children }) => {
           withCredentials: true,
         });
         console.log("firstLogin");
-        // console.log("AccessTOken   " + response.data.accesstoken);
 
         setToken(response.data.accesstoken);
 
@@ -30,6 +30,12 @@ export const StateProvider = ({ children }) => {
       refreshToken();
     }
   }, []);
+
+  useEffect(() => {
+    if (isLogged) {
+      setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
+    } else setTotalItems(0);
+  }, [cart, isLogged]);
 
   useEffect(() => {
     if (token) {
@@ -60,6 +66,7 @@ export const StateProvider = ({ children }) => {
     email: [email, setEmail],
     isLogged: [isLogged, setIsLogged],
     cart: [cart, setCart],
+    totalItems: [totalItems, setTotalItems],
   };
 
   return (
