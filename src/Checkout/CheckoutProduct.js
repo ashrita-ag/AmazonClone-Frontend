@@ -1,5 +1,5 @@
 import "./CheckoutProduct.css";
-import React from "react";
+import React,{useState} from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import axios from "axios";
 
@@ -13,8 +13,10 @@ function handleClickGiftBox() {
 }
 
 function CheckoutProduct(props) {
+  const [count,setCount]=useState(0);  
   const [cart, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
+  
 
   const deleteFromCart = () => {
     const index = cart.findIndex((cartItem) => cartItem._id === props.id);
@@ -65,6 +67,10 @@ function CheckoutProduct(props) {
             />
             This will be a gift.
           </div>
+          <button className="countButton" onClick={()=>setCount(count-1)}>-</button>
+          <span className="count">{count}</span>
+          <button className="countButton" onClick={()=>setCount(count+1)}>+</button>
+
 
           <button className="amazonButton" onClick={deleteFromCart}>
             Delete

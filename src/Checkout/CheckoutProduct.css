@@ -43,3 +43,24 @@
 .checkoutProductText > button {
   margin: 10px auto;
 }
+
+.countButton {
+  border: 1px solid;
+  background: linear-gradient(#f8f8f8, #e2e2e2);
+  border-radius: 2px;
+  color: #111111;
+  border-color: #b3b1b2;
+  padding: 0 8px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.countButton:hover {
+  background: linear-gradient(#e2e2e2, #dbdada);
+}
+.count{
+  display:inline-block;
+  width:20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;  
+}

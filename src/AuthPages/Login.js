@@ -84,7 +84,7 @@ function Login() {
         <span> New to Amazon?</span>{" "}
       </div>
       <a href="/create-new-account">
-        <button className="newUserButton">Create your Amazon Account</button>
+        <button className="amazonWhiteButton">Create your Amazon Account</button>
       </a>
     </div>
   );
