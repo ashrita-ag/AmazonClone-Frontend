@@ -4,8 +4,9 @@
   padding: 2px;
   /* background: tomato; */
 }
-.addressMain img {
+.addressImg {
   margin: 15px auto 20px auto;
+  /* display:block; */
 }
 .addressText {
   margin: 15px auto 10px auto;
@@ -27,7 +28,7 @@
 .addressComponent button {
   width: 100%;
   height: 30px;
-  margin:5px auto;
+  margin: 5px auto;
 }
 
 .addressName {

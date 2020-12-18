@@ -2,9 +2,7 @@ import "./Login.css";
 import React, { useState } from "react";
 const axios = require("axios");
 
-
 function Login() {
-  
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -17,19 +15,23 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("/user/login", {
-        email: email,
-        password: pwd,
-      },{
-        withCredentials:true,
-      })
+      .post(
+        "/user/login",
+        {
+          email: email,
+          password: pwd,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((m) => {
         const msg = m.data.msg;
         if (msg) changeErrorMsgNew(msg);
         else {
           localStorage.setItem("firstLogin", true);
 
-          window.location.href='/';
+          window.location.href = "/";
           console.log("login");
         }
       })
@@ -40,8 +42,9 @@ function Login() {
     <div className="login">
       <a href="/">
         <img
-          src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c518.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/263px-Amazon_logo.svg.png"
           alt="AmazonLogo"
+          className="amazonLogoAuth"
         />
       </a>
 
@@ -84,7 +87,9 @@ function Login() {
         <span> New to Amazon?</span>{" "}
       </div>
       <a href="/create-new-account">
-        <button className="amazonWhiteButton">Create your Amazon Account</button>
+        <button className="amazonWhiteButton">
+          Create your Amazon Account
+        </button>
       </a>
     </div>
   );

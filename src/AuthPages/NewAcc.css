@@ -5,13 +5,7 @@
   align-items: center;
   font-size: 12px;
 }
-a > img {
-  display: block;
-  width: 150px;
-  height: auto;
-  padding: 5px;
-  margin: 20px auto;
-}
+
 .newAccForm {
   border: 1px solid lightgray;
   padding: 15px;

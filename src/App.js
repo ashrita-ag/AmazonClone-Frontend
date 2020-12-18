@@ -13,8 +13,8 @@ import Checkout from "./Checkout/Checkout.js";
 import Login from "./AuthPages/Login.js";
 import NewAcc from "./AuthPages/NewAcc";
 import Logout from "./AuthPages/Logout.js";
-import Address from "./Payment/Address";
-import ConfirmOrder from "./Payment/ConfirmOrder"
+import Address from "./Payment/Address/Address";
+import ConfirmOrder from "./Payment/ConfirmOrder";
 
 function App() {
   return (
@@ -57,7 +57,9 @@ function App() {
             <Route exact path="/payment/address">
               <Address />
             </Route>
-            <Route exact path="/payment/confirm_order"><ConfirmOrder /></Route>
+            <Route exact path="/payment/confirm_order">
+              <ConfirmOrder />
+            </Route>
           </Switch>
         </div>
 

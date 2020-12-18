@@ -1,5 +1,5 @@
 import React from "react";
-import { UseStateValue } from "../StateProvider/StateContext.js";
+import { UseStateValue } from "../../StateProvider/StateContext.js";
 import axios from "axios";
 
 function AddressComponent(props) {

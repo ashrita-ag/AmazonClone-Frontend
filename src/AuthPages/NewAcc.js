@@ -44,8 +44,9 @@ function NewAcc() {
     <div className="newAcc">
       <a href="/">
         <img
-          src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c518.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/263px-Amazon_logo.svg.png"
           alt="AmazonLogo"
+          className="amazonLogoAuth"
         />
       </a>
       <form className="newAccForm" onSubmit={handleSubmitNew}>

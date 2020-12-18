@@ -5,7 +5,7 @@
   align-items: center;
   font-size: 12px;
 }
-a > img {
+.amazonLogoAuth {
   display: block;
   width: 150px;
   height: auto;
