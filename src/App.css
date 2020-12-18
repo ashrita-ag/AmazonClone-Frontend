@@ -4,6 +4,7 @@
 }
 .content {
   padding-bottom: 85px;
+  min-height: calc(100vh - 125px);
 }
 .amazonButton {
   border: 1px solid;
@@ -12,7 +13,6 @@
   color: #111111;
   border-color: #a88734 #9c7e31 #846a29;
   font-weight: 490;
-
 }
 .amazonButton:hover {
   background: linear-gradient(#e7c780, #e9b53d);

@@ -13,6 +13,8 @@ import Checkout from "./Checkout/Checkout.js";
 import Login from "./AuthPages/Login.js";
 import NewAcc from "./AuthPages/NewAcc";
 import Logout from "./AuthPages/Logout.js";
+import Address from "./Payment/Address";
+import ConfirmOrder from "./Payment/ConfirmOrder"
 
 function App() {
   return (
@@ -49,9 +51,13 @@ function App() {
               <NewAcc />
             </Route>
             <Route exact path="/logout">
-            <Header />
+              <Header />
               <Logout />
             </Route>
+            <Route exact path="/payment/address">
+              <Address />
+            </Route>
+            <Route exact path="/payment/confirm_order"><ConfirmOrder /></Route>
           </Switch>
         </div>
 

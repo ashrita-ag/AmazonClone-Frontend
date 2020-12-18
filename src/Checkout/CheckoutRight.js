@@ -1,5 +1,6 @@
 import "./CheckoutRight.css";
 import React from "react";
+// import { useHistory } from "react-router-dom";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 
 const unCheckAll = () => {
@@ -17,6 +18,7 @@ const unCheckAll = () => {
 function CheckoutRight() {
   const [cart] = UseStateValue().cart;
   const [totalItems] = UseStateValue().totalItems;
+  // let history = useHistory();
 
   const subtotal = (cart) =>
     cart?.reduce(
@@ -48,9 +50,11 @@ function CheckoutRight() {
           />
           This order contains a gift.
         </div>
-        <button className="amazonButton checkoutRightBoxButton">
-          Proceed to Buy
-        </button>
+        <a href="/payment/address">
+          <button className="amazonButton checkoutRightBoxButton">
+            Proceed to Buy
+          </button>
+        </a>
       </div>
     </div>
   );

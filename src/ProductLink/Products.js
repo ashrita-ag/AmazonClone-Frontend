@@ -6,7 +6,7 @@ import axios from "axios";
 
 function Products(props) {
   const state = UseStateValue();
-  const [cart, setCart] = state.cart; //cart
+  const [cart, setCart] = state.cart;
   const [isLogged] = state.isLogged;
   const [token] = state.token;
 
@@ -26,7 +26,6 @@ function Products(props) {
             }
           )
           .then((e) => {
-            console.log("e");
             console.log(e.data);
             setCart(e.data);
           });
