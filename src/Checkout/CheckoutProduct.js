@@ -48,7 +48,6 @@ function CheckoutProduct(props) {
         }
       )
       .then((e) => {
-        
         console.log(e.data);
         setCart(e.data);
       });

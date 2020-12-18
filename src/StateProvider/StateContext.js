@@ -10,6 +10,7 @@ export const StateProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [totalItems, setTotalItems] = useState(0);
+  const [address, setAddress] = useState([]);
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
@@ -60,6 +61,16 @@ export const StateProvider = ({ children }) => {
     }
   }, [token]);
 
+  useEffect(() => {
+    axios
+      .get("/address/show", { headers: { Authorization: token } })
+      .then((e) => {
+        // console.log("address");
+        setAddress(e.data);
+      })
+      .catch((e) => console.log(e));
+  }, [token]);
+
   const initialState = {
     token: [token, setToken],
     name: [name, setName],
@@ -67,6 +78,7 @@ export const StateProvider = ({ children }) => {
     isLogged: [isLogged, setIsLogged],
     cart: [cart, setCart],
     totalItems: [totalItems, setTotalItems],
+    address: [address, setAddress],
   };
 
   return (

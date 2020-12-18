@@ -1,9 +1,32 @@
 import React from "react";
+import { UseStateValue } from "../StateProvider/StateContext.js";
+import axios from "axios";
 
 function AddressComponent(props) {
+  const [address, setAddress] = UseStateValue().address;
+  const [token] = UseStateValue().token;
+
   const deleteAddress = () => {
-    console.log("Delete");
+    setAddress(address.filter((a) => a._id !== props.id));
+    console.log(address);
+
+    axios
+      .post(
+        "/address/delete",
+        { id: props.id },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((e) => {
+        console.log(e.data);
+      })
+      .catch((e) => console.log(e));
   };
+  // };
+
   return (
     <div className="addressComponent">
       <div className="addressComponentText">
