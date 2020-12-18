@@ -2,6 +2,9 @@
   min-height: 100vh;
   position: relative;
 }
+html{
+  scroll-behavior: smooth;
+}
 .content {
   padding-bottom: 85px;
   min-height: calc(100vh - 125px);

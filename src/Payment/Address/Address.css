@@ -30,15 +30,22 @@
   height: 30px;
   margin: 5px auto;
 }
+.noAddress{
+  
+  margin:auto;
+  /* height: 50px; */
+  width: 100%;
+}
 
 .addressName {
   font-weight: bold;
   font-size: 17px;
 }
 
+
 .address {
   display: flex;
   font-size: 14px;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
