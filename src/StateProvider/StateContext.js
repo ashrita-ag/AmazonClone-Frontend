@@ -12,6 +12,11 @@ export const StateProvider = ({ children }) => {
   const [totalItems, setTotalItems] = useState(0);
   const [address, setAddress] = useState([]);
 
+  const [deliveryAddress, setDeliveryAddress] = useState({});
+  const [cost, setCost] = useState(0);
+  const [deliverySpeed, setDeliverySpeed] = useState(0);
+  const [gift, setGift] = useState(false);
+
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
     console.log("Inside use Effect");
@@ -71,6 +76,19 @@ export const StateProvider = ({ children }) => {
       .catch((e) => console.log(e));
   }, [token]);
 
+  useEffect(() => {
+    axios
+      .get("/delivery/details", { headers: { Authorization: token } })
+      .then((e) => {
+        if (e.data){
+        setDeliveryAddress(e.data.address);
+        setCost(e.data.cost);
+        setGift(e.data.gift);
+        setDeliverySpeed(e.data.speed);}
+      })
+      .catch((e) => console.log(e));
+  }, [token]);
+
   const initialState = {
     token: [token, setToken],
     name: [name, setName],
@@ -79,6 +97,10 @@ export const StateProvider = ({ children }) => {
     cart: [cart, setCart],
     totalItems: [totalItems, setTotalItems],
     address: [address, setAddress],
+    deliveryAddress: [deliveryAddress, setDeliveryAddress],
+    cost: [cost, setCost],
+    deliverySpeed: [deliverySpeed, setDeliverySpeed],
+    gift: [gift, setGift],
   };
 
   return (

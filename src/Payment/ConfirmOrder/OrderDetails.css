@@ -1,0 +1,15 @@
+.orderDetails {
+  font-size: 12px;
+  margin:15px 5px;
+}
+.orderDetailHeading {
+  font-weight: bold;
+  font-size: 13px;
+}
+.orderDetailPrice {
+  margin-left: 15px;
+  color: maroon;
+}
+.orderDetailQuantity {
+  color: #979797;
+}

@@ -14,7 +14,7 @@ import Login from "./AuthPages/Login.js";
 import NewAcc from "./AuthPages/NewAcc";
 import Logout from "./AuthPages/Logout.js";
 import Address from "./Payment/Address/Address";
-import ConfirmOrder from "./Payment/ConfirmOrder";
+import ConfirmOrder from "./Payment/ConfirmOrder/ConfirmOrder";
 
 function App() {
   return (

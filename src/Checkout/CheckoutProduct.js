@@ -1,34 +1,70 @@
 import "./CheckoutProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import axios from "axios";
-// import DeleteIcon from "@material-ui/icons/Delete";
-
-function handleClickGiftBox() {
-  const checkedBoxes = document.querySelectorAll(
-    'input[name="checkoutProductGiftCheckbox"]:checked'
-  );
-  const targetBox = document.querySelector('input[name="giftCheckbox"]');
-  if (checkedBoxes.length > 0) targetBox.checked = true;
-  else targetBox.checked = false;
-}
 
 function CheckoutProduct(props) {
   const [count, setCount] = useState(props.count);
   const [cart, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
+  const [gift, setGift] = UseStateValue().gift;
+  const [, setCost] = UseStateValue().cost;
+
+  const subtotal = cart?.reduce(
+    (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
+    0
+  );
+
+  useEffect(() => {
+    axios
+      .post(
+        "/delivery/update",
+        { cost: subtotal },
+        { headers: { Authorization: token } }
+      )
+      .then((e) => {
+        setCost(e.data.cost);
+        console.log(e.data.cost);
+      })
+      .catch((e) => console.log(e));
+  }, [subtotal, token]);
+
+  const handleClickGiftBox = () => {
+    if (document) {
+      const checkedBoxes = document.querySelectorAll(
+        'input[name="checkoutProductGiftCheckbox"]:checked'
+      );
+      if (checkedBoxes.length > 0) {
+        setGift(true);
+      } else {
+        setGift(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        "/delivery/update",
+        { gift: gift },
+        { headers: { Authorization: token } }
+      )
+      .then((e) => {
+        const target = document.querySelector('input[name="giftCheckbox"]');
+        if (target) target.checked = e.data.gift;
+      })
+      .catch((e) => console.log(e));
+  }, [gift, token]);
 
   const decrement = () => {
     if (count === 1) deleteFromCart();
     else updateCart(count - 1);
-
     setCount(count - 1);
     console.log(count);
   };
 
   const increment = () => {
     updateCart(count + 1);
-
     setCount(count + 1);
   };
 

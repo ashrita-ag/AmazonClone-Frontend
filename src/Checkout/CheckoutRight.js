@@ -1,30 +1,34 @@
 import "./CheckoutRight.css";
 import React from "react";
-// import { useHistory } from "react-router-dom";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 
-const unCheckAll = () => {
-  const targetBox = document.querySelector('input[name="giftCheckbox"]');
-  const checkedBoxes = document.querySelectorAll(
-    'input[name="checkoutProductGiftCheckbox"]:checked'
-  );
-  if (targetBox.checked === false) {
-    checkedBoxes.forEach((box) => {
-      box.checked = false;
-    });
-  }
-};
-
 function CheckoutRight() {
-  const [cart] = UseStateValue().cart;
+  // const [cart] = UseStateValue().cart;
   const [totalItems] = UseStateValue().totalItems;
-  // let history = useHistory();
+  const [, setGift] = UseStateValue().gift;
+  const [cost] = UseStateValue().cost;
 
-  const subtotal = (cart) =>
-    cart?.reduce(
-      (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
-      0
+  const unCheckAll = () => {
+    const targetBox = document.querySelector('input[name="giftCheckbox"]');
+    const checkedBoxes = document.querySelectorAll(
+      'input[name="checkoutProductGiftCheckbox"]:checked'
     );
+    setGift(targetBox.checked);
+    if (targetBox.checked === false) {
+      checkedBoxes.forEach((box) => {
+        box.checked = false;
+      });
+    }
+  };
+
+  // const subtotal = cart?.reduce(
+  //   (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
+  //   0
+  // );
+
+  // useEffect(() => {
+  //   console.log("subtotal");
+  // }, []);
 
   return (
     <div className="checkoutRight">
@@ -37,7 +41,7 @@ function CheckoutRight() {
         <div> Subtotal ({totalItems} item): </div>
         <div style={{ fontWeight: "bold" }}>
           <sup className="productDetailsCurrency">&#8377;</sup>
-          {subtotal(cart)}.00
+          <span id="totalCost">{cost}.00</span>
         </div>
         <div style={{ fontSize: "14px" }}>
           <input

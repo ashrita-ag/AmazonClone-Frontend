@@ -5,11 +5,23 @@ import axios from "axios";
 function AddressComponent(props) {
   const [address, setAddress] = UseStateValue().address;
   const [token] = UseStateValue().token;
+  const [, setDeliveryAddress] = UseStateValue().deliveryAddress;
+
+  const handleSetAddress = () => {
+    axios
+      .post(
+        "/delivery/update",
+        { address: props },
+        { headers: { Authorization: token } }
+      )
+      .then((e) => {
+        setDeliveryAddress(e.data.address);
+        console.log(e.data.address);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const deleteAddress = () => {
-    setAddress(address.filter((a) => a._id !== props.id));
-    console.log(address);
-
     axios
       .post(
         "/address/delete",
@@ -22,15 +34,14 @@ function AddressComponent(props) {
       )
       .then((e) => {
         console.log(e.data);
+        setAddress(address.filter((a) => a._id !== props.id));
       })
       .catch((e) => console.log(e));
   };
-  // };
 
   return (
     <div className="addressComponent">
       <div className="addressComponentText">
-        {" "}
         <div className="addressName">{props.name}</div>
         <div>{props.phone}</div>
         <div>
@@ -43,7 +54,9 @@ function AddressComponent(props) {
       </div>
 
       <a href="/payment/confirm_order">
-        <button className="amazonButton">Deliver to this Address</button>
+        <button className="amazonButton" onClick={handleSetAddress}>
+          Deliver to this Address
+        </button>
       </a>
       <button className="amazonWhiteButton" onClick={deleteAddress}>
         Delete

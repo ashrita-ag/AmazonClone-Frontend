@@ -1,0 +1,68 @@
+.confirmOrderMain {
+  font-size: 13px;
+  max-width: 1000px;
+  padding:2px;
+  margin: auto;
+}
+.confirmOrderImg {
+  margin: 20px auto;
+}
+.confirmOrderHeadingContainer {
+  margin: 40px auto 25px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.confirmOrderHeading {
+  font-weight: 500;
+  font-size: 25px;
+}
+.confirmOrderGreyBtn {
+  width: 230px;
+  height: 65px;
+  background-color: #f7f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1px solid #e6e6e6;
+  margin-left: auto;
+}
+.confirmOrderContinueBtn {
+  width: 200px;
+  height: 30px;
+}
+
+.confirmOrderShipmentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+ .confirmOrderLeft {
+     display:flex;
+     flex-direction: column;
+}
+/*.confirmOrderLeft h5 {
+}
+.confirmOrderLeft h6 {
+} */
+.confirmOrderDeliveryAddress {
+  color: #979797;
+  line-height: 1.2;
+  margin: -5px 0 0 5px;
+}
+/* .confirmOrderOrderDetails {
+}
+.editOrderLink {
+} */
+.confirmOrderRight {
+  font-size: 12px;
+  margin-right: 100px !important;
+}
+/* .confirmOrderRight h6 {
+} */
+.confirmOrderRight label {
+  margin-left: 5px;
+}
+
+.deliveryDay {
+  color: rgb(6, 158, 6);
+}
