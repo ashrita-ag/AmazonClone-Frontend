@@ -1,0 +1,19 @@
+.editOrderMain {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2px;
+}
+.separator {
+  height: 30px;
+}
+.editOrderHeading {
+  margin: 15px 0 20px 0;
+  font-weight: 500;
+  font-size: 27px;
+}
+.editOrderText {
+  color: gray;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: -10px;
+}

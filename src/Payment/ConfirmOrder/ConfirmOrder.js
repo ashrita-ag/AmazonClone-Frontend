@@ -106,6 +106,7 @@ function ConfirmOrder() {
           <input
             type="radio"
             name="deliverySpeed"
+            defaultChecked
             value={0}
             onClick={handleSpeedUpdate}
           />
