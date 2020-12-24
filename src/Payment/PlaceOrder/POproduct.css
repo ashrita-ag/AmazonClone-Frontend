@@ -1,0 +1,24 @@
+.poProducts {
+  display: flex;
+}
+.poProductLeft {
+  display: block;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 10px;
+}
+.poProductRight {
+  display: flex;
+  flex-direction: column;
+  
+
+}
+.poProductHeading {
+    font-weight: 500;
+}
+.poProductPrice {
+    font-weight: bold;
+    color: maroon;
+}
+/* .poProductQuantity {
+} */

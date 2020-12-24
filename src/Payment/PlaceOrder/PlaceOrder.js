@@ -1,10 +1,19 @@
 import React from "react";
 import "./PlaceOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
+import POproduct from "./POproduct";
 
 function PlaceOrder() {
   const [deliveryAddress] = UseStateValue().deliveryAddress;
   const [deliverySpeed] = UseStateValue().deliverySpeed;
+  const [cart] = UseStateValue().cart;
+  const [cost] = UseStateValue().cost;
+  const [gift] = UseStateValue().gift;
+
+  const finalTotal = gift ? cost + deliverySpeed + 25 : cost + deliverySpeed;
+  const g = gift ? 25 : 0;
+  const d = deliverySpeed ? deliverySpeed : cost >= 500 ? 0 : 40;
+  const finalPrice = cost + g + d;
 
   const placeOrderAddress = () => {
     if (deliveryAddress) {
@@ -51,6 +60,17 @@ function PlaceOrder() {
       : "Tomorrow (" + day + ")";
   };
 
+  const placeOrderDetails = () =>
+    cart.map((i) => (
+      <POproduct
+        img={i.imageUrl}
+        key={i._id}
+        heading={i.title}
+        price={i.price}
+        count={i.count}
+      />
+    ));
+
   return (
     <div className="placeOrder">
       <img
@@ -73,7 +93,7 @@ function PlaceOrder() {
           </div>
           <div className="placeOrderOrder">
             <div className="placeOrderSmallHeading">
-              Items shipped from Amazon
+              Items shipped from Amazon <span> </span>
               <img
                 src="https://images-na.ssl-images-amazon.com/images/G/31/marketing/fba/fba-badge_18px._V384100965_.png"
                 alt="amazonAssured"
@@ -83,12 +103,51 @@ function PlaceOrder() {
               Estimated Delivery: {placeOrderDeliveryDate()}
             </div>
             <div className="placeOrderOrderDetails">
+              {placeOrderDetails()}
               {/* Order goes here */}
             </div>
           </div>
         </div>
 
-        <div className="placeOrderRight">{/* Subtotal Component */}</div>
+        <div className="placeOrderRight">
+          <a href="/payment/redirect_payment">
+            <button className="amazonButton placeOrderSubmit">
+              Place your order
+            </button>
+          </a>
+          <div className="placeOrderSmallHeading">Order Components</div>
+          <div className="orderItems">
+            <div className="orderItemText">
+              <div className="orderText">Items:</div>
+              <div className="orderText">Delivery:</div>
+              {gift && <div className="orderText">Gift:</div>}
+              <div className="orderText">Order Total:</div>
+              {!deliverySpeed && cost >= 500 && (
+                <div className="orderText">Promotion Applied</div>
+              )}
+            </div>
+            <div className="orderItemPrice">
+              <div className="orderPrice"> &#8377; {cost}</div>
+              <div className="orderPrice">
+                {" "}
+                &#8377;
+                {!deliverySpeed ? 40 : deliverySpeed}
+              </div>
+              {gift && <div className="orderPrice"> &#8377; 25</div>}
+              <div className="orderPrice">
+                {" "}
+                &#8377;
+                {isNaN(finalTotal) ? 0 : finalTotal}
+              </div>
+              {!deliverySpeed && cost >= 500 && (
+                <div className="orderPrice"> &#8377; -40</div>
+              )}
+            </div>
+          </div>
+          <div className="orderFinal">
+            Order Total: &#8377; {isNaN(finalPrice) ? 0 : finalPrice}
+          </div>
+        </div>
       </div>
     </div>
   );
