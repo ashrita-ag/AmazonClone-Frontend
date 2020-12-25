@@ -65,7 +65,7 @@ function App() {
             <Route exact path="/payment/edit_order">
               <EditOrder />
             </Route>
-            <Route exact path="/payment/methods">
+            <Route exact path="/payment/place_order">
               <PlaceOrder />
             </Route>
           </Switch>

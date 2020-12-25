@@ -74,7 +74,7 @@ function ConfirmOrder() {
       <div className="confirmOrderHeadingContainer">
         <div className="confirmOrderHeading">Choose your delivery options</div>
         <div className="confirmOrderGreyBtn">
-          <a href="/payment/methods">
+          <a href="/payment/place_order">
             <button className="amazonButton confirmOrderContinueBtn">
               Continue
             </button>
@@ -143,7 +143,7 @@ function ConfirmOrder() {
       </div>
       <hr />
       <div className="confirmOrderGreyBtn">
-        <a href="/payment/methods">
+        <a href="/payment/place_order">
           <button className="amazonButton confirmOrderContinueBtn">
             Continue
           </button>
