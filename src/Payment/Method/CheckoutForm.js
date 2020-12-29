@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-// import { UseStateValue } from "../../StateProvider/StateContext.js";
 import { UseStateValue } from "../../StateProvider/StateContext.js";
-
 import axios from "axios";
 import "./Method.css";
 
 export default function CheckoutForm() {
   const [token] = UseStateValue().token;
-
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -33,8 +30,7 @@ export default function CheckoutForm() {
           }
         )
         .then((res) => {
-          console.log(res.data);
-
+          console.log("PaymentIntent Created");
           setClientSecret(res.data.clientSecret);
         })
         .catch((e) => console.log(e));
