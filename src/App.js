@@ -17,6 +17,7 @@ import Address from "./Payment/Address/Address";
 import ConfirmOrder from "./Payment/ConfirmOrder/ConfirmOrder";
 import EditOrder from "./Payment/EditOrder/EditOrder";
 import PlaceOrder from "./Payment/PlaceOrder/PlaceOrder";
+import Method from "./Payment/Method/Method";
 
 function App() {
   return (
@@ -67,6 +68,9 @@ function App() {
             </Route>
             <Route exact path="/payment/place_order">
               <PlaceOrder />
+            </Route>
+            <Route exact path="/payment/method">
+              <Method />
             </Route>
           </Switch>
         </div>

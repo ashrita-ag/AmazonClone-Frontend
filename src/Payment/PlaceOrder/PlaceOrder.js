@@ -2,12 +2,6 @@ import React from "react";
 import "./PlaceOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import POproduct from "./POproduct";
-import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
-
-const stripePromise = loadStripe(
-  "pk_test_51Hz0IIKQyTwAQr5fPCo2sAr0kFh6JmysqDwf4TgZg9aqyvY2LA49XPJTadjirFzHg14IKZx95zLyVSzUSOpDU5Mx00r40n4kKg"
-);
 
 function PlaceOrder() {
   const [deliveryAddress] = UseStateValue().deliveryAddress;
@@ -77,29 +71,6 @@ function PlaceOrder() {
       />
     ));
 
-  const handleClick = async (event) => {
-    // Get Stripe.js instance
-    const stripe = await stripePromise;
-    // console.log(stripe);
-
-    const response = await fetch("/checkout/create-checkout-session", {
-      method: "POST",
-    });
-    // console.log(response);
-
-    const session = await response.json();
-    // console.log(session);
-
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (result.error) {
-      console.log(result.error.message);
-      // using `result.error.message`.
-    }
-  };
-
   return (
     <div className="placeOrder">
       <img
@@ -136,14 +107,14 @@ function PlaceOrder() {
         </div>
 
         <div className="placeOrderRight">
-          {/* <a href="/payment/redirect_payment"> */}
-          <button
-            className="amazonButton placeOrderSubmit"
-            onClick={handleClick}
-          >
-            Place your order
-          </button>
-          {/* </a> */}
+          <a href="/payment/method">
+            <button
+              className="amazonButton placeOrderSubmit"
+              // onClick={handleClick}
+            >
+              Place your order
+            </button>
+          </a>
           <div className="placeOrderSmallHeading">Order Components</div>
           <div className="orderItems">
             <div className="orderItemText">

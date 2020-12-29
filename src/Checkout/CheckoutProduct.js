@@ -27,6 +27,7 @@ function CheckoutProduct(props) {
         console.log(e.data.cost);
       })
       .catch((e) => console.log(e));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subtotal, token]);
 
   const handleClickGiftBox = () => {

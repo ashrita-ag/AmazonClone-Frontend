@@ -3,7 +3,6 @@ import React from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function CheckoutRight() {
-  // const [cart] = UseStateValue().cart;
   const [totalItems] = UseStateValue().totalItems;
   const [, setGift] = UseStateValue().gift;
   const [cost] = UseStateValue().cost;
@@ -20,15 +19,6 @@ function CheckoutRight() {
       });
     }
   };
-
-  // const subtotal = cart?.reduce(
-  //   (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
-  //   0
-  // );
-
-  // useEffect(() => {
-  //   console.log("subtotal");
-  // }, []);
 
   return (
     <div className="checkoutRight">
