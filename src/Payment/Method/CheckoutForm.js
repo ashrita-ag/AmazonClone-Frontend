@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { UseStateValue } from "../../StateProvider/StateContext.js";
 import axios from "axios";
-import "./Method.css";
+import "./CheckoutForm.css";
 
 export default function CheckoutForm() {
   const [token] = UseStateValue().token;
@@ -11,9 +11,34 @@ export default function CheckoutForm() {
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (succeeded) setTimeout(() => setRedirect(true), 5000);
+  }, [succeeded]);
 
   const stripe = useStripe();
   const elements = useElements();
+
+  // useEffect(() => {
+  //   if (token) {
+  //     console.log("Order Created");
+  //     axios
+  //       .post(
+  //         "/order/createOrder",
+  //         {},
+  //         {
+  //           headers: {
+  //             Authorization: token,
+  //           },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         console.log(res.data);
+  //       })
+  //       .catch((e) => console.log(e));
+  //   }
+  // }, [token]);
 
   useEffect(() => {
     if (token) {
@@ -81,6 +106,7 @@ export default function CheckoutForm() {
   return (
     <div>
       <form id="payment-form" className="methodForm" onSubmit={handleSubmit}>
+        <h6 className="methodFormHeading">Enter your card details</h6>
         <CardElement
           id="card-element"
           options={cardStyle}
@@ -103,11 +129,12 @@ export default function CheckoutForm() {
         )}
 
         <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, see the result in your
-          <a href={`https://dashboard.stripe.com/test/payments`}>
+          Payment succeeded, redirecting to Homepage...
+          {redirect && window.location.replace("/")}
+          {/* <a href={`https://dashboard.stripe.com/test/payments`}>
             Stripe dashboard.
           </a>
-          Refresh the page to pay again.
+          Refresh the page to pay again. */}
         </p>
       </form>
     </div>
