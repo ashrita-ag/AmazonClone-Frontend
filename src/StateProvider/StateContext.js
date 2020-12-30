@@ -10,10 +10,11 @@ export const StateProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [totalItems, setTotalItems] = useState(0);
-  const [address, setAddress] = useState([]);
 
+  const [address, setAddress] = useState([]);
   const [deliveryAddress, setDeliveryAddress] = useState({});
   const [cost, setCost] = useState(0);
+  const [finalCost, setFinalCost] = useState(0);
   const [deliverySpeed, setDeliverySpeed] = useState(0);
   const [gift, setGift] = useState(false);
 
@@ -26,9 +27,7 @@ export const StateProvider = ({ children }) => {
           withCredentials: true,
         });
         console.log("firstLogin");
-
         setToken(response.data.accesstoken);
-
         setTimeout(() => {
           refreshToken();
         }, 24 * 60 * 60 * 1000); //1 day
@@ -67,26 +66,33 @@ export const StateProvider = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
-    axios
-      .get("/address/show", { headers: { Authorization: token } })
-      .then((e) => {
-        // console.log("address");
-        setAddress(e.data);
-      })
-      .catch((e) => console.log(e));
+    const paymentStarted = localStorage.getItem("Payment");
+    if (paymentStarted) {
+      axios
+        .get("/address/show", { headers: { Authorization: token } })
+        .then((e) => {
+          setAddress(e.data);
+        })
+        .catch((e) => console.log(e));
+    }
   }, [token]);
 
   useEffect(() => {
-    axios
-      .get("/delivery/details", { headers: { Authorization: token } })
-      .then((e) => {
-        if (e.data){
-        setDeliveryAddress(e.data.address);
-        setCost(e.data.cost);
-        setGift(e.data.gift);
-        setDeliverySpeed(e.data.speed);}
-      })
-      .catch((e) => console.log(e));
+    const paymentStarted = localStorage.getItem("Payment");
+    if (paymentStarted) {
+      axios
+        .get("/delivery/details", { headers: { Authorization: token } })
+        .then((e) => {
+          if (e.data) {
+            setDeliveryAddress(e.data.address);
+            setCost(e.data.cost);
+            setGift(e.data.gift);
+            setDeliverySpeed(e.data.speed);
+            setFinalCost(e.data.finalcost);
+          }
+        })
+        .catch((e) => console.log(e));
+    }
   }, [token]);
 
   const initialState = {
@@ -101,6 +107,7 @@ export const StateProvider = ({ children }) => {
     cost: [cost, setCost],
     deliverySpeed: [deliverySpeed, setDeliverySpeed],
     gift: [gift, setGift],
+    finalCost: [finalCost, setFinalCost],
   };
 
   return (

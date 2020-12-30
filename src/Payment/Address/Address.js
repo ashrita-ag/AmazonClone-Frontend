@@ -6,6 +6,7 @@ import "./Address.css";
 const _ = require("lodash");
 
 function Address() {
+  localStorage.setItem("Payment", true);
   const [address] = UseStateValue().address;
 
   const userAddress = () =>
@@ -46,7 +47,7 @@ function Address() {
         delivery address.
       </div>
       <div className="address">{userAddress()}</div>
-      {address.length>0&&<hr/>}
+      {address.length > 0 && <hr />}
 
       <SumbitAddressForm />
     </div>

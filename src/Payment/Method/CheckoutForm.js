@@ -12,6 +12,7 @@ export default function CheckoutForm() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [intent, setIntent] = useState(false);
 
   useEffect(() => {
     if (succeeded) setTimeout(() => setRedirect(true), 5000);
@@ -19,26 +20,6 @@ export default function CheckoutForm() {
 
   const stripe = useStripe();
   const elements = useElements();
-
-  // useEffect(() => {
-  //   if (token) {
-  //     console.log("Order Created");
-  //     axios
-  //       .post(
-  //         "/order/createOrder",
-  //         {},
-  //         {
-  //           headers: {
-  //             Authorization: token,
-  //           },
-  //         }
-  //       )
-  //       .then((res) => {
-  //         console.log(res.data);
-  //       })
-  //       .catch((e) => console.log(e));
-  //   }
-  // }, [token]);
 
   useEffect(() => {
     if (token) {
@@ -56,6 +37,7 @@ export default function CheckoutForm() {
         )
         .then((res) => {
           console.log("PaymentIntent Created");
+          setIntent(true);
           setClientSecret(res.data.clientSecret);
         })
         .catch((e) => console.log(e));
@@ -85,6 +67,23 @@ export default function CheckoutForm() {
     setError(event.error ? event.error.message : "");
   };
 
+  const paymentSuccess = () => {
+    setError(null);
+    setProcessing(false);
+    setSucceeded(true);
+
+    axios
+      .post(
+        "/delivery/update",
+        { status: succeeded },
+        { headers: { Authorization: token } }
+      )
+      .then((e) => {
+        console.log(e.data.address);
+      })
+      .catch((e) => console.log(e));
+  };
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     setProcessing(true);
@@ -97,9 +96,7 @@ export default function CheckoutForm() {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
+      paymentSuccess();
     }
   };
 
@@ -114,7 +111,7 @@ export default function CheckoutForm() {
         />
         <button
           className="methodButton"
-          disabled={processing || disabled || succeeded}
+          disabled={processing || disabled || succeeded || !intent}
           id="submit"
         >
           <span id="button-text">

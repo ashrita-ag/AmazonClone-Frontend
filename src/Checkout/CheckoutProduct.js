@@ -14,6 +14,7 @@ function CheckoutProduct(props) {
     (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
     0
   );
+  
 
   useEffect(() => {
     axios
