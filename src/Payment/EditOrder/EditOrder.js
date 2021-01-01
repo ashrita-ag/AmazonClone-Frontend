@@ -2,12 +2,11 @@ import React from "react";
 import "./EditOrder.css";
 import CheckoutLeft from "../../Checkout/CheckoutLeft.js";
 // import { UseStateValue } from "../StateProvider/StateContext.js";
-
 // CHANGE THIS PAGEEEEEEEEEEEEEEEEEEEEEE
 
 function EditOrder() {
-  // const [cart] = UseStateValue().cart;
 
+  // const [cart] = UseStateValue().cart;
   // const displayItems = () =>
   //   cart.map((cartItem) => (
   //     <EditOrderProduct
@@ -32,8 +31,8 @@ function EditOrder() {
       {/* <div className="editOrderText">Items</div> */}
       {/* <hr></hr> */}
       <CheckoutLeft />
-
-      {/* {displayItems()} */}
+      
+      ā{/* {displayItems()} */}
 
       <div className="separator"></div>
       <div className="confirmOrderGreyBtn">
