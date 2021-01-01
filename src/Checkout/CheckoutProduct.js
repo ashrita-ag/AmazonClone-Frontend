@@ -14,22 +14,11 @@ function CheckoutProduct(props) {
     (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
     0
   );
-  
 
   useEffect(() => {
-    axios
-      .post(
-        "/delivery/update",
-        { cost: subtotal },
-        { headers: { Authorization: token } }
-      )
-      .then((e) => {
-        setCost(e.data.cost);
-        console.log(e.data.cost);
-      })
-      .catch((e) => console.log(e));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subtotal, token]);
+    setCost(subtotal);
+    // eslint-disable-next-line
+  }, []);
 
   const handleClickGiftBox = () => {
     if (document) {
@@ -45,18 +34,9 @@ function CheckoutProduct(props) {
   };
 
   useEffect(() => {
-    axios
-      .post(
-        "/delivery/update",
-        { gift: gift },
-        { headers: { Authorization: token } }
-      )
-      .then((e) => {
-        const target = document.querySelector('input[name="giftCheckbox"]');
-        if (target) target.checked = e.data.gift;
-      })
-      .catch((e) => console.log(e));
-  }, [gift, token]);
+    const target = document.querySelector('input[name="giftCheckbox"]');
+    if (target) target.checked = gift;
+  }, [gift]);
 
   const decrement = () => {
     if (count === 1) deleteFromCart();

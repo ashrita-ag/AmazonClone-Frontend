@@ -23,7 +23,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (token) {
-      console.log("Hullo");
+      console.log("Creating Payment Intent");
       axios
         .post(
           "/checkout/create-payment-intent",
@@ -74,12 +74,12 @@ export default function CheckoutForm() {
 
     axios
       .post(
-        "/delivery/update",
-        { status: succeeded },
+        "/delivery/update_payment",
+        { status: true },
         { headers: { Authorization: token } }
       )
       .then((e) => {
-        console.log(e.data.address);
+        console.log(e.data);
       })
       .catch((e) => console.log(e));
   };

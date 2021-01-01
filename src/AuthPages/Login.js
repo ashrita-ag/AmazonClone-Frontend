@@ -6,6 +6,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  localStorage.setItem("Payment", false);
+
 
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);

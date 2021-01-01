@@ -74,6 +74,8 @@ export const StateProvider = ({ children }) => {
           setAddress(e.data);
         })
         .catch((e) => console.log(e));
+    } else {
+      setAddress([]);
     }
   }, [token]);
 
@@ -92,6 +94,12 @@ export const StateProvider = ({ children }) => {
           }
         })
         .catch((e) => console.log(e));
+    } else {
+      setDeliveryAddress({});
+      setCost(0);
+      setGift(false);
+      setDeliverySpeed(0);
+      setFinalCost(0);
     }
   }, [token]);
 

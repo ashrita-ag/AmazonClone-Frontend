@@ -10,13 +10,13 @@ function AddressComponent(props) {
   const handleSetAddress = () => {
     axios
       .post(
-        "/delivery/update",
+        "/delivery/update_address",
         { address: props },
         { headers: { Authorization: token } }
       )
       .then((e) => {
         setDeliveryAddress(e.data.address);
-        console.log(e.data.address);
+        console.log(e.data);
       })
       .catch((e) => console.log(e));
   };

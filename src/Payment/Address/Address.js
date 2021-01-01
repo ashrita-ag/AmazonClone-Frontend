@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import SumbitAddressForm from "./SumbitAddressForm";
 import AddressComponent from "./AddressComponent";
+
 import "./Address.css";
+import axios from "axios";
 const _ = require("lodash");
 
 function Address() {
   localStorage.setItem("Payment", true);
   const [address] = UseStateValue().address;
+  const [token] = UseStateValue().token;
+  const [gift] = UseStateValue().gift;
+  const [, setCost] = UseStateValue().cost;
+  const [, setFinalCost] = UseStateValue().finalCost;
+  const [, setCart] = UseStateValue().cart;
+
+  useEffect(() => {
+    console.log("HI");
+    axios
+      .post(
+        "/delivery/create",
+        { gift: gift },
+        { headers: { Authorization: token } }
+      )
+      .then((e) => {
+        console.log(e.data);
+        setFinalCost(e.data.finalcost);
+        setCost(e.data.cost);
+        setCart(e.data.cart);
+      })
+      .catch((e) => console.log(e));
+  }, [token]);
 
   const userAddress = () =>
     address.length === 0 ? (

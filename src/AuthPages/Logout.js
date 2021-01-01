@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 
 function Logout() {
+  localStorage.setItem("Payment", false);
+
   const logout = () => {
     console.log("Logout");
     axios

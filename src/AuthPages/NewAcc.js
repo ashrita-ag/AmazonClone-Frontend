@@ -11,6 +11,8 @@ function NewAcc() {
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);
   };
+  localStorage.setItem("Payment", false);
+
 
   const handleSubmitNew = (e) => {
     e.preventDefault();

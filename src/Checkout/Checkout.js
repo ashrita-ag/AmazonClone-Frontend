@@ -6,6 +6,8 @@ import EmptyCart from "./EmptyCart";
 import CheckoutComponents from "./CheckoutComponents.js";
 
 function Checkout() {
+  localStorage.setItem("Payment", false);
+
   const [cart] = UseStateValue().cart;
   return (
     <div className="checkout">

@@ -9,17 +9,20 @@ function ConfirmOrder() {
   const [cart] = UseStateValue().cart;
   const [, setDeliverySpeed] = UseStateValue().deliverySpeed;
   const [token] = UseStateValue().token;
+  const [, setFinalCost] = UseStateValue().finalCost;
 
   const handleSpeedUpdate = (e) => {
     console.log(e.target.value);
     axios
       .post(
-        "/delivery/update",
+        "/delivery/update_speed",
         { speed: e.target.value },
         { headers: { Authorization: token } }
       )
       .then((e) => {
+        console.log(e.data);
         setDeliverySpeed(e.data.speed);
+        setFinalCost(e.data.finalCost);
       })
       .catch((e) => console.log(e));
   };

@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./PlaceOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import POproduct from "./POproduct";
-import axios from "axios";
 
 function PlaceOrder() {
   const [deliveryAddress] = UseStateValue().deliveryAddress;
@@ -11,25 +10,9 @@ function PlaceOrder() {
   const [cart] = UseStateValue().cart;
   const [cost] = UseStateValue().cost;
   const [gift] = UseStateValue().gift;
-  const [token] = UseStateValue().token;
+  const [finalCost] = UseStateValue().finalCost;
 
   const finalTotal = gift ? cost + deliverySpeed + 25 : cost + deliverySpeed;
-  const g = gift ? 25 : 0;
-  const d = deliverySpeed ? deliverySpeed : cost >= 500 ? 0 : 40;
-  const finalPrice = cost + g + d;
-
-  useEffect(() => {
-    axios
-      .post(
-        "/delivery/update",
-        { cart: cart },
-        { headers: { Authorization: token } }
-      )
-      .then((e) => {
-        console.log(e.data.address);
-      })
-      .catch((e) => console.log(e));
-  }, [token, cart]);
 
   const placeOrderAddress = () => {
     if (deliveryAddress) {
@@ -161,7 +144,7 @@ function PlaceOrder() {
             </div>
           </div>
           <div className="orderFinal">
-            Order Total: &#8377; {isNaN(finalPrice) ? 0 : finalPrice}
+            Order Total: &#8377; {isNaN(finalCost) ? 0 : finalCost}
           </div>
         </div>
       </div>
