@@ -21,6 +21,8 @@ import Method from "./Payment/Method/Method";
 import OrderHistory from "./OrderHistory/OrderHistory";
 
 function App() {
+ 
+
   return (
     <Router basename="/">
       <div className="app">

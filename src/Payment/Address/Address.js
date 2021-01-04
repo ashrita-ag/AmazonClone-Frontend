@@ -9,6 +9,7 @@ const _ = require("lodash");
 
 function Address() {
   localStorage.setItem("Payment", true);
+  
   const [address] = UseStateValue().address;
   const [token] = UseStateValue().token;
   const [gift] = UseStateValue().gift;

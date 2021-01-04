@@ -5,6 +5,9 @@ import OrderDetails from "./OrderDetails";
 import axios from "axios";
 
 function ConfirmOrder() {
+  const paymentItem = localStorage.getItem("Payment");
+  console.log({ paymentItem });
+
   const [deliveryAddress] = UseStateValue().deliveryAddress;
   const [cart] = UseStateValue().cart;
   const [, setDeliverySpeed] = UseStateValue().deliverySpeed;
