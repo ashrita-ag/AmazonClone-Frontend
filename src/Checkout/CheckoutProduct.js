@@ -8,17 +8,6 @@ function CheckoutProduct(props) {
   const [cart, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
   const [gift, setGift] = UseStateValue().gift;
-  const [, setCost] = UseStateValue().cost;
-
-  const subtotal = cart?.reduce(
-    (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
-    0
-  );
-
-  useEffect(() => {
-    setCost(subtotal);
-    // eslint-disable-next-line
-  }, []);
 
   const handleClickGiftBox = () => {
     if (document) {

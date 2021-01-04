@@ -6,11 +6,11 @@ export const StateContext = createContext();
 export const StateProvider = ({ children }) => {
   const [token, setToken] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  // const [giftItem, setGiftItem] = useState(false);
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [totalItems, setTotalItems] = useState(0);
-
   const [address, setAddress] = useState([]);
   const [deliveryAddress, setDeliveryAddress] = useState({});
   const [cost, setCost] = useState(0);
@@ -18,15 +18,15 @@ export const StateProvider = ({ children }) => {
   const [deliverySpeed, setDeliverySpeed] = useState(0);
   const [gift, setGift] = useState(false);
 
+  //Getting Refresh Token
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-    console.log("Inside use Effect");
+    console.log("Getting Token");
     if (firstLogin) {
       const refreshToken = async () => {
         const response = await axios.get("http://localhost:5000/user/token", {
           withCredentials: true,
         });
-        console.log("firstLogin");
         setToken(response.data.accesstoken);
         setTimeout(() => {
           refreshToken();
@@ -36,22 +36,37 @@ export const StateProvider = ({ children }) => {
     }
   }, []);
 
+  //Update Number of Items in Cart
   useEffect(() => {
+    console.log("Setting Total Items in Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
     } else setTotalItems(0);
   }, [cart, isLogged]);
 
+  //Set total cost of cart items
+  useEffect(() => {
+    console.log("Setting Total Cost of Cart");
+    if (isLogged) {
+      setCost(
+        cart?.reduce(
+          (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
+          0
+        )
+      );
+    } else setCost(0);
+  }, [cart, isLogged]);
+
+  //Getting User Info
   useEffect(() => {
     if (token) {
-      console.log("inside Token");
+      console.log("Getting User Info");
       const currUser = async () => {
         try {
           const res = await axios.get("http://localhost:5000/user/info", {
             headers: { Authorization: token },
             withCredentials: true,
           });
-
           setIsLogged(true);
           setCart(res.data.cart);
           setName(res.data.Fname);
@@ -60,14 +75,15 @@ export const StateProvider = ({ children }) => {
           alert(err.response.data.msg);
         }
       };
-
       currUser();
     }
   }, [token]);
 
+  //Set Addresses
   useEffect(() => {
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted) {
+      console.log("Setting the addresses");
       axios
         .get("/address/show", { headers: { Authorization: token } })
         .then((e) => {
@@ -79,9 +95,11 @@ export const StateProvider = ({ children }) => {
     }
   }, [token]);
 
+  //Set Delivery Details
   useEffect(() => {
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted) {
+      console.log("Setting Delivery Details");
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((e) => {
@@ -104,18 +122,19 @@ export const StateProvider = ({ children }) => {
   }, [token]);
 
   const initialState = {
-    token: [token, setToken],
+    token: [token, setToken], //Access Token
     name: [name, setName],
     email: [email, setEmail],
     isLogged: [isLogged, setIsLogged],
     cart: [cart, setCart],
-    totalItems: [totalItems, setTotalItems],
-    address: [address, setAddress],
-    deliveryAddress: [deliveryAddress, setDeliveryAddress],
-    cost: [cost, setCost],
-    deliverySpeed: [deliverySpeed, setDeliverySpeed],
-    gift: [gift, setGift],
-    finalCost: [finalCost, setFinalCost],
+    totalItems: [totalItems, setTotalItems], //number of Items in cart
+    address: [address, setAddress], //List of delivery addresses
+    deliveryAddress: [deliveryAddress, setDeliveryAddress], //Selected delivery Address
+    cost: [cost, setCost], //Total cost of Items
+    deliverySpeed: [deliverySpeed, setDeliverySpeed], //Delivery Speed Opted
+    gift: [gift, setGift], //Gift or not (from Backend)
+    finalCost: [finalCost, setFinalCost], //Final Cost to be paid
+    // giftItem: [giftItem, setGiftItem], //Stores gift item from frontend checkout page
   };
 
   return (

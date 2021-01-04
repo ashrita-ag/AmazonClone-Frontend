@@ -19,21 +19,25 @@ function Address() {
   const [, setFinalCost] = UseStateValue().finalCost;
   const [, setCart] = UseStateValue().cart;
 
+  console.log({ gift });
+
   useEffect(() => {
-    console.log("HI");
-    axios
-      .post(
-        "/delivery/create",
-        { gift: gift },
-        { headers: { Authorization: token } }
-      )
-      .then((e) => {
-        console.log(e.data);
-        setFinalCost(e.data.finalcost);
-        setCost(e.data.cost);
-        setCart(e.data.cart);
-      })
-      .catch((e) => console.log(e));
+    if (token) {
+      console.log("Creating Delivery Model");
+      axios
+        .post(
+          "/delivery/create",
+          { gift: gift },
+          { headers: { Authorization: token } }
+        )
+        .then((e) => {
+          console.log(e.data);
+          setFinalCost(e.data.finalcost);
+          setCost(e.data.cost);
+          setCart(e.data.cart);
+        })
+        .catch((e) => console.log(e));
+    }
   }, [token]);
 
   // useEffect(() => {

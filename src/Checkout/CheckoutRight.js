@@ -4,7 +4,7 @@ import { UseStateValue } from "../StateProvider/StateContext.js";
 
 function CheckoutRight() {
   const [totalItems] = UseStateValue().totalItems;
-  const [, setGift] = UseStateValue().gift;
+  const [gift, setGift] = UseStateValue().gift;
   const [cost] = UseStateValue().cost;
 
   const unCheckAll = () => {
@@ -19,6 +19,8 @@ function CheckoutRight() {
       });
     }
   };
+
+  console.log({gift});
 
   return (
     <div className="checkoutRight">
