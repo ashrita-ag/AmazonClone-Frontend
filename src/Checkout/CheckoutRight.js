@@ -19,7 +19,7 @@ function CheckoutRight() {
       });
     }
   };
-
+  
   console.log({gift});
 
   return (

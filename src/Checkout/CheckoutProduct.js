@@ -23,6 +23,7 @@ function CheckoutProduct(props) {
   };
 
   useEffect(() => {
+    localStorage.setItem("Gift",gift);
     const target = document.querySelector('input[name="giftCheckbox"]');
     if (target) target.checked = gift;
   }, [gift]);

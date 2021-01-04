@@ -14,20 +14,20 @@ function Address() {
 
   const [address] = UseStateValue().address;
   const [token] = UseStateValue().token;
-  const [gift] = UseStateValue().gift;
+  const [gift, setGift] = UseStateValue().gift;
   const [, setCost] = UseStateValue().cost;
   const [, setFinalCost] = UseStateValue().finalCost;
   const [, setCart] = UseStateValue().cart;
 
-  console.log({ gift });
-
   useEffect(() => {
     if (token) {
       console.log("Creating Delivery Model");
+      const g = localStorage.getItem("Gift");
+      console.log({ g, gift });
       axios
         .post(
           "/delivery/create",
-          { gift: gift },
+          { gift: g },
           { headers: { Authorization: token } }
         )
         .then((e) => {
@@ -35,6 +35,7 @@ function Address() {
           setFinalCost(e.data.finalcost);
           setCost(e.data.cost);
           setCart(e.data.cart);
+          setGift(e.data.gift);
         })
         .catch((e) => console.log(e));
     }
