@@ -6,7 +6,7 @@ html{
   scroll-behavior: smooth;
 }
 .content {
-  padding-bottom: 85px;
+  /* padding-bottom: 85px; */
   min-height: calc(100vh - 125px);
 }
 .amazonButton {

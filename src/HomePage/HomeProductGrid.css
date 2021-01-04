@@ -3,11 +3,9 @@
   position: relative;
   z-index: 1;
   max-width: 1350px;
-
 }
 
-.col-lg, .col-md
-{
-  /* background-color: black; */
+.col-lg,
+.col-md {
   padding: 5px;
 }

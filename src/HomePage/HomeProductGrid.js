@@ -10,7 +10,7 @@ function HomeProductGrid() {
   return (
     <div className="homeProductGrid">
       <Container fluid>
-        <Row noGutters md={3} lg={4}>
+        <Row noGutters md={3} lg={4} sm={2}>
           <Col lg={{ order: 1 }} md={{ order: 1 }}>
             <HomeProduct
               heading="Up to 50% off | Like-new products"
@@ -47,7 +47,6 @@ function HomeProductGrid() {
               heading="Up to 50% off | Refurbished speakers"
               image="https://images-eu.ssl-images-amazon.com/images/G/31/in-certifiedrefurbished/gateway/Desktop_Speakers_1198382_379x304._SY304_CB448485373_.jpg"
               link="# "
-
               class="homeProductLink d-block invisible"
             />
           </Col>
@@ -57,7 +56,6 @@ function HomeProductGrid() {
               heading="Refurbished mobiles"
               image="https://images-eu.ssl-images-amazon.com/images/G/31/in-certifiedrefurbished/gateway/Ver2_GW._SY304_CB446171261_.jpg"
               link="# "
-
               class="homeProductLink d-block invisible"
             />
           </Col>
@@ -67,7 +65,6 @@ function HomeProductGrid() {
               heading="Studio headphones, audio interfaces & more"
               image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Camera/GoPro/Gateway/379x304_pc_cc._SY304_CB417124607_.jpg"
               link="# "
-
               class="homeProductLink d-block invisible"
             />
           </Col>
@@ -77,12 +74,15 @@ function HomeProductGrid() {
               heading="Last minute gifting | Amazon Pay Gift Cards"
               image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Family/GW/Desktop/379x304_1x_card._SY304_CB428642151_.jpg"
               link="# "
-
               class="homeProductLink d-block invisible"
             />
           </Col>
 
-          <Col lg={{ order: 9 }} md={{ order: 9 }} className="d-lg-none">
+          <Col
+            lg={{ order: 9 }}
+            md={{ order: 9 }}
+            className="d-lg-none d-md-block d-sm-none"
+          >
             <HomeProduct
               heading="Save up to 40% | Amazon Pantry"
               image="https://images-eu.ssl-images-amazon.com/images/G/31/img17/Pantry/MARCH_2020/BAU/GW/Dashboard/FlexibleDesktop_CatCard._SY304_CB422434412_.jpg"
