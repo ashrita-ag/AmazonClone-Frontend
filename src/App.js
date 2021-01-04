@@ -21,8 +21,6 @@ import Method from "./Payment/Method/Method";
 import OrderHistory from "./OrderHistory/OrderHistory";
 
 function App() {
- 
-
   return (
     <Router basename="/">
       <div className="app">
@@ -76,6 +74,7 @@ function App() {
               <Method />
             </Route>
             <Route exact path="/orders">
+              <Header />
               <OrderHistory />
             </Route>
           </Switch>

@@ -18,15 +18,20 @@ function OrderHistory() {
       .then((e) => {
         console.log(e.data);
         var data = [];
-        data = e.data.map((i) => (
-          <OrderComponent
-            key={i._id}
-            cart={i.cart}
-            _id={i._id}
-            total={i.finalcost}
-            gift={i.gift}
-          />
-        ));
+        data = e.data.map((i) => {
+          return (
+            <OrderComponent
+              key={i._id}
+              cart={i.cart}
+              _id={i._id}
+              total={i.finalcost}
+              gift={i.gift}
+              name={i.address.name}
+              deliveryAddress={i.address}
+              date={i.updatedAt}
+            />
+          );
+        });
         setOrders(data);
         setLoading(false);
       })
@@ -34,7 +39,10 @@ function OrderHistory() {
   }, [token]);
 
   return (
-    <div className="orderHistory">{loading ? <h1>Loading...</h1> : orders}</div>
+    <div className="orderHistory">
+      <h4 className="orderHistoryHeading">Your Orders</h4>
+      {loading ? <h1>Loading...</h1> : orders}
+    </div>
   );
 }
 

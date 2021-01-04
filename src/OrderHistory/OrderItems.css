@@ -1,0 +1,27 @@
+.orderItems {
+  display: flex;
+  justify-content: flex-start;
+  /* border: 1px solid black; */
+  /* width: fit-content; */
+}
+.orderItemsImage {
+  display: block;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 10px;
+  height: auto;
+  width: auto;
+}
+.orderItemsText {
+  display: flex;
+  flex-direction: column;
+}
+.orderItemsHeading {
+  font-weight: 500;
+}
+.orderItemsQuantity {
+}
+.orderItemsPrice {
+  font-weight: 400;
+  color: maroon;
+}
