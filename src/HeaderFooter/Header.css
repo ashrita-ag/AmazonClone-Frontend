@@ -66,8 +66,7 @@ a.headerLink div :hover {
   border: 1px solid transparent;
   padding: 4px 13px;
 }
-.headerLanguageIcon {
-}
+
 .headerNavText1 {
   font-size: 11px;
 }
@@ -83,8 +82,6 @@ a.headerLink div :hover {
   display: flex;
   border: 1px solid transparent;
   padding: 4px 13px;
-}
-.headerCartIcon {
 }
 
 .headerCartItems {

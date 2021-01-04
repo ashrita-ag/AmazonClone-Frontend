@@ -11,26 +11,28 @@
   margin: auto;
   height: 250px;
 }
-.homeGridItemSignIn {
+
+.homeAuthBox {
   background-color: white;
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.HomeSignoutLink
+
+.homeAuthLink
 {
   font-size: 10px;
   text-align: right;
 }
 
-.homeGridItemSignInButton {
+.homeAuthBoxButton {
   font-size: 12px;
   padding: 5px;
   width: 100%;
 }
 
-.homeGridItemSignInHeading {
+.homeAuthBoxHeading {
   font-size: 20px;
   font-weight: 750;
 }

@@ -11,7 +11,7 @@ function Footer() {
           className="footerLogo"
         />
         <div className="footerText">
-          © 1996-2020, Amazon.com, Inc. or its affiliates
+          © 1996-2021, Amazon.com, Inc. or its affiliates
         </div>
       </div>
     </footer>
