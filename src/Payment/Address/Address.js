@@ -22,12 +22,12 @@ function Address() {
   useEffect(() => {
     if (token) {
       console.log("Creating Delivery Model");
-      const g = localStorage.getItem("Gift");
-      console.log({ g, gift });
+      // const g = localStorage.getItem("Gift");
+      console.log({ gift });
       axios
         .post(
           "/delivery/create",
-          { gift: g },
+          { gift: gift },
           { headers: { Authorization: token } }
         )
         .then((e) => {
