@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import BannerImage from "../BannerImage.js";
 import Products from "../Products.js";
-const axios = require("axios");
+import axios from "axios";
 
 function AddProducts() {
   const [productList, setproductList] = useState([]);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BannerImage from "../BannerImage.js";
 import Products from "../Products.js";
 import Loading from "../../Components/Loading";
-const axios = require("axios");
+import axios from "axios";
 
 function NewProducts() {
   const [productList, setproductList] = useState([]);

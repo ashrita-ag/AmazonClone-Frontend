@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import React, { useState, useEffect } from 'react';
 // Components
 import Header from "./HeaderFooter/Header.js";
 import Footer from "./HeaderFooter/Footer";
@@ -21,6 +21,8 @@ import Method from "./Payment/Method/Method";
 import OrderHistory from "./OrderHistory/OrderHistory";
 
 function App() {
+  useEffect(()=>console.log("APP>JS USE EFFECT"),[]);
+
   return (
     <Router basename="/">
       <div className="app">

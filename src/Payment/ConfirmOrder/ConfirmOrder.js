@@ -3,6 +3,8 @@ import "./ConfirmOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import OrderDetails from "./OrderDetails";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 function ConfirmOrder() {
   const paymentItem = localStorage.getItem("Payment");
@@ -80,11 +82,11 @@ function ConfirmOrder() {
       <div className="confirmOrderHeadingContainer">
         <div className="confirmOrderHeading">Choose your delivery options</div>
         <div className="confirmOrderGreyBtn">
-          <a href="/payment/place_order">
+          <Link to="/payment/place_order">
             <button className="amazonButton confirmOrderContinueBtn">
               Continue
             </button>
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -103,9 +105,9 @@ function ConfirmOrder() {
             {deliveryAddress ? finalAddress() : "Deliver to : Loading..."}
           </div>
           <div className="confirmOrderOrderDetails">{order()}</div>
-          <a href="/payment/edit_order" className="editOrderLink">
+          <Link to="/payment/edit_order" className="editOrderLink">
             Change quantities or delete
-          </a>
+          </Link>
         </div>
         <div className="confirmOrderRight">
           <h6>Choose a delivery speed</h6>
@@ -149,11 +151,11 @@ function ConfirmOrder() {
       </div>
       <hr />
       <div className="confirmOrderGreyBtn">
-        <a href="/payment/place_order">
+        <Link to="/payment/place_order">
           <button className="amazonButton confirmOrderContinueBtn">
             Continue
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

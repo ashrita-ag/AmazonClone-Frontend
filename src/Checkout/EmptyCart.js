@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 
 function EmptyCart() {
@@ -10,7 +11,7 @@ function EmptyCart() {
       <div>
         <div className="emptyCartText1">Your Shopping Cart is Empty.</div>
         <div className="emptyCartText2">
-          Continue shopping on <a href="/">Amazon.in</a>
+          Continue shopping on <Link to="/">Amazon.in</Link>
         </div>
       </div>
     </div>

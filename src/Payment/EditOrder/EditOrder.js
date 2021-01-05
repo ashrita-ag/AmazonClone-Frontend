@@ -1,6 +1,8 @@
 import React from "react";
 import "./EditOrder.css";
 import CheckoutLeft from "../../Checkout/CheckoutLeft.js";
+import { Link } from "react-router-dom";
+
 // import { UseStateValue } from "../StateProvider/StateContext.js";
 // CHANGE THIS PAGEEEEEEEEEEEEEEEEEEEEEE
 
@@ -36,11 +38,11 @@ function EditOrder() {
 
       <div className="separator"></div>
       <div className="confirmOrderGreyBtn">
-        <a href="/payment/confirm_order">
+        <Link to="/payment/confirm_order">
           <button className="amazonButton confirmOrderContinueBtn">
             Continue
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

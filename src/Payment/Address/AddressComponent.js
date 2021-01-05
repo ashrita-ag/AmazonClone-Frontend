@@ -1,5 +1,6 @@
 import React from "react";
 import { UseStateValue } from "../../StateProvider/StateContext.js";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function AddressComponent(props) {
@@ -53,11 +54,11 @@ function AddressComponent(props) {
         <div>{props.country}</div>
       </div>
 
-      <a href="/payment/confirm_order">
+      <Link to="/payment/confirm_order">
         <button className="amazonButton" onClick={handleSetAddress}>
           Deliver to this Address
         </button>
-      </a>
+      </Link>
       <button className="amazonWhiteButton" onClick={deleteAddress}>
         Delete
       </button>

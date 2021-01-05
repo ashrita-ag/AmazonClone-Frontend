@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import axios from "axios";
 
 function HomesignoutBox() {
@@ -8,9 +9,9 @@ function HomesignoutBox() {
       <div className="homeGridItemtext">
         Shop now for some amazing deals on a wide range of products.
       </div>
-      <a href="/logout" className="homeAuthLink">
+      <Link to="/logout" className="homeAuthLink">
         Sign out
-      </a>
+      </Link>
     </div>
   );
 }

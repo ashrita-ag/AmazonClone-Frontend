@@ -1,6 +1,8 @@
 import "./CheckoutRight.css";
 import React from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
+import { Link } from "react-router-dom";
+
 
 function CheckoutRight() {
   const [totalItems] = UseStateValue().totalItems;
@@ -46,11 +48,11 @@ function CheckoutRight() {
           />
           This order contains a gift.
         </div>
-        <a href="/payment/address">
+        <Link to="/payment/address">
           <button className="amazonButton checkoutRightBoxButton">
             Proceed to Buy
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

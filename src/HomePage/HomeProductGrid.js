@@ -6,6 +6,7 @@ import HomeProduct from "./HomeProduct.js";
 import "./HomeProductGrid.css";
 import HomeGridItem from "./HomeGridItem.js";
 
+
 function HomeProductGrid() {
   return (
     <div className="homeProductGrid">

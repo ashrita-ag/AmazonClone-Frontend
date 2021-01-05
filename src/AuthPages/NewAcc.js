@@ -1,6 +1,8 @@
 import "./NewAcc.css";
 import React, { useState } from "react";
-const axios = require("axios");
+import { Link } from "react-router-dom";
+
+import axios from "axios";
 
 function NewAcc() {
   const [errorMsg, setErrorMsg] = useState("");
@@ -44,13 +46,13 @@ function NewAcc() {
 
   return (
     <div className="newAcc">
-      <a href="/">
+      <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/263px-Amazon_logo.svg.png"
           alt="AmazonLogo"
           className="amazonLogoAuth"
         />
-      </a>
+      </Link>
       <form className="newAccForm" onSubmit={handleSubmitNew}>
         <div className="newAccBoxHeading">Create Account</div>
 
@@ -100,7 +102,7 @@ function NewAcc() {
           </button>
 
           <div className="newAccText">
-            Already have an account? <a href="/login">Sign in &#9656;</a>
+            Already have an account? <Link to="/login">Sign in &#9656;</Link>
           </div>
         </div>
       </form>

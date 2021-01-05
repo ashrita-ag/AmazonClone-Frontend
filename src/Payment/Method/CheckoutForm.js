@@ -128,9 +128,9 @@ export default function CheckoutForm() {
         <p className={succeeded ? "result-message" : "result-message hidden"}>
           Payment succeeded, redirecting to Homepage...
           {redirect && window.location.replace("/")}
-          {/* <a href={`https://dashboard.stripe.com/test/payments`}>
+          {/* <Link to={`https://dashboard.stripe.com/test/payments`}>
             Stripe dashboard.
-          </a>
+          </Link>
           Refresh the page to pay again. */}
         </p>
       </form>

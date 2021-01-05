@@ -1,5 +1,7 @@
 import React from "react";
 import "./HomeProduct.css";
+import { Link } from "react-router-dom";
+
 
 function HomeProduct(props) {
   return (
@@ -8,9 +10,9 @@ function HomeProduct(props) {
       <div className="homeProductImage">
         <img src={props.image} alt="homeProductImage" />
       </div>
-      <a href={props.link} className={props.class}>
+      <Link to={props.link} className={props.class}>
         See more offers.
-      </a>
+      </Link>
     </div>
   );
 }

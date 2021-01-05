@@ -1,13 +1,13 @@
 import "./Login.css";
 import React, { useState } from "react";
-const axios = require("axios");
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   localStorage.setItem("Payment", false);
-
 
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);
@@ -42,13 +42,13 @@ function Login() {
 
   return (
     <div className="login">
-      <a href="/">
+      <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/263px-Amazon_logo.svg.png"
           alt="AmazonLogo"
           className="amazonLogoAuth"
         />
-      </a>
+      </Link>
 
       <form className="loginForm" onSubmit={handleSubmitLogin}>
         <div className="loginBoxHeading">Login</div>
@@ -80,19 +80,19 @@ function Login() {
           </button>
           <div>
             By continuing, you agree to Amazon's{" "}
-            <a href="# ">Conditions of Use</a> and{" "}
-            <a href="# ">Privacy Notice.</a>
+            <Link to="# ">Conditions of Use</Link> and{" "}
+            <Link to="# ">Privacy Notice.</Link>
           </div>
         </div>
       </form>
       <div className="loginNewUserText">
         <span> New to Amazon?</span>{" "}
       </div>
-      <a href="/create-new-account">
+      <Link to="/create-new-account">
         <button className="amazonWhiteButton">
           Create your Amazon Account
         </button>
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import "./HeaderTogglerMenu.css";
+import { Link } from "react-router-dom";
+
 
 function headerTogglerOpenNav() {
   document.getElementById("headerTogglerSideNav").style.width = "250px";
@@ -15,27 +17,27 @@ function HeaderTogglerMenu() {
   return (
     <div className="headerTogglerMenu">
       <div id="headerTogglerSideNav" className="headerTogglerSideNav">
-        <a
-          href="# "
+        <Link
+          to="# "
           className="headerTogglerclosebtn"
           onClick={() => headerTogglerCloseNav()}
         >
           &times;
-        </a>
+        </Link>
 
-        <a href="/">Home</a>
-        <a href="/">Accounts & Lists</a>
-        <a href="/">Cart</a>
-        <a href="# ">Shop with Us</a>
-        <a href="/like-new-products" className="headerTogglerNavOption">
+        <Link to="/">Home</Link>
+        <Link to="/">Accounts & Lists</Link>
+        <Link to="/">Cart</Link>
+        <Link to="# ">Shop with Us</Link>
+        <Link to="/like-new-products" className="headerTogglerNavOption">
           Like-New Products
-        </a>
-        <a href="/home-office" className="headerTogglerNavOption">
+        </Link>
+        <Link to="/home-office" className="headerTogglerNavOption">
           Home Office Utilities
-        </a>
-        <a href="/additional-items" className="headerTogglerNavOption">
+        </Link>
+        <Link to="/additional-items" className="headerTogglerNavOption">
           Explore Additional Items
-        </a>
+        </Link>
       </div>
       <div>
         <span className="headerTogglerMenuBtn" onClick={() => headerTogglerOpenNav()}>
