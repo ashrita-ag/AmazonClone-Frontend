@@ -60,6 +60,21 @@ function Products(props) {
     setLoading(false);
   };
 
+  // const test = () => {
+  //   axios
+  //     .patch(
+  //       "/user/cart/update_cart",
+  //       { product: props.id },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     )
+  //     .then((e) => console.log(e.data))
+  //     .catch((e) => console.log(e));
+  // };
+
   const rating = [];
   for (let i = 0; i < props.rating; i++) rating.push(<StarRateIcon key={i} />);
 
@@ -88,6 +103,7 @@ function Products(props) {
             Add to Cart
           </button>
         </div>
+        {/* <button onClick={test}>Test</button> */}
       </div>
     </div>
   );
