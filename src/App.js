@@ -57,6 +57,8 @@ function App() {
               <Header />
               <Checkout />
             </Route>
+
+            {/* AuthPages Start */}
             <Route exact path="/login">
               {isLogged ? <Redirect to="/" /> : <Login />}
             </Route>
@@ -67,6 +69,9 @@ function App() {
               <Header />
               {isLogged ? <Logout /> : <Redirect to="/" />}
             </Route>
+            {/* AuthPages End */}
+
+            {/* PaymentPages Start */}
             <Route exact path="/payment/address">
               <Address />
             </Route>
@@ -82,6 +87,8 @@ function App() {
             <Route exact path="/payment/method">
               <Method />
             </Route>
+            {/* PaymentPages End */}
+
             <Route exact path="/orders">
               <Header />
               <OrderHistory />
