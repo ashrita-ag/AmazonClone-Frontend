@@ -3,6 +3,7 @@ import "./OrderHistory.css";
 import { UseStateValue } from "../StateProvider/StateContext";
 import axios from "axios";
 import OrderComponent from "./OrderComponent";
+import Loading from "../Components/Loading"
 
 function OrderHistory() {
   const [token] = UseStateValue().token;
@@ -41,7 +42,7 @@ function OrderHistory() {
   return (
     <div className="orderHistory">
       <h4 className="orderHistoryHeading">Your Orders</h4>
-      {loading ? <h1>Loading...</h1> : orders}
+      {loading ? <Loading /> : orders}
     </div>
   );
 }

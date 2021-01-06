@@ -19,7 +19,7 @@ function OrderComponent(props) {
   const newDate = new Date(props.date);
   console.log({ newDate });
   const dateString = newDate.toDateString(newDate);
-  const test = newDate.toLocaleDateString(newDate);
+  // const test = newDate.toLocaleDateString(newDate);
 
   return (
     <div>

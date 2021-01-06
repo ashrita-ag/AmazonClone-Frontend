@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Products.css";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import StarRateIcon from "@material-ui/icons/StarRate";
@@ -9,8 +9,10 @@ function Products(props) {
   const [cart, setCart] = state.cart;
   const [isLogged] = state.isLogged;
   const [token] = state.token;
+  const [loading, setLoading] = useState(false);
 
   const addToCart = () => {
+    setLoading(true);
     if (isLogged) {
       const index = cart.findIndex((cartItem) => cartItem._id === props.id);
       if (index > -1) {
@@ -55,6 +57,7 @@ function Products(props) {
     } else {
       alert("Please Login Or Create an account");
     }
+    setLoading(false);
   };
 
   const rating = [];
@@ -77,7 +80,11 @@ function Products(props) {
         </div>
 
         <div className="productButton ">
-          <button className="amazonButton" onClick={addToCart}>
+          <button
+            className="amazonButton"
+            onClick={addToCart}
+            disabled={loading}
+          >
             Add to Cart
           </button>
         </div>
