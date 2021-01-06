@@ -22,10 +22,9 @@ export const StateProvider = ({ children }) => {
 
   //Getting Refresh Token
   useEffect(() => {
-    setLoading(true);
+    console.log("Getting Token");
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin || isLogged) {
-      console.log("Getting Token");
       const refreshToken = async () => {
         const response = await axios.get("/user/token", {
           withCredentials: true,
@@ -35,24 +34,27 @@ export const StateProvider = ({ children }) => {
           refreshToken();
         }, 24 * 60 * 60 * 1000); //1 day
       };
+      setLoading(true);
       refreshToken();
+      setLoading(false);
     }
-    setLoading(false);
+    console.log("Got Token");
   }, [isLogged]);
 
   //Update Number of Items in Cart
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     console.log("Setting Total Items in Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
     } else setTotalItems(0);
-    setLoading(false);
+    console.log("Set Total Items in Cart");
+    // setLoading(false);
   }, [cart, isLogged]);
 
   //Set total cost of cart items
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
 
     console.log("Setting Total Cost of Cart");
     if (isLogged) {
@@ -63,14 +65,15 @@ export const StateProvider = ({ children }) => {
         )
       );
     } else setCost(0);
-    setLoading(false);
+    console.log("Set Total Cost of Cart");
+    // setLoading(false);
   }, [cart, isLogged]);
 
   //Getting User Info
   useEffect(() => {
-    setLoading(true);
+    console.log("Getting User Info");
+
     if (token) {
-      console.log("Getting User Info");
       const currUser = async () => {
         try {
           const res = await axios.get("/user/info", {
@@ -85,42 +88,48 @@ export const StateProvider = ({ children }) => {
           alert(err.response.data.msg);
         }
       };
+      setLoading(true);
+
       currUser();
+      setLoading(false);
     } else {
       setIsLogged(false);
       setCart([]);
       setName("");
       setEmail("");
     }
-    setLoading(true);
+    console.log("Got User Info");
   }, [token]);
 
   //Set Addresses
   useEffect(() => {
-    setLoading(true);
+    console.log("Setting the addresses");
 
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
-      console.log("Setting the addresses");
+      setLoading(true);
+
       axios
         .get("/address/show", { headers: { Authorization: token } })
         .then((e) => {
           setAddress(e.data);
         })
         .catch((e) => console.log(e));
+      setLoading(false);
     } else {
       setAddress([]);
     }
-    setLoading(false);
+    console.log("Set the addresses");
   }, [token]);
 
   //Set Delivery Details
   useEffect(() => {
-    setLoading(true);
+    console.log("Setting Delivery Details");
 
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
-      console.log("Setting Delivery Details");
+      setLoading(true);
+
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((e) => {
@@ -133,6 +142,7 @@ export const StateProvider = ({ children }) => {
           }
         })
         .catch((e) => console.log(e));
+      setLoading(false);
     } else {
       setDeliveryAddress({});
       setCost(0);
@@ -140,8 +150,12 @@ export const StateProvider = ({ children }) => {
       setDeliverySpeed(0);
       setFinalCost(0);
     }
-    setLoading(false);
+    console.log("Set Delivery Details");
   }, [token]);
+
+  useEffect(() => {
+    console.log("HAAN ME LOADING HOOOOOOOOOON");
+  }, [loading]);
 
   const initialState = {
     token: [token, setToken], //Access Token
@@ -159,7 +173,6 @@ export const StateProvider = ({ children }) => {
     loading: [loading, setLoading],
   };
 
-  console.log({ loading });
 
   return (
     <StateContext.Provider value={initialState}>

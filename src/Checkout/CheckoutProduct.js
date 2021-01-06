@@ -2,6 +2,7 @@ import "./CheckoutProduct.css";
 import React, { useState, useEffect } from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import axios from "axios";
+// import Loading from "../Components/Loading";
 
 function CheckoutProduct(props) {
   const [count, setCount] = useState(props.count);
@@ -30,39 +31,41 @@ function CheckoutProduct(props) {
   }, [gift]);
 
   const decrement = () => {
-    if (count === 1) deleteFromCart();
-    else updateCart(count - 1);
+    setLoading(true);
+    updateCart(count - 1);
     setCount(count - 1);
     console.log(count);
+    setLoading(false);
   };
 
   const increment = () => {
+    setLoading(true);
     updateCart(count + 1);
     setCount(count + 1);
+    setLoading(false);
   };
 
   const updateCart = (c) => {
     setLoading(true);
-
     const index = cart.findIndex((cartItem) => cartItem._id === props.id);
-    if (index > -1) {
+    if (index > -1 && c > 0) {
       console.log(cart[index]);
+      axios
+        .patch(
+          "/user/cart/update",
+          { count: c, product: props.id },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((e) => {
+          console.log(e.data);
+          setCart(e.data);
+        });
     }
-    axios
-      .patch(
-        "/user/cart/update",
-        { count: c, product: props.id },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
-      .then((e) => {
-        console.log(e.data);
-        setCart(e.data);
-      });
-    setLoading(false);
+    // setLoading(false);
   };
 
   const deleteFromCart = () => {
@@ -117,7 +120,7 @@ function CheckoutProduct(props) {
           </div>
           <button
             className="countButton"
-            onClick={decrement}
+            onClick={props.count > 1 ? decrement : deleteFromCart}
             disabled={loading}
           >
             -
