@@ -155,7 +155,9 @@ export const StateProvider = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
-    console.log("HAAN ME LOADING HOOOOOOOOOON");
+    // console.log("HAAN ME LOADING HOOOOOOOOOON");
+    console.log({loading});
+
   }, [loading]);
 
   const initialState = {

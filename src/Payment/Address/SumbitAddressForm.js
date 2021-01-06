@@ -6,6 +6,7 @@ import { UseStateValue } from "../../StateProvider/StateContext";
 function SumbitAddressForm() {
   const [token] = UseStateValue().token;
   const [address, setAddress] = UseStateValue().address;
+  const [loading, setLoading] = UseStateValue().loading;
 
   const [formAddress, setFormAddress] = useState({
     name: "",
@@ -26,6 +27,7 @@ function SumbitAddressForm() {
 
   const submitAddress = (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log(formAddress);
     axios
       .post("/address/save", formAddress, {
@@ -35,11 +37,11 @@ function SumbitAddressForm() {
       })
       .then((e) => {
         console.log(e.data);
-        setAddress([...address,e.data]);
-        window.scrollTo(0,0);
+        setAddress([...address, e.data]);
+        window.scrollTo(0, 0);
       })
       .catch((e) => console.log(e));
-   
+    setLoading(false);
   };
   return (
     <div>

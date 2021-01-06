@@ -5,12 +5,13 @@ import OrderDetails from "./OrderDetails";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 function ConfirmOrder() {
   const paymentItem = localStorage.getItem("Payment");
   console.log({ paymentItem });
 
   const [deliveryAddress] = UseStateValue().deliveryAddress;
+  const [loading, setLoading] = UseStateValue().loading;
+
   const [cart] = UseStateValue().cart;
   const [, setDeliverySpeed] = UseStateValue().deliverySpeed;
   const [token] = UseStateValue().token;
@@ -18,6 +19,7 @@ function ConfirmOrder() {
 
   const handleSpeedUpdate = (e) => {
     console.log(e.target.value);
+    setLoading(true);
     axios
       .post(
         "/delivery/update_speed",
@@ -30,6 +32,7 @@ function ConfirmOrder() {
         setFinalCost(e.data.finalCost);
       })
       .catch((e) => console.log(e));
+    setLoading(false);
   };
 
   const finalAddress = () => {
@@ -81,13 +84,18 @@ function ConfirmOrder() {
 
       <div className="confirmOrderHeadingContainer">
         <div className="confirmOrderHeading">Choose your delivery options</div>
-        <div className="confirmOrderGreyBtn">
-          <Link to="/payment/place_order">
-            <button className="amazonButton confirmOrderContinueBtn">
-              Continue
-            </button>
-          </Link>
-        </div>
+        {!loading && (
+          <div className="confirmOrderGreyBtn">
+            <Link to="/payment/place_order">
+              <button
+                className="amazonButton confirmOrderContinueBtn"
+                disabled={loading}
+              >
+                Continue
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
 
       <hr />
@@ -150,13 +158,18 @@ function ConfirmOrder() {
         </div>
       </div>
       <hr />
-      <div className="confirmOrderGreyBtn">
-        <Link to="/payment/place_order">
-          <button className="amazonButton confirmOrderContinueBtn">
-            Continue
-          </button>
-        </Link>
-      </div>
+      {!loading && (
+        <div className="confirmOrderGreyBtn">
+          <Link to="/payment/place_order">
+            <button
+              className="amazonButton confirmOrderContinueBtn"
+              disabled={loading}
+            >
+              Continue
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

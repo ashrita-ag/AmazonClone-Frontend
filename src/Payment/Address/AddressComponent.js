@@ -7,8 +7,10 @@ function AddressComponent(props) {
   const [address, setAddress] = UseStateValue().address;
   const [token] = UseStateValue().token;
   const [, setDeliveryAddress] = UseStateValue().deliveryAddress;
+  const [loading, setLoading] = UseStateValue().loading;
 
   const handleSetAddress = () => {
+    setLoading(true);
     axios
       .post(
         "/delivery/update_address",
@@ -20,9 +22,11 @@ function AddressComponent(props) {
         console.log(e.data);
       })
       .catch((e) => console.log(e));
+    setLoading(false);
   };
 
   const deleteAddress = () => {
+    setLoading(true);
     axios
       .post(
         "/address/delete",
@@ -38,6 +42,7 @@ function AddressComponent(props) {
         setAddress(address.filter((a) => a._id !== props.id));
       })
       .catch((e) => console.log(e));
+    setLoading(false);
   };
 
   return (

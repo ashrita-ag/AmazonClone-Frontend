@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import SumbitAddressForm from "./SumbitAddressForm";
 import AddressComponent from "./AddressComponent";
-
+import Loading from "../../Components/Loading";
 import "./Address.css";
 import axios from "axios";
 const _ = require("lodash");
 
 function Address() {
   localStorage.setItem("Payment", true);
-  // const [loading, setLoading] = useState(false);
-  // const [userAddress, setUserAddress] = useState([]);
-
+  const [loading, setLoading] = UseStateValue().loading;
   const [address] = UseStateValue().address;
   const [token] = UseStateValue().token;
   const [gift, setGift] = UseStateValue().gift;
@@ -21,9 +19,8 @@ function Address() {
 
   useEffect(() => {
     if (token) {
+      setLoading(true);
       console.log("Creating Delivery Model");
-      // const g = localStorage.getItem("Gift");
-      console.log({ gift });
       axios
         .post(
           "/delivery/create",
@@ -38,36 +35,10 @@ function Address() {
           setGift(e.data.gift);
         })
         .catch((e) => console.log(e));
+
+      setLoading(false);
     }
   }, [token]);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axios
-  //     .get("/address/show", { headers: { Authorization: token } })
-  //     .then((e) => {
-  //       var data = [];
-  //       console.log("address");
-  //       data = e.data.map((a) => (
-  //         <AddressComponent
-  //           key={a._id || 1}
-  //           id={a._id}
-  //           country={a.country}
-  //           name={a.name}
-  //           phone={a.phone}
-  //           house={a.house}
-  //           area={a.area}
-  //           pin={a.pin}
-  //           landmark={a.landmark}
-  //           city={a.city}
-  //           state={a.state}
-  //         />
-  //       ));
-  //       setUserAddress(data);
-  //       setLoading(false);
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, [token]);
 
   const userAddress = () =>
     address.length === 0 ? (
@@ -107,8 +78,8 @@ function Address() {
         delivery address.
       </div>
       <div className="address">
-        {userAddress()}
-        {/* {loading ? <h1>Loading</h1> : userAddress} */}
+        {/* {userAddress()} */}
+        {loading ? <Loading /> : userAddress()}
       </div>
       {address.length > 0 && <hr />}
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 import "./PlaceOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import POproduct from "./POproduct";
@@ -13,6 +12,7 @@ function PlaceOrder() {
   const [cost] = UseStateValue().cost;
   const [gift] = UseStateValue().gift;
   const [finalCost] = UseStateValue().finalCost;
+  const [loading, setLoading] = UseStateValue().loading;
 
   const finalTotal = gift ? cost + deliverySpeed + 25 : cost + deliverySpeed;
 
@@ -108,14 +108,16 @@ function PlaceOrder() {
         </div>
 
         <div className="placeOrderRight">
-          <Link to="/payment/method">
-            <button
-              className="amazonButton placeOrderSubmit"
-              // onClick={handleClick}
-            >
-              Place your order
-            </button>
-          </Link>
+          {!loading && (
+            <Link to="/payment/method">
+              <button
+                className="amazonButton placeOrderSubmit"
+                // onClick={handleClick}
+              >
+                Place your order
+              </button>
+            </Link>
+          )}{" "}
           <div className="placeOrderSmallHeading">Order Components</div>
           <div className="orderItems">
             <div className="orderItemText">
