@@ -1,13 +1,18 @@
 import "./Login.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { UseStateValue } from "../StateProvider/StateContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [, setIsLogged] = UseStateValue().isLogged;
+
   localStorage.setItem("Payment", false);
+  console.log({ loading });
 
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);
@@ -15,27 +20,24 @@ function Login() {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
+    console.log("Logging In");
+    setLoading(true);
 
     axios
       .post(
         "/user/login",
-        {
-          email: email,
-          password: pwd,
-        },
-        {
-          withCredentials: true,
-        }
+        { email: email, password: pwd },
+        { withCredentials: true }
       )
       .then((m) => {
         const msg = m.data.msg;
         if (msg) changeErrorMsgNew(msg);
         else {
           localStorage.setItem("firstLogin", true);
-
-          window.location.href = "/";
-          console.log("login");
+          // setIsLogged(true);
+          console.log("Logging Success");
         }
+        setLoading(false);
       })
       .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
   };
@@ -49,10 +51,8 @@ function Login() {
           className="amazonLogoAuth"
         />
       </Link>
-
       <form className="loginForm" onSubmit={handleSubmitLogin}>
         <div className="loginBoxHeading">Login</div>
-
         <div className="loginContainer">
           <label htmlFor="email">
             <b>Email or mobile phone number</b>
@@ -75,7 +75,11 @@ function Login() {
             required
           />
           <div className="errorMsgNew"> {errorMsg}</div>
-          <button type="submit" className="loginButton amazonButton">
+          <button
+            type="submit"
+            className="loginButton amazonButton"
+            disabled={loading}
+          >
             Login
           </button>
           <div>
@@ -89,7 +93,7 @@ function Login() {
         <span> New to Amazon?</span>{" "}
       </div>
       <Link to="/create-new-account">
-        <button className="amazonWhiteButton">
+        <button className="amazonWhiteButton" disabled={loading}>
           Create your Amazon Account
         </button>
       </Link>

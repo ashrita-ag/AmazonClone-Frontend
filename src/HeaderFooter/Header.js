@@ -42,7 +42,8 @@ export default function Header() {
           <div className="headerNavOption">
             {/*DROPDOWN */}
             <div className="headerNavText1">
-              Hello{isLogged ? " " + name : ",Sign In"}
+              Hello
+              {isLogged ? " " + name : ",Sign In"}
             </div>
             <div className="headerNavText2">Account & Lists</div>
           </div>
@@ -67,7 +68,9 @@ export default function Header() {
       <Link to="/checkout" className="headerLink">
         <div className="headerCart">
           <ShoppingCartIcon className="headerCartIcon" />
-          <div className="headerCartItems">{totalItems}</div>
+          <div className="headerCartItems">
+          {totalItems}
+          </div>
         </div>
       </Link>
     </div>

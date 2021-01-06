@@ -1,7 +1,14 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import React from "react";
+import { UseStateValue } from "./StateProvider/StateContext";
+
 // Components
 import Header from "./HeaderFooter/Header.js";
 import Footer from "./HeaderFooter/Footer";
@@ -21,7 +28,7 @@ import Method from "./Payment/Method/Method";
 import OrderHistory from "./OrderHistory/OrderHistory";
 
 function App() {
-  useEffect(()=>console.log("APP>JS USE EFFECT"),[]);
+  const [isLogged] = UseStateValue().isLogged;
 
   return (
     <Router basename="/">
@@ -51,7 +58,7 @@ function App() {
               <Checkout />
             </Route>
             <Route exact path="/login">
-              <Login />
+              {isLogged ? <Redirect to="/" /> : <Login />}
             </Route>
             <Route exact path="/create-new-account">
               <NewAcc />

@@ -19,7 +19,7 @@ export default function Method() {
       console.log("Deleting User Cart");
       axios
         .patch(
-          "http://localhost:5000/user/cart/delete_cart",
+          "/user/cart/delete_cart",
           {},
           {
             headers: {

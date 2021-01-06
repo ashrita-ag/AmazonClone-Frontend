@@ -17,8 +17,12 @@ html{
   border-color: #a88734 #9c7e31 #846a29;
   font-weight: 490;
 }
-.amazonButton:hover {
+.amazonButton:hover:enabled {
   background: linear-gradient(#e7c780, #e9b53d);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 .amazonWhiteButton {
   border: 1px solid;
@@ -30,7 +34,7 @@ html{
   width: 300px;
   font-weight: 490;
 }
-.amazonWhiteButton:hover {
+.amazonWhiteButton:hover:enabled {
   background: linear-gradient(#e2e2e2, #dbdada);
 }
 #overlay {

@@ -9,7 +9,7 @@ const _ = require("lodash");
 
 function Address() {
   localStorage.setItem("Payment", true);
-  // const [loading, setLoading] = useState([false]);
+  // const [loading, setLoading] = useState(false);
   // const [userAddress, setUserAddress] = useState([]);
 
   const [address] = UseStateValue().address;

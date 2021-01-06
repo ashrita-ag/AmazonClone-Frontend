@@ -6,7 +6,6 @@ export const StateContext = createContext();
 export const StateProvider = ({ children }) => {
   const [token, setToken] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
-  // const [giftItem, setGiftItem] = useState(false);
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,10 +20,10 @@ export const StateProvider = ({ children }) => {
   //Getting Refresh Token
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-    console.log("Getting Token");
     if (firstLogin) {
+      console.log("Getting Token");
       const refreshToken = async () => {
-        const response = await axios.get("http://localhost:5000/user/token", {
+        const response = await axios.get("/user/token", {
           withCredentials: true,
         });
         setToken(response.data.accesstoken);
@@ -63,7 +62,7 @@ export const StateProvider = ({ children }) => {
       console.log("Getting User Info");
       const currUser = async () => {
         try {
-          const res = await axios.get("http://localhost:5000/user/info", {
+          const res = await axios.get("/user/info", {
             headers: { Authorization: token },
             withCredentials: true,
           });
@@ -76,13 +75,18 @@ export const StateProvider = ({ children }) => {
         }
       };
       currUser();
+    } else {
+      setIsLogged(false);
+      setCart([]);
+      setName("");
+      setEmail("");
     }
   }, [token]);
 
   //Set Addresses
   useEffect(() => {
     const paymentStarted = localStorage.getItem("Payment");
-    if (paymentStarted) {
+    if (paymentStarted && token) {
       console.log("Setting the addresses");
       axios
         .get("/address/show", { headers: { Authorization: token } })
@@ -98,7 +102,7 @@ export const StateProvider = ({ children }) => {
   //Set Delivery Details
   useEffect(() => {
     const paymentStarted = localStorage.getItem("Payment");
-    if (paymentStarted) {
+    if (paymentStarted && token) {
       console.log("Setting Delivery Details");
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
@@ -134,7 +138,6 @@ export const StateProvider = ({ children }) => {
     deliverySpeed: [deliverySpeed, setDeliverySpeed], //Delivery Speed Opted
     gift: [gift, setGift], //Gift or not (from Backend)
     finalCost: [finalCost, setFinalCost], //Final Cost to be paid
-    // giftItem: [giftItem, setGiftItem], //Stores gift item from frontend checkout page
   };
 
   return (

@@ -7,7 +7,7 @@ import OrderComponent from "./OrderComponent";
 function OrderHistory() {
   const [token] = UseStateValue().token;
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState([false]);
+  const [loading, setLoading] = useState(false);
 
   localStorage.setItem("Payment", false);
 

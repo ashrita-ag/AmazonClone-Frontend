@@ -6,12 +6,12 @@ import axios from "axios";
 
 function NewProducts() {
   const [productList, setproductList] = useState([]);
-  const [loading, setLoading] = useState([false]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/product/cat/3")
+      .get("/product/cat/3")
       .then((e) => {
         var allNewProducts = [];
 
