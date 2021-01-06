@@ -85,7 +85,8 @@ export const StateProvider = ({ children }) => {
           setName(res.data.Fname);
           setEmail(res.data.email);
         } catch (err) {
-          alert(err.response.data.msg);
+          // alert(err.response.data.msg);
+          console.log(err);
         }
       };
       setLoading(true);
@@ -172,7 +173,6 @@ export const StateProvider = ({ children }) => {
     finalCost: [finalCost, setFinalCost], //Final Cost to be paid
     loading: [loading, setLoading],
   };
-
 
   return (
     <StateContext.Provider value={initialState}>
