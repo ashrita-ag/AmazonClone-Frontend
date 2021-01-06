@@ -1,7 +1,7 @@
 import "./NewAcc.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { UseStateValue } from "../StateProvider/StateContext";
 import axios from "axios";
 
 function NewAcc() {
@@ -9,15 +9,20 @@ function NewAcc() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = UseStateValue().loading;
+  const [, setIsLogged] = UseStateValue().isLogged;
 
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);
   };
   localStorage.setItem("Payment", false);
 
-
   const handleSubmitNew = (e) => {
     e.preventDefault();
+
+    setLoading(true);
+    console.log("Creating new Account...");
+    setErrorMsg("");
 
     axios
       .post(
@@ -27,21 +32,19 @@ function NewAcc() {
           email: email,
           password: pwd,
         },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       )
       .then((m) => {
         const msg = m.data.msg;
         if (msg) changeErrorMsgNew(msg);
         else {
           localStorage.setItem("firstLogin", true);
-
-          window.location.href = "/";
-          console.log("New Account");
+          setIsLogged(true);
+          console.log("New Account Success");
         }
       })
       .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
+    setLoading(false);
   };
 
   return (
@@ -68,13 +71,8 @@ function NewAcc() {
             required
           />
 
-          {/* <label htmlFor="phone">
-            <b>Mobile number</b>
-          </label>
-          <input type="text" name="phone" required /> */}
-
           <label htmlFor="email">
-            <b>Email (optional)</b>
+            <b>Email</b>
           </label>
           <input
             type="email"
@@ -97,11 +95,15 @@ function NewAcc() {
 
           <div className="errorMsgNew"> {errorMsg}</div>
 
-          <button type="submit" className="newAccButton amazonButton">
+          <button
+            type="submit"
+            className="newAccButton amazonButton"
+            disabled={loading}
+          >
             Create your Amazon Account
           </button>
 
-          <div className="newAccText">
+          <div className={loading ? "hidden" : "newAccText"}>
             Already have an account? <Link to="/login">Sign in &#9656;</Link>
           </div>
         </div>

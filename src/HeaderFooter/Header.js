@@ -68,9 +68,7 @@ export default function Header() {
       <Link to="/checkout" className="headerLink">
         <div className="headerCart">
           <ShoppingCartIcon className="headerCartIcon" />
-          <div className="headerCartItems">
-          {totalItems}
-          </div>
+          <div className="headerCartItems">{totalItems}</div>
         </div>
       </Link>
     </div>

@@ -61,11 +61,11 @@ function App() {
               {isLogged ? <Redirect to="/" /> : <Login />}
             </Route>
             <Route exact path="/create-new-account">
-              <NewAcc />
+              {isLogged ? <Redirect to="/" /> : <NewAcc />}
             </Route>
             <Route exact path="/logout">
               <Header />
-              <Logout />
+              {isLogged ? <Logout /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/payment/address">
               <Address />

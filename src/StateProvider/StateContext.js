@@ -6,21 +6,25 @@ export const StateContext = createContext();
 export const StateProvider = ({ children }) => {
   const [token, setToken] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [totalItems, setTotalItems] = useState(0);
+  const [cost, setCost] = useState(0);
+
   const [address, setAddress] = useState([]);
   const [deliveryAddress, setDeliveryAddress] = useState({});
-  const [cost, setCost] = useState(0);
   const [finalCost, setFinalCost] = useState(0);
   const [deliverySpeed, setDeliverySpeed] = useState(0);
   const [gift, setGift] = useState(false);
 
   //Getting Refresh Token
   useEffect(() => {
+    setLoading(true);
     const firstLogin = localStorage.getItem("firstLogin");
-    if (firstLogin) {
+    if (firstLogin || isLogged) {
       console.log("Getting Token");
       const refreshToken = async () => {
         const response = await axios.get("/user/token", {
@@ -33,18 +37,23 @@ export const StateProvider = ({ children }) => {
       };
       refreshToken();
     }
-  }, []);
+    setLoading(false);
+  }, [isLogged]);
 
   //Update Number of Items in Cart
   useEffect(() => {
+    setLoading(true);
     console.log("Setting Total Items in Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
     } else setTotalItems(0);
+    setLoading(false);
   }, [cart, isLogged]);
 
   //Set total cost of cart items
   useEffect(() => {
+    setLoading(true);
+
     console.log("Setting Total Cost of Cart");
     if (isLogged) {
       setCost(
@@ -54,10 +63,12 @@ export const StateProvider = ({ children }) => {
         )
       );
     } else setCost(0);
+    setLoading(false);
   }, [cart, isLogged]);
 
   //Getting User Info
   useEffect(() => {
+    setLoading(true);
     if (token) {
       console.log("Getting User Info");
       const currUser = async () => {
@@ -81,10 +92,13 @@ export const StateProvider = ({ children }) => {
       setName("");
       setEmail("");
     }
+    setLoading(true);
   }, [token]);
 
   //Set Addresses
   useEffect(() => {
+    setLoading(true);
+
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
       console.log("Setting the addresses");
@@ -97,10 +111,13 @@ export const StateProvider = ({ children }) => {
     } else {
       setAddress([]);
     }
+    setLoading(false);
   }, [token]);
 
   //Set Delivery Details
   useEffect(() => {
+    setLoading(true);
+
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
       console.log("Setting Delivery Details");
@@ -123,6 +140,7 @@ export const StateProvider = ({ children }) => {
       setDeliverySpeed(0);
       setFinalCost(0);
     }
+    setLoading(false);
   }, [token]);
 
   const initialState = {
@@ -138,7 +156,10 @@ export const StateProvider = ({ children }) => {
     deliverySpeed: [deliverySpeed, setDeliverySpeed], //Delivery Speed Opted
     gift: [gift, setGift], //Gift or not (from Backend)
     finalCost: [finalCost, setFinalCost], //Final Cost to be paid
+    loading: [loading, setLoading],
   };
+
+  console.log({ loading });
 
   return (
     <StateContext.Provider value={initialState}>

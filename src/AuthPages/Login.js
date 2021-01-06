@@ -1,5 +1,5 @@
 import "./Login.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { UseStateValue } from "../StateProvider/StateContext";
@@ -8,11 +8,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = UseStateValue().loading;
   const [, setIsLogged] = UseStateValue().isLogged;
 
   localStorage.setItem("Payment", false);
-  console.log({ loading });
 
   const changeErrorMsgNew = (error) => {
     setErrorMsg(error);
@@ -34,12 +33,12 @@ function Login() {
         if (msg) changeErrorMsgNew(msg);
         else {
           localStorage.setItem("firstLogin", true);
-          // setIsLogged(true);
+          setIsLogged(true);
           console.log("Logging Success");
         }
-        setLoading(false);
       })
       .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
+    setLoading(false);
   };
 
   return (
