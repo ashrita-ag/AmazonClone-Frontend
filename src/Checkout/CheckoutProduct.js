@@ -8,6 +8,7 @@ function CheckoutProduct(props) {
   const [cart, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
   const [gift, setGift] = UseStateValue().gift;
+  const [loading, setLoading] = UseStateValue().loading;
 
   const handleClickGiftBox = () => {
     if (document) {
@@ -41,6 +42,8 @@ function CheckoutProduct(props) {
   };
 
   const updateCart = (c) => {
+    setLoading(true);
+
     const index = cart.findIndex((cartItem) => cartItem._id === props.id);
     if (index > -1) {
       console.log(cart[index]);
@@ -59,13 +62,15 @@ function CheckoutProduct(props) {
         console.log(e.data);
         setCart(e.data);
       });
+    setLoading(false);
   };
 
   const deleteFromCart = () => {
+    setLoading(true);
+
     const index = cart.findIndex((cartItem) => cartItem._id === props.id);
     if (index > -1) {
       console.log(cart[index]);
-
       axios
         .patch(
           "/user/cart/delete",
@@ -82,6 +87,7 @@ function CheckoutProduct(props) {
         })
         .catch((e) => console.log(e));
     }
+    setLoading(false);
   };
 
   return (
@@ -109,17 +115,29 @@ function CheckoutProduct(props) {
             />
             This will be a gift.
           </div>
-          <button className="countButton" onClick={decrement}>
+          <button
+            className="countButton"
+            onClick={decrement}
+            disabled={loading}
+          >
             -
           </button>
           <span className="count">{props.count}</span>
-          <button className="countButton" onClick={increment}>
+          <button
+            className="countButton"
+            onClick={increment}
+            disabled={loading}
+          >
             +
           </button>
 
           {/* <DeleteIcon /> */}
 
-          <button className="deletebtn amazonButton" onClick={deleteFromCart}>
+          <button
+            className="deletebtn amazonButton"
+            onClick={deleteFromCart}
+            disabled={loading}
+          >
             Delete
           </button>
         </div>

@@ -1,9 +1,10 @@
 import React from "react";
 import "./Checkout.css";
+import CheckoutLeft from "./CheckoutLeft";
+import CheckoutRight from "./CheckoutRight.js";
 
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import EmptyCart from "./EmptyCart";
-import CheckoutComponents from "./CheckoutComponents.js";
 
 function Checkout() {
   localStorage.setItem("Payment", false);
@@ -20,7 +21,14 @@ function Checkout() {
         Get Instant refund on cancellations | Zero payment failures
       </div>
 
-      {cart.length > 0 ? <CheckoutComponents /> : <EmptyCart />}
+      {cart.length > 0 ? (
+        <div className="checkoutContainer">
+          <CheckoutLeft />
+          <CheckoutRight />
+        </div>
+      ) : (
+        <EmptyCart />
+      )}
     </div>
   );
 }

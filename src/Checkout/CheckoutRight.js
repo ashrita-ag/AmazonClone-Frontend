@@ -3,7 +3,6 @@ import React from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import { Link } from "react-router-dom";
 
-
 function CheckoutRight() {
   const [totalItems] = UseStateValue().totalItems;
   const [gift, setGift] = UseStateValue().gift;
