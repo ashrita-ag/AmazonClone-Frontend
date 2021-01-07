@@ -73,9 +73,9 @@ export default function CheckoutForm() {
     setSucceeded(true);
 
     axios
-      .post(
+      .get(
         "/delivery/update_payment",
-        { status: true },
+       
         { headers: { Authorization: token } }
       )
       .then((e) => {
