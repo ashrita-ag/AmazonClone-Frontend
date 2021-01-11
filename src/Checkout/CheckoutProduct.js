@@ -28,7 +28,6 @@ function CheckoutProduct(props) {
     setLoading(true);
     updateCart(count - 1);
     setCount(count - 1);
-    console.log(count);
     setLoading(false);
   };
 
@@ -42,7 +41,6 @@ function CheckoutProduct(props) {
     setLoading(true);
     updateCart(0);
     setCount(0);
-    console.log(count);
     setLoading(false);
   };
 
@@ -50,16 +48,24 @@ function CheckoutProduct(props) {
     axios
       .patch(
         "/user/cart/update",
-        { count: c, product: props.id },
+        { count: c, product: props._id },
         {
           headers: {
             Authorization: token,
           },
         }
       )
-      .then((e) => {
-        console.log(e.data);
-        setCart(e.data);
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) alert("Some error Occured. Please Try Again.");
+        else {
+          console.log(m.data);
+          setCart(m.data);
+        }
+      })
+      .catch((e) => {
+        alert("Some error Occured. Please Try Again.");
+        console.log(e);
       });
   };
 

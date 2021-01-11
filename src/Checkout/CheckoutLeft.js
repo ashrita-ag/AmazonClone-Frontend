@@ -10,7 +10,7 @@ function CheckoutLeft() {
     cart.map((cartItem) => (
       <CheckoutProduct
         key={cartItem._id}
-        id={cartItem._id}
+        _id={cartItem._id}
         img={cartItem.imageUrl}
         heading={cartItem.title}
         price={cartItem.price}

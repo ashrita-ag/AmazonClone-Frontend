@@ -2,11 +2,9 @@ import React from "react";
 import "./HeaderTogglerMenu.css";
 import { Link } from "react-router-dom";
 
-
 function headerTogglerOpenNav() {
   document.getElementById("headerTogglerSideNav").style.width = "250px";
   document.getElementById("overlay").style.display = "block";
-
 }
 function headerTogglerCloseNav() {
   document.getElementById("headerTogglerSideNav").style.width = "0";
@@ -20,7 +18,7 @@ function HeaderTogglerMenu() {
         <Link
           to="# "
           className="headerTogglerclosebtn"
-          onClick={() => headerTogglerCloseNav()}
+          onClick={headerTogglerCloseNav}
         >
           &times;
         </Link>
@@ -40,7 +38,7 @@ function HeaderTogglerMenu() {
         </Link>
       </div>
       <div>
-        <span className="headerTogglerMenuBtn" onClick={() => headerTogglerOpenNav()}>
+        <span className="headerTogglerMenuBtn" onClick={headerTogglerOpenNav}>
           &#9776;
         </span>
       </div>
