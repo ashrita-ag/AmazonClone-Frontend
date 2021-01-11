@@ -25,14 +25,23 @@ export const StateProvider = ({ children }) => {
     console.log("Getting Token");
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin || isLogged) {
-      const refreshToken = async () => {
-        const response = await axios.get("/user/token", {
-          withCredentials: true,
-        });
-        setToken(response.data.accesstoken);
-        setTimeout(() => {
-          refreshToken();
-        }, 24 * 60 * 60 * 1000); //1 day
+      const refreshToken = () => {
+        axios
+          .get("/user/token", {
+            withCredentials: true,
+          })
+          .then((m) => {
+            const errorMsg = m.data.errorMsg;
+            if (errorMsg) {
+              alert(errorMsg);
+              window.location.href = "/login";
+            } else {
+              setToken(m.data.accesstoken);
+              setTimeout(() => {
+                refreshToken();
+              }, 24 * 60 * 60 * 1000); //1 day
+            }
+          });
       };
       setLoading(true);
       refreshToken();
@@ -43,19 +52,15 @@ export const StateProvider = ({ children }) => {
 
   //Update Number of Items in Cart
   useEffect(() => {
-    // setLoading(true);
     console.log("Setting Total Items in Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
     } else setTotalItems(0);
     console.log("Set Total Items in Cart");
-    // setLoading(false);
   }, [cart, isLogged]);
 
   //Set total cost of cart items
   useEffect(() => {
-    // setLoading(true);
-
     console.log("Setting Total Cost of Cart");
     if (isLogged) {
       setCost(
@@ -66,7 +71,6 @@ export const StateProvider = ({ children }) => {
       );
     } else setCost(0);
     console.log("Set Total Cost of Cart");
-    // setLoading(false);
   }, [cart, isLogged]);
 
   //Getting User Info
@@ -74,23 +78,28 @@ export const StateProvider = ({ children }) => {
     console.log("Getting User Info");
 
     if (token) {
-      const currUser = async () => {
-        try {
-          const res = await axios.get("/user/info", {
+      const currUser = () => {
+        axios
+          .get("/user/info", {
             headers: { Authorization: token },
             withCredentials: true,
+          })
+          .then((res) => {
+            const errorMsg = res.data.errorMsg;
+            if (errorMsg) alert(errorMsg);
+            else {
+              setIsLogged(true);
+              setCart(res.data.cart);
+              setName(res.data.Fname);
+              setEmail(res.data.email);
+            }
+          })
+          .catch((e) => {
+            alert("Some error oocured.");
+            console.log(e);
           });
-          setIsLogged(true);
-          setCart(res.data.cart);
-          setName(res.data.Fname);
-          setEmail(res.data.email);
-        } catch (err) {
-          // alert(err.response.data.msg);
-          console.log(err);
-        }
       };
       setLoading(true);
-
       currUser();
       setLoading(false);
     } else {
@@ -113,9 +122,14 @@ export const StateProvider = ({ children }) => {
       axios
         .get("/address/show", { headers: { Authorization: token } })
         .then((e) => {
-          setAddress(e.data);
+          const errorMsg = e.data.errorMsg;
+          if (errorMsg) alert(errorMsg);
+          else setAddress(e.data);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          alert("Some error oocured.");
+          console.log(e);
+        });
       setLoading(false);
     } else {
       setAddress([]);
@@ -134,7 +148,9 @@ export const StateProvider = ({ children }) => {
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((e) => {
-          if (e.data) {
+          const errorMsg = e.data.errorMsg;
+          if (errorMsg) alert(errorMsg);
+          else if (e.data) {
             setDeliveryAddress(e.data.address);
             // setCost(e.data.cost);
             // setGift(e.data.gift);
@@ -142,7 +158,10 @@ export const StateProvider = ({ children }) => {
             setFinalCost(e.data.finalcost);
           }
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          alert("Some error oocured.");
+          console.log(e);
+        });
       setLoading(false);
     } else {
       setDeliveryAddress({});
@@ -153,11 +172,6 @@ export const StateProvider = ({ children }) => {
     }
     console.log("Set Delivery Details");
   }, [token]);
-
-  useEffect(() => {
-    // console.log("HAAN ME LOADING HOOOOOOOOOON");
-    console.log({ loading });
-  }, [loading]);
 
   const initialState = {
     token: [token, setToken], //Access Token
