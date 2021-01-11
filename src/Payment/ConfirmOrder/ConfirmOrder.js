@@ -19,7 +19,7 @@ function ConfirmOrder() {
     console.log(e.target.value);
     setLoading(true);
     axios
-      .post(
+      .patch(
         "/delivery/update_speed",
         { speed: e.target.value },
         { headers: { Authorization: token } }

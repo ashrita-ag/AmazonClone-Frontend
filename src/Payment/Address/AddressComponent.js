@@ -43,7 +43,7 @@ function AddressComponent(props) {
   const deleteAddress = () => {
     setLoading(true);
     axios
-      .post(
+      .patch(
         "/address/delete",
         { id: props.id },
         {
