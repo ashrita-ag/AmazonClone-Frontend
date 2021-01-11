@@ -34,7 +34,7 @@ function EditOrder() {
       {/* <hr></hr> */}
       <CheckoutLeft />
       
-      ā{/* {displayItems()} */}
+      {/* {displayItems()} */}
 
       <div className="separator"></div>
       <div className="confirmOrderGreyBtn">
