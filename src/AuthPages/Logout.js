@@ -3,7 +3,7 @@ import axios from "axios";
 import { UseStateValue } from "../StateProvider/StateContext";
 
 function Logout() {
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
   const [, setIsLogged] = UseStateValue().isLogged;
   const [, setLoading] = UseStateValue().loading;
 

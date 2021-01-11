@@ -10,7 +10,7 @@ function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
 
   useEffect(() => {
     setLoading(true);

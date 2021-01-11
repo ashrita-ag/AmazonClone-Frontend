@@ -1,52 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import SumbitAddressForm from "./SumbitAddressForm";
 import AddressComponent from "./AddressComponent";
 import Loading from "../../Components/Loading";
 import "./Address.css";
-import axios from "axios";
 const _ = require("lodash");
 
 function Address() {
   localStorage.setItem("Payment", true);
-  const [loading, setLoading] = UseStateValue().loading;
+  const [loading] = UseStateValue().loading;
   const [address] = UseStateValue().address;
-  const [token] = UseStateValue().token;
-  const [gift, setGift] = UseStateValue().gift;
-  const [, setCost] = UseStateValue().cost;
-  const [, setFinalCost] = UseStateValue().finalCost;
-  const [, setCart] = UseStateValue().cart;
-
-  useEffect(() => {
-    if (token) {
-      setLoading(true);
-      console.log("Creating Delivery Model");
-      axios
-        .post(
-          "/delivery/create",
-          { gift: gift },
-          { headers: { Authorization: token } }
-        )
-        .then((e) => {
-          const errorMsg = e.data.errorMsg;
-          if (errorMsg) alert(errorMsg);
-          else {
-            console.log(e.data);
-            setFinalCost(e.data.finalcost);
-            setCost(e.data.cost);
-            setCart(e.data.cart);
-            setGift(e.data.gift);
-          }
-        })
-        .catch((e) => {
-          alert("Some error oocured. Try again.");
-          console.log(e);
-        });
-
-      setLoading(false);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  const [cart] = UseStateValue().cart;
 
   const userAddress = () =>
     address.length === 0 ? (
@@ -72,6 +36,7 @@ function Address() {
       ))
     );
 
+  console.log({ cart });
   return (
     <div className="addressMain">
       <img

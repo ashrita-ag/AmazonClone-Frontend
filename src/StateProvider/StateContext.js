@@ -114,9 +114,7 @@ export const StateProvider = ({ children }) => {
   //Set Addresses
   useEffect(() => {
     console.log("Setting the addresses");
-
-    const paymentStarted = localStorage.getItem("Payment");
-    if (paymentStarted && token) {
+    if (token) {
       setLoading(true);
 
       axios
@@ -142,15 +140,20 @@ export const StateProvider = ({ children }) => {
     console.log("Setting Delivery Details");
 
     const paymentStarted = localStorage.getItem("Payment");
-    if (paymentStarted === true && token) {
+    if (paymentStarted && token) {
       setLoading(true);
 
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((e) => {
           const errorMsg = e.data.errorMsg;
-          if (errorMsg) alert(errorMsg);
-          else if (e.data) {
+          if (errorMsg) {
+            setDeliveryAddress({});
+            setCost(0);
+            setGift(false);
+            setDeliverySpeed(0);
+            setFinalCost(0);
+          } else if (e.data) {
             setDeliveryAddress(e.data.address);
             setCost(e.data.cost);
             setGift(e.data.gift);

@@ -7,7 +7,7 @@ import { UseStateValue } from "../StateProvider/StateContext.js";
 import EmptyCart from "./EmptyCart";
 
 function Checkout() {
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
 
   const [cart] = UseStateValue().cart;
   return (

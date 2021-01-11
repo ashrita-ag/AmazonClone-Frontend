@@ -27,11 +27,18 @@ function ConfirmOrder() {
         { headers: { Authorization: token } }
       )
       .then((e) => {
-        console.log(e.data);
-        setDeliverySpeed(e.data.speed);
-        setFinalCost(e.data.finalCost);
+        const errorMsg = e.data.errorMsg;
+        if (errorMsg) alert("Some error occured. Try again!");
+        else {
+          console.log(e.data);
+          setDeliverySpeed(e.data.speed);
+          setFinalCost(e.data.finalCost);
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        alert("Some error occured. Try again!");
+      });
     setLoading(false);
   };
 

@@ -31,13 +31,21 @@ export default function Method() {
           }
         )
         .then((res) => {
-          console.log("UserCart Deleted");
-          console.log(res.data);
-          setCart(res.data.cart);
+          const errorMsg = res.data.errorMsg;
+          if (errorMsg) alert("Some error occured. Try again!");
+          else {
+            console.log("UserCart Deleted");
+            console.log(res.data);
+            setCart(res.data.cart);
+          }
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+          alert("Some error occured. Try again!");
+        });
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (

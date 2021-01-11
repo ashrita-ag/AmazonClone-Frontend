@@ -12,7 +12,7 @@ function NewAcc() {
   const [loading, setLoading] = UseStateValue().loading;
   const [, setIsLogged] = UseStateValue().isLogged;
 
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
 
   const handleSubmitNew = (e) => {
     e.preventDefault();

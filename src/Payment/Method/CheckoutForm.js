@@ -15,7 +15,7 @@ export default function CheckoutForm() {
   const [intent, setIntent] = useState(false);
 
   useEffect(() => {
-    if (succeeded) setTimeout(() => setRedirect(true), 5000);
+    if (succeeded) setTimeout(() => setRedirect(true), 3000);
   }, [succeeded]);
 
   const stripe = useStripe();
@@ -36,11 +36,19 @@ export default function CheckoutForm() {
           }
         )
         .then((res) => {
-          console.log("PaymentIntent Created");
-          setIntent(true);
-          setClientSecret(res.data.clientSecret);
+          const errorMsg = res.data.errorMsg;
+          if (errorMsg)
+            setError("Some error occured. Refresh the Page and Try again!");
+          else {
+            console.log("PaymentIntent Created");
+            setIntent(true);
+            setClientSecret(res.data.clientSecret);
+          }
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+          setError("Some error occured. Refresh the Page and Try again!");
+        });
     }
   }, [token]);
 
@@ -73,15 +81,17 @@ export default function CheckoutForm() {
     setSucceeded(true);
 
     axios
-      .get(
-        "/delivery/update_payment",
-       
-        { headers: { Authorization: token } }
-      )
+      .get("/delivery/update_payment", { headers: { Authorization: token } })
       .then((e) => {
-        console.log(e.data);
+        const errorMsg = e.data.errorMsg;
+        if (errorMsg)
+          setError("Some error occured. Refresh the Page and Try again!");
+        else console.log(e.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        setError("Some error occured. Refresh the Page and Try again!");
+      });
   };
 
   const handleSubmit = async (ev) => {

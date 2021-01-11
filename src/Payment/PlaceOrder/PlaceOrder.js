@@ -12,9 +12,9 @@ function PlaceOrder() {
   const [cost] = UseStateValue().cost;
   const [gift] = UseStateValue().gift;
   const [finalCost] = UseStateValue().finalCost;
-  const [loading, setLoading] = UseStateValue().loading;
+  const [loading, ] = UseStateValue().loading;
 
-  const finalTotal = gift ? cost + deliverySpeed + 25 : cost + deliverySpeed;
+  const finalTotal = deliverySpeed ? cost + deliverySpeed : cost + 40;
 
   const placeOrderAddress = () => {
     if (deliveryAddress) {
@@ -110,10 +110,7 @@ function PlaceOrder() {
         <div className="placeOrderRight">
           {!loading && (
             <Link to="/payment/method">
-              <button
-                className="amazonButton placeOrderSubmit"
-                // onClick={handleClick}
-              >
+              <button className="amazonButton placeOrderSubmit">
                 Place your order
               </button>
             </Link>
@@ -138,9 +135,8 @@ function PlaceOrder() {
               </div>
               {gift && <div className="orderPrice"> &#8377; 25</div>}
               <div className="orderPrice">
-                {" "}
                 &#8377;
-                {isNaN(finalTotal) ? 0 : finalTotal}
+                {isNaN(finalTotal) ? 0 : gift ? finalTotal + 25 : finalTotal}
               </div>
               {!deliverySpeed && cost >= 500 && (
                 <div className="orderPrice"> &#8377; -40</div>

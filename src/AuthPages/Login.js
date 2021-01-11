@@ -12,7 +12,7 @@ function Login() {
   const [l, setL] = useState(false);
   const [, setIsLogged] = UseStateValue().isLogged;
 
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();

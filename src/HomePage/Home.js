@@ -4,7 +4,7 @@ import "./Home.css";
 import HomeProductGrid from "./HomeProductGrid.js";
 
 function Home() {
-  localStorage.setItem("Payment", false);
+   localStorage.removeItem("Payment")
 
   return (
     <div className="home">

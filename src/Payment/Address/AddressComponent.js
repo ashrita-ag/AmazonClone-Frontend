@@ -8,13 +8,17 @@ function AddressComponent(props) {
   const [token] = UseStateValue().token;
   const [, setDeliveryAddress] = UseStateValue().deliveryAddress;
   const [, setLoading] = UseStateValue().loading;
+  const [gift, setGift] = UseStateValue().gift;
+  const [, setCost] = UseStateValue().cost;
+  const [, setFinalCost] = UseStateValue().finalCost;
+  const [, setCart] = UseStateValue().cart;
 
   const handleSetAddress = () => {
     setLoading(true);
     axios
       .post(
         "/delivery/update_address",
-        { address: props },
+        { address: props, gift: gift },
         { headers: { Authorization: token } }
       )
       .then((e) => {
@@ -22,6 +26,10 @@ function AddressComponent(props) {
         if (errorMsg) alert(errorMsg);
         else {
           setDeliveryAddress(e.data.address);
+          setFinalCost(e.data.finalcost);
+          setCost(e.data.cost);
+          setCart(e.data.cart);
+          setGift(e.data.gift);
           console.log(e.data);
         }
       })
@@ -74,9 +82,9 @@ function AddressComponent(props) {
       </div>
 
       <Link to="/payment/confirm_order">
-        <button className="amazonButton" onClick={handleSetAddress}>
-          Deliver to this Address
-        </button>
+      <button className="amazonButton" onClick={handleSetAddress}>
+        Deliver to this Address
+      </button>
       </Link>
       <button className="amazonWhiteButton" onClick={deleteAddress}>
         Delete
