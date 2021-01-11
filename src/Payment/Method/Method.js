@@ -19,7 +19,7 @@ export default function Method() {
   useEffect(() => {
     if (token) {
       setLoading(true);
-      console.log("Deleting User Cart");
+      // console.log("Deleting User Cart");
       axios
         .patch(
           "/user/cart/delete_cart",

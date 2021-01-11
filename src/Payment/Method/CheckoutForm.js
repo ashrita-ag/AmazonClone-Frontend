@@ -23,7 +23,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (token) {
-      console.log("Creating Payment Intent");
+      // console.log("Creating Payment Intent");
       axios
         .post(
           "/checkout/create-payment-intent",
@@ -40,7 +40,7 @@ export default function CheckoutForm() {
           if (errorMsg)
             setError("Some error occured. Refresh the Page and Try again!");
           else {
-            console.log("PaymentIntent Created");
+            // console.log("PaymentIntent Created");
             setIntent(true);
             setClientSecret(res.data.clientSecret);
           }

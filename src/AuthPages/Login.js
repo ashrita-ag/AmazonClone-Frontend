@@ -31,7 +31,7 @@ function Login() {
         else {
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
-          console.log("Logging Success");
+          // console.log("Logging Success");
         }
       })
       .catch((e) => {
