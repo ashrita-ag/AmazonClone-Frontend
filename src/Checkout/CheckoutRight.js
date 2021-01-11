@@ -13,15 +13,18 @@ function CheckoutRight() {
     const checkedBoxes = document.querySelectorAll(
       'input[name="checkoutProductGiftCheckbox"]:checked'
     );
-    setGift(targetBox.checked);
-    if (targetBox.checked === false) {
-      checkedBoxes.forEach((box) => {
-        box.checked = false;
-      });
+
+    if (targetBox) {
+      if (!targetBox.checked) {
+        checkedBoxes.forEach((box) => {
+          box.checked = false;
+        });
+        setGift(false);
+      } else setGift(true);
     }
   };
-  
-  console.log({gift});
+
+  console.log({ gift, cost, totalItems });
 
   return (
     <div className="checkoutRight">

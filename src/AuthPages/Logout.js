@@ -14,14 +14,17 @@ function Logout() {
       axios
         .get("/user/logout", { withCredentials: true })
         .then((m) => {
-          const err = m.data.err;
-          if (err) alert("Some error occured. Try again!");
+          const errorMsg = m.data.errorMsg;
+          if (errorMsg) alert("Some error occured. Try again!");
           else {
             localStorage.removeItem("firstLogin");
             setIsLogged(false);
           }
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+          alert("Some error occured. Try again!");
+        });
     };
     logout();
     setLoading(false);

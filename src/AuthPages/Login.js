@@ -7,20 +7,17 @@ import { UseStateValue } from "../StateProvider/StateContext";
 function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = UseStateValue().loading;
-  const [l,setL]=useState(false);
+  const [l, setL] = useState(false);
   const [, setIsLogged] = UseStateValue().isLogged;
 
   localStorage.setItem("Payment", false);
 
-  const changeErrorMsgNew = (error) => {
-    setErrorMsg(error);
-  };
-
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     console.log("Logging In");
+    setError(""); //in case it is second attempt.
     setLoading(true);
     setL(true);
 
@@ -31,15 +28,18 @@ function Login() {
         { withCredentials: true }
       )
       .then((m) => {
-        const msg = m.data.msg;
-        if (msg) changeErrorMsgNew(msg);
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) setError(errorMsg);
         else {
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
           console.log("Logging Success");
         }
       })
-      .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
+      .catch((e) => {
+        setError("Some error oocured. Try again.");
+        console.log(e);
+      });
     setLoading(false);
     setL(false);
   };
@@ -76,11 +76,11 @@ function Login() {
             onChange={(e) => setPwd(e.target.value)}
             required
           />
-          <div className="errorMsgNew"> {errorMsg}</div>
+          <div className="errorMsgNew"> {error}</div>
           <button
             type="submit"
             className="loginButton amazonButton"
-            disabled={loading ||l}
+            disabled={loading || l}
           >
             Login
           </button>
@@ -95,7 +95,7 @@ function Login() {
         <span> New to Amazon?</span>{" "}
       </div>
       <Link to="/create-new-account">
-        <button className="amazonWhiteButton" disabled={loading ||l}>
+        <button className="amazonWhiteButton" disabled={loading || l}>
           Create your Amazon Account
         </button>
       </Link>

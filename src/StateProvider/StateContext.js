@@ -128,7 +128,7 @@ export const StateProvider = ({ children }) => {
     console.log("Setting Delivery Details");
 
     const paymentStarted = localStorage.getItem("Payment");
-    if (paymentStarted && token) {
+    if (paymentStarted === true && token) {
       setLoading(true);
 
       axios
@@ -136,8 +136,8 @@ export const StateProvider = ({ children }) => {
         .then((e) => {
           if (e.data) {
             setDeliveryAddress(e.data.address);
-            setCost(e.data.cost);
-            setGift(e.data.gift);
+            // setCost(e.data.cost);
+            // setGift(e.data.gift);
             setDeliverySpeed(e.data.speed);
             setFinalCost(e.data.finalcost);
           }
@@ -146,8 +146,8 @@ export const StateProvider = ({ children }) => {
       setLoading(false);
     } else {
       setDeliveryAddress({});
-      setCost(0);
-      setGift(false);
+      // setCost(0);
+      // setGift(false);
       setDeliverySpeed(0);
       setFinalCost(0);
     }
@@ -156,8 +156,7 @@ export const StateProvider = ({ children }) => {
 
   useEffect(() => {
     // console.log("HAAN ME LOADING HOOOOOOOOOON");
-    console.log({loading});
-
+    console.log({ loading });
   }, [loading]);
 
   const initialState = {

@@ -5,24 +5,20 @@ import { UseStateValue } from "../StateProvider/StateContext";
 import axios from "axios";
 
 function NewAcc() {
-  const [errorMsg, setErrorMsg] = useState("");
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = UseStateValue().loading;
   const [, setIsLogged] = UseStateValue().isLogged;
 
-  const changeErrorMsgNew = (error) => {
-    setErrorMsg(error);
-  };
   localStorage.setItem("Payment", false);
 
   const handleSubmitNew = (e) => {
     e.preventDefault();
-
     setLoading(true);
     console.log("Creating new Account...");
-    setErrorMsg("");
+    setError("");
 
     axios
       .post(
@@ -35,15 +31,18 @@ function NewAcc() {
         { withCredentials: true }
       )
       .then((m) => {
-        const msg = m.data.msg;
-        if (msg) changeErrorMsgNew(msg);
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) setError(errorMsg);
         else {
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
           console.log("New Account Success");
         }
       })
-      .catch(() => changeErrorMsgNew("Some error oocured. Try again."));
+      .catch((e) => {
+        setError("Some error oocured. Try again.");
+        console.log(e);
+      });
     setLoading(false);
   };
 
@@ -93,7 +92,7 @@ function NewAcc() {
             required
           />
 
-          <div className="errorMsgNew"> {errorMsg}</div>
+          <div className="errorMsgNew"> {error}</div>
 
           <button
             type="submit"
