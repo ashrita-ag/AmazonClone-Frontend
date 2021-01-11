@@ -6,7 +6,7 @@ import { UseStateValue } from "../../StateProvider/StateContext";
 function SumbitAddressForm() {
   const [token] = UseStateValue().token;
   const [address, setAddress] = UseStateValue().address;
-  const [loading, setLoading] = UseStateValue().loading;
+  const [, setLoading] = UseStateValue().loading;
 
   const [formAddress, setFormAddress] = useState({
     name: "",
@@ -36,11 +36,18 @@ function SumbitAddressForm() {
         },
       })
       .then((e) => {
-        console.log(e.data);
-        setAddress([...address, e.data]);
+        const errorMsg = e.data.errorMsg;
+        if (errorMsg) alert(errorMsg);
+        else {
+          console.log(e.data);
+          setAddress([...address, e.data]);
+        }
         window.scrollTo(0, 0);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        alert("Some error oocured. Try again.");
+        console.log(e);
+      });
     setLoading(false);
   };
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import SumbitAddressForm from "./SumbitAddressForm";
 import AddressComponent from "./AddressComponent";
@@ -28,16 +28,24 @@ function Address() {
           { headers: { Authorization: token } }
         )
         .then((e) => {
-          console.log(e.data);
-          setFinalCost(e.data.finalcost);
-          setCost(e.data.cost);
-          setCart(e.data.cart);
-          setGift(e.data.gift);
+          const errorMsg = e.data.errorMsg;
+          if (errorMsg) alert(errorMsg);
+          else {
+            console.log(e.data);
+            setFinalCost(e.data.finalcost);
+            setCost(e.data.cost);
+            setCart(e.data.cart);
+            setGift(e.data.gift);
+          }
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          alert("Some error oocured. Try again.");
+          console.log(e);
+        });
 
       setLoading(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const userAddress = () =>
@@ -77,10 +85,7 @@ function Address() {
         corresponding "Deliver to this address" button. Or you can enter a new
         delivery address.
       </div>
-      <div className="address">
-        {/* {userAddress()} */}
-        {loading ? <Loading /> : userAddress()}
-      </div>
+      <div className="address">{loading ? <Loading /> : userAddress()}</div>
       {address.length > 0 && <hr />}
 
       <SumbitAddressForm />

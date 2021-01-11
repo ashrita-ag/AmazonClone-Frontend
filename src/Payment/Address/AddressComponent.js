@@ -7,7 +7,7 @@ function AddressComponent(props) {
   const [address, setAddress] = UseStateValue().address;
   const [token] = UseStateValue().token;
   const [, setDeliveryAddress] = UseStateValue().deliveryAddress;
-  const [loading, setLoading] = UseStateValue().loading;
+  const [, setLoading] = UseStateValue().loading;
 
   const handleSetAddress = () => {
     setLoading(true);
@@ -18,10 +18,17 @@ function AddressComponent(props) {
         { headers: { Authorization: token } }
       )
       .then((e) => {
-        setDeliveryAddress(e.data.address);
-        console.log(e.data);
+        const errorMsg = e.data.errorMsg;
+        if (errorMsg) alert(errorMsg);
+        else {
+          setDeliveryAddress(e.data.address);
+          console.log(e.data);
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        alert("Some error oocured. Try again.");
+        console.log(e);
+      });
     setLoading(false);
   };
 
@@ -38,10 +45,17 @@ function AddressComponent(props) {
         }
       )
       .then((e) => {
-        console.log(e.data);
-        setAddress(address.filter((a) => a._id !== props.id));
+        const errorMsg = e.data.errorMsg;
+        if (errorMsg) alert(errorMsg);
+        else {
+          console.log(e.data);
+          setAddress(address.filter((a) => a._id !== props.id));
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        alert("Some error oocured. Try again.");
+        console.log(e);
+      });
     setLoading(false);
   };
 

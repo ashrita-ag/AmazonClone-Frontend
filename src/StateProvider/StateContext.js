@@ -152,8 +152,8 @@ export const StateProvider = ({ children }) => {
           if (errorMsg) alert(errorMsg);
           else if (e.data) {
             setDeliveryAddress(e.data.address);
-            // setCost(e.data.cost);
-            // setGift(e.data.gift);
+            setCost(e.data.cost);
+            setGift(e.data.gift);
             setDeliverySpeed(e.data.speed);
             setFinalCost(e.data.finalcost);
           }
@@ -165,8 +165,8 @@ export const StateProvider = ({ children }) => {
       setLoading(false);
     } else {
       setDeliveryAddress({});
-      // setCost(0);
-      // setGift(false);
+      setCost(0);
+      setGift(false);
       setDeliverySpeed(0);
       setFinalCost(0);
     }
