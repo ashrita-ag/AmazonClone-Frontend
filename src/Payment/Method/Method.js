@@ -34,7 +34,7 @@ export default function Method() {
           const errorMsg = res.data.errorMsg;
           if (errorMsg) alert("Some error occured. Try again!");
           else {
-            console.log("UserCart Deleted");
+            // console.log("UserCart Deleted");
             console.log(res.data);
             setCart(res.data.cart);
           }
@@ -71,6 +71,11 @@ export default function Method() {
           <CheckoutForm />
         </Elements>
       )}{" "}
+      <div className="seperator20"></div>
+      <div className="checkoutLine2">
+        This is a test payment. Use Card Number = 424242424242424242 for
+        Confirming Order.
+      </div>
     </div>
   );
 }

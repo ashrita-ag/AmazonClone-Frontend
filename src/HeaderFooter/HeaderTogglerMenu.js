@@ -24,8 +24,8 @@ function HeaderTogglerMenu() {
         </Link>
 
         <Link to="/">Home</Link>
-        <Link to="/">Accounts & Lists</Link>
-        <Link to="/">Cart</Link>
+        <Link to="/orders">Your Orders</Link>
+        <Link to="/checkout">Cart</Link>
         <Link to="# ">Shop with Us</Link>
         <Link to="/like-new-products" className="headerTogglerNavOption">
           Like-New Products

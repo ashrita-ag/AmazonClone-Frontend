@@ -9,17 +9,15 @@ function Login() {
   const [pwd, setPwd] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = UseStateValue().loading;
-  const [l, setL] = useState(false);
   const [, setIsLogged] = UseStateValue().isLogged;
 
-   localStorage.removeItem("Payment")
+  localStorage.removeItem("Payment");
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    console.log("Logging In");
+    // console.log("Logging In");
     setError(""); //in case it is second attempt.
     setLoading(true);
-    setL(true);
 
     axios
       .post(
@@ -41,7 +39,6 @@ function Login() {
         console.log(e);
       });
     setLoading(false);
-    setL(false);
   };
 
   return (
@@ -80,7 +77,7 @@ function Login() {
           <button
             type="submit"
             className="loginButton amazonButton"
-            disabled={loading || l}
+            disabled={loading}
           >
             Login
           </button>
@@ -95,7 +92,7 @@ function Login() {
         <span> New to Amazon?</span>{" "}
       </div>
       <Link to="/create-new-account">
-        <button className="amazonWhiteButton" disabled={loading || l}>
+        <button className="amazonWhiteButton" disabled={loading}>
           Create your Amazon Account
         </button>
       </Link>

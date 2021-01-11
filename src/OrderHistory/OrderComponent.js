@@ -15,11 +15,10 @@ function OrderComponent(props) {
     );
   };
 
-  console.log(props.date);
+  // console.log(props.date);
   const newDate = new Date(props.date);
-  console.log({ newDate });
+  // console.log({ newDate });
   const dateString = newDate.toDateString(newDate);
-  // const test = newDate.toLocaleDateString(newDate);
 
   return (
     <div>

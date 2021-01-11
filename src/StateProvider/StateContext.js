@@ -22,7 +22,7 @@ export const StateProvider = ({ children }) => {
 
   //Getting Refresh Token
   useEffect(() => {
-    console.log("Getting Token");
+    // console.log("Getting Token");
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin || isLogged) {
       const refreshToken = () => {
@@ -43,25 +43,23 @@ export const StateProvider = ({ children }) => {
             }
           });
       };
-      setLoading(true);
       refreshToken();
-      setLoading(false);
     }
-    console.log("Got Token");
+    // console.log("Got Token");
   }, [isLogged]);
 
   //Update Number of Items in Cart
   useEffect(() => {
-    console.log("Setting Total Items in Cart");
+    // console.log("Setting Total Items in Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
     } else setTotalItems(0);
-    console.log("Set Total Items in Cart");
+    // console.log("Set Total Items in Cart");
   }, [cart, isLogged]);
 
   //Set total cost of cart items
   useEffect(() => {
-    console.log("Setting Total Cost of Cart");
+    // console.log("Setting Total Cost of Cart");
     if (isLogged) {
       setCost(
         cart?.reduce(
@@ -70,12 +68,12 @@ export const StateProvider = ({ children }) => {
         )
       );
     } else setCost(0);
-    console.log("Set Total Cost of Cart");
+    // console.log("Set Total Cost of Cart");
   }, [cart, isLogged]);
 
   //Getting User Info
   useEffect(() => {
-    console.log("Getting User Info");
+    // console.log("Getting User Info");
 
     if (token) {
       const currUser = () => {
@@ -86,8 +84,10 @@ export const StateProvider = ({ children }) => {
           })
           .then((res) => {
             const errorMsg = res.data.errorMsg;
-            if (errorMsg) alert(errorMsg);
-            else {
+            if (errorMsg) {
+              console.log(errorMsg);
+              alert("Some error oocured.");
+            } else {
               setIsLogged(true);
               setCart(res.data.cart);
               setName(res.data.Fname);
@@ -99,50 +99,45 @@ export const StateProvider = ({ children }) => {
             console.log(e);
           });
       };
-      setLoading(true);
+
       currUser();
-      setLoading(false);
     } else {
       setIsLogged(false);
       setCart([]);
       setName("");
       setEmail("");
     }
-    console.log("Got User Info");
+    // console.log("Got User Info");
   }, [token]);
 
   //Set Addresses
   useEffect(() => {
-    console.log("Setting the addresses");
+    // console.log("Setting the addresses");
     if (token) {
-      setLoading(true);
-
       axios
         .get("/address/show", { headers: { Authorization: token } })
         .then((e) => {
           const errorMsg = e.data.errorMsg;
-          if (errorMsg) alert(errorMsg);
-          else setAddress(e.data);
+          if (errorMsg) {
+            console.log(errorMsg);
+            alert("Some error oocured.");
+          } else setAddress(e.data);
         })
         .catch((e) => {
           alert("Some error oocured.");
           console.log(e);
         });
-      setLoading(false);
     } else {
       setAddress([]);
     }
-    console.log("Set the addresses");
+    // console.log("Set the addresses");
   }, [token]);
 
   //Set Delivery Details
   useEffect(() => {
-    console.log("Setting Delivery Details");
-
+    // console.log("Setting Delivery Details");
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
-      setLoading(true);
-
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((e) => {
@@ -153,7 +148,7 @@ export const StateProvider = ({ children }) => {
             setGift(false);
             setDeliverySpeed(0);
             setFinalCost(0);
-          } else if (e.data) {
+          } else {
             setDeliveryAddress(e.data.address);
             setCost(e.data.cost);
             setGift(e.data.gift);
@@ -165,7 +160,6 @@ export const StateProvider = ({ children }) => {
           alert("Some error oocured.");
           console.log(e);
         });
-      setLoading(false);
     } else {
       setDeliveryAddress({});
       setCost(0);
@@ -173,7 +167,7 @@ export const StateProvider = ({ children }) => {
       setDeliverySpeed(0);
       setFinalCost(0);
     }
-    console.log("Set Delivery Details");
+    // console.log("Set Delivery Details");
   }, [token]);
 
   const initialState = {

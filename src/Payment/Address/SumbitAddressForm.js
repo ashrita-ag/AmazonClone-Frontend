@@ -6,7 +6,7 @@ import { UseStateValue } from "../../StateProvider/StateContext";
 function SumbitAddressForm() {
   const [token] = UseStateValue().token;
   const [address, setAddress] = UseStateValue().address;
-  const [, setLoading] = UseStateValue().loading;
+  const [loading, setLoading] = UseStateValue().loading;
 
   const [formAddress, setFormAddress] = useState({
     name: "",
@@ -28,7 +28,7 @@ function SumbitAddressForm() {
   const submitAddress = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formAddress);
+    // console.log(formAddress);
     axios
       .post("/address/save", formAddress, {
         headers: {
@@ -39,7 +39,7 @@ function SumbitAddressForm() {
         const errorMsg = e.data.errorMsg;
         if (errorMsg) alert(errorMsg);
         else {
-          console.log(e.data);
+          // console.log(e.data);
           setAddress([...address, e.data]);
         }
         window.scrollTo(0, 0);
@@ -136,10 +136,13 @@ function SumbitAddressForm() {
           placeholder=""
           value={formAddress.state}
           id="state"
-        />{" "}
-        <button className="amazonButton addressSubmit" type="submit">
-          {" "}
-          Submit{" "}
+        />
+        <button
+          className="amazonButton addressSubmit"
+          type="submit"
+          disabled={loading}
+        >
+          Submit
         </button>
       </form>
     </div>

@@ -12,12 +12,12 @@ function NewAcc() {
   const [loading, setLoading] = UseStateValue().loading;
   const [, setIsLogged] = UseStateValue().isLogged;
 
-   localStorage.removeItem("Payment")
+  localStorage.removeItem("Payment");
 
   const handleSubmitNew = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log("Creating new Account...");
+    // console.log("Creating new Account...");
     setError("");
 
     axios
@@ -36,11 +36,11 @@ function NewAcc() {
         else {
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
-          console.log("New Account Success");
+          // console.log("New Account Success");
         }
       })
       .catch((e) => {
-        setError("Some error oocured. Try again.");
+        setError("Some error occured. Try again.");
         console.log(e);
       });
     setLoading(false);

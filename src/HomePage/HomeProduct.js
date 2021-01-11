@@ -2,7 +2,6 @@ import React from "react";
 import "./HomeProduct.css";
 import { Link } from "react-router-dom";
 
-
 function HomeProduct(props) {
   return (
     <div className="homeProduct">

@@ -6,12 +6,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function ConfirmOrder() {
-  const paymentItem = localStorage.getItem("Payment");
-  console.log({ paymentItem });
-
+  // const paymentItem = localStorage.getItem("Payment");
+  // console.log({ paymentItem });
   const [deliveryAddress] = UseStateValue().deliveryAddress;
   const [loading, setLoading] = UseStateValue().loading;
-
   const [cart] = UseStateValue().cart;
   const [, setDeliverySpeed] = UseStateValue().deliverySpeed;
   const [token] = UseStateValue().token;
@@ -91,7 +89,7 @@ function ConfirmOrder() {
 
       <div className="confirmOrderHeadingContainer">
         <div className="confirmOrderHeading">Choose your delivery options</div>
-        {!loading && (
+        {/* {!loading && ( */}
           <div className="confirmOrderGreyBtn">
             <Link to="/payment/place_order">
               <button
@@ -102,7 +100,7 @@ function ConfirmOrder() {
               </button>
             </Link>
           </div>
-        )}
+        {/* )} */}
       </div>
 
       <hr />
@@ -165,7 +163,7 @@ function ConfirmOrder() {
         </div>
       </div>
       <hr />
-      {!loading && (
+      {/* {!loading && ( */}
         <div className="confirmOrderGreyBtn">
           <Link to="/payment/place_order">
             <button
@@ -176,7 +174,7 @@ function ConfirmOrder() {
             </button>
           </Link>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

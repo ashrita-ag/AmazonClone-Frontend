@@ -35,6 +35,7 @@ function AddProducts() {
         console.log(e);
         alert("Some error occured. Try again!");
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -5,11 +5,9 @@ import { UseStateValue } from "../StateProvider/StateContext";
 function Logout() {
    localStorage.removeItem("Payment")
   const [, setIsLogged] = UseStateValue().isLogged;
-  const [, setLoading] = UseStateValue().loading;
 
   useEffect(() => {
-    console.log("Logging Out");
-    setLoading(true);
+    // console.log("Logging Out");
     const logout = () => {
       axios
         .get("/user/logout", { withCredentials: true })
@@ -27,7 +25,6 @@ function Logout() {
         });
     };
     logout();
-    setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

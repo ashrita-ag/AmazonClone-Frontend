@@ -7,6 +7,7 @@ function CheckoutRight() {
   const [totalItems] = UseStateValue().totalItems;
   const [gift, setGift] = UseStateValue().gift;
   const [cost] = UseStateValue().cost;
+  const [loading] = UseStateValue().loading;
 
   const unCheckAll = () => {
     const targetBox = document.querySelector('input[name="giftCheckbox"]');
@@ -51,7 +52,10 @@ function CheckoutRight() {
           This order contains a gift.
         </div>
         <Link to="/payment/address">
-          <button className="amazonButton checkoutRightBoxButton">
+          <button
+            className="amazonButton checkoutRightBoxButton"
+            disabled={loading}
+          >
             Proceed to Buy
           </button>
         </Link>

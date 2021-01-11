@@ -25,26 +25,22 @@ function CheckoutProduct(props) {
   }, [gift]);
 
   const decrement = () => {
-    setLoading(true);
     updateCart(count - 1);
     setCount(count - 1);
-    setLoading(false);
   };
 
   const increment = () => {
-    setLoading(true);
     updateCart(count + 1);
     setCount(count + 1);
-    setLoading(false);
   };
   const deleteFromCart = () => {
-    setLoading(true);
     updateCart(0);
     setCount(0);
-    setLoading(false);
   };
 
   const updateCart = (c) => {
+    setLoading(true);
+
     axios
       .patch(
         "/user/cart/update",
@@ -67,6 +63,7 @@ function CheckoutProduct(props) {
         alert("Some error Occured. Please Try Again.");
         console.log(e);
       });
+    setLoading(false);
   };
 
   return (

@@ -7,7 +7,7 @@ function AddressComponent(props) {
   const [address, setAddress] = UseStateValue().address;
   const [token] = UseStateValue().token;
   const [, setDeliveryAddress] = UseStateValue().deliveryAddress;
-  const [, setLoading] = UseStateValue().loading;
+  const [loading, setLoading] = UseStateValue().loading;
   const [gift, setGift] = UseStateValue().gift;
   const [, setCost] = UseStateValue().cost;
   const [, setFinalCost] = UseStateValue().finalCost;
@@ -82,11 +82,19 @@ function AddressComponent(props) {
       </div>
 
       <Link to="/payment/confirm_order">
-      <button className="amazonButton" onClick={handleSetAddress}>
-        Deliver to this Address
-      </button>
+        <button
+          className="amazonButton"
+          onClick={handleSetAddress}
+          disabled={loading}
+        >
+          Deliver to this Address
+        </button>
       </Link>
-      <button className="amazonWhiteButton" onClick={deleteAddress}>
+      <button
+        className="amazonWhiteButton"
+        onClick={deleteAddress}
+        disabled={loading}
+      >
         Delete
       </button>
     </div>
