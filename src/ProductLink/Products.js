@@ -27,53 +27,60 @@ function Products(props) {
               },
             }
           )
-          .then((e) => {
-            console.log(e.data);
-            setCart(e.data);
+          .then((m) => {
+            const errorMsg = m.data.errorMsg;
+            if (errorMsg) alert("Some error occured. Try again!");
+            else {
+              console.log(m.data);
+              setCart(m.data);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+            alert("Some error occured. Try again!");
           });
       } else {
         axios
           .get("/product/detail/" + props.id)
-          .then((detail) => {
-            detail.data["count"] = 1;
-            axios
-              .patch(
-                "/user/cart/add",
-                { cart: detail.data },
-                {
-                  headers: {
-                    Authorization: token,
-                  },
-                }
-              )
-              .then((e) => {
-                console.log(e.data);
-                setCart(e.data);
-              })
-              .catch((e) => console.log(e));
+          .then((m) => {
+            const errorMsg = m.data.errorMsg;
+            if (errorMsg) alert("Some error occured. Try again!");
+            else {
+              m.data["count"] = 1;
+              axios
+                .patch(
+                  "/user/cart/add",
+                  { cart: m.data },
+                  {
+                    headers: {
+                      Authorization: token,
+                    },
+                  }
+                )
+                .then((n) => {
+                  const errorMsg = n.data.errorMsg;
+                  if (errorMsg) alert("Some error occured. Try again!");
+                  else {
+                    console.log(n.data);
+                    setCart(n.data);
+                  }
+                })
+                .catch((e) => {
+                  console.log(e);
+                  alert("Some error occured. Try again!");
+                });
+            }
           })
-          .catch((e) => console.log(e));
+          .catch((e) => {
+            console.log(e);
+            alert("Some error occured. Try again!");
+          });
       }
     } else {
-      alert("Please Login Or Create an account");
+      window.location.href = "/login";
     }
     setLoading(false);
   };
-
-  // const test = () => {
-  //   axios
-  //     .patch(
-  //       "/user/cart/update_cart",
-  //       { product: props.id },
-  //       {
-  //         headers: {
-  //           Authorization: token,
-  //         },
-  //       }
-  //     )
-  //     .then((e) => console.log(e.data))
-  //     .catch((e) => console.log(e));
-  // };
 
   const rating = [];
   for (let i = 0; i < props.rating; i++) rating.push(<StarRateIcon key={i} />);
@@ -103,7 +110,6 @@ function Products(props) {
             Add to Cart
           </button>
         </div>
-        {/* <button onClick={test}>Test</button> */}
       </div>
     </div>
   );

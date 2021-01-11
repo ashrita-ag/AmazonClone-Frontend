@@ -12,24 +12,29 @@ function NewProducts() {
     setLoading(true);
     axios
       .get("/product/cat/3")
-      .then((e) => {
-        var allNewProducts = [];
-
-        console.log("allNewProducts");
-        allNewProducts = e.data.map((i) => (
-          <Products
-            key={i._id}
-            productImg={i.imageUrl}
-            heading={i.title}
-            price={i.price}
-            rating={i.rating}
-            id={i._id}
-          />
-        ));
-        setproductList(allNewProducts);
-        setLoading(false);
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) alert("Some error occured. Try again!");
+        else {
+          var allNewProducts = [];
+          allNewProducts = m.data.map((i) => (
+            <Products
+              key={i._id}
+              productImg={i.imageUrl}
+              heading={i.title}
+              price={i.price}
+              rating={i.rating}
+              id={i._id}
+            />
+          ));
+          setproductList(allNewProducts);
+          setLoading(false);
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        alert("Some error occured. Try again!");
+      });
   }, []);
 
   return (

@@ -2,37 +2,39 @@ import React, { useState, useEffect } from "react";
 import BannerImage from "../BannerImage.js";
 import Products from "../Products.js";
 import Loading from "../../Components/Loading";
-// import { UseStateValue } from "../../StateProvider/StateContext";
 import axios from "axios";
 
 function AddProducts() {
   const [productList, setproductList] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [loading, setLoading] = UseStateValue().loading;
 
   useEffect(() => {
     setLoading(true);
-    // console.log({loading});
     axios
       .get("/product/cat/1")
-      .then((e) => {
-        var AdditionalProducts = [];
-
-        console.log("AdditionalProducts");
-        AdditionalProducts = e.data.map((i) => (
-          <Products
-            key={i._id}
-            productImg={i.imageUrl}
-            heading={i.title}
-            price={i.price}
-            rating={i.rating}
-            id={i._id}
-          />
-        ));
-        setproductList(AdditionalProducts);
-        setLoading(false);
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) alert("Some error occured. Try again!");
+        else {
+          var AdditionalProducts = [];
+          AdditionalProducts = m.data.map((i) => (
+            <Products
+              key={i._id}
+              productImg={i.imageUrl}
+              heading={i.title}
+              price={i.price}
+              rating={i.rating}
+              id={i._id}
+            />
+          ));
+          setproductList(AdditionalProducts);
+          setLoading(false);
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        alert("Some error occured. Try again!");
+      });
   }, []);
 
   return (

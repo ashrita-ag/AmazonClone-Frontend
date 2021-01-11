@@ -12,24 +12,29 @@ function HomeOffice() {
     setLoading(true);
     axios
       .get("/product/cat/2")
-      .then((e) => {
-        var HomeOfficeProducts = [];
-
-        console.log("HomeOfficeProducts");
-        HomeOfficeProducts = e.data.map((i) => (
-          <Products
-            key={i._id}
-            productImg={i.imageUrl}
-            heading={i.title}
-            price={i.price}
-            rating={i.rating}
-            id={i._id}
-          />
-        ));
-        setproductList(HomeOfficeProducts);
-        setLoading(false);
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
+        if (errorMsg) alert("Some error occured. Try again!");
+        else {
+          var HomeOfficeProducts = [];
+          HomeOfficeProducts = m.data.map((i) => (
+            <Products
+              key={i._id}
+              productImg={i.imageUrl}
+              heading={i.title}
+              price={i.price}
+              rating={i.rating}
+              id={i._id}
+            />
+          ));
+          setproductList(HomeOfficeProducts);
+          setLoading(false);
+        }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        alert("Some error occured. Try again!");
+      });
   }, []);
 
   return (
@@ -38,7 +43,7 @@ function HomeOffice() {
         image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Laptops/Self_Reliant_Store/WFH/IN_PC_WFH_Central_Store_1500.jpg"
         backcolor="#e1dad4 "
       />
-      {loading ? <Loading/> : productList}
+      {loading ? <Loading /> : productList}
     </div>
   );
 }
