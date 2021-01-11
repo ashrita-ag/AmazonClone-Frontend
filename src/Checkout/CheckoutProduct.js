@@ -2,11 +2,10 @@ import "./CheckoutProduct.css";
 import React, { useState, useEffect } from "react";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import axios from "axios";
-// import Loading from "../Components/Loading";
 
 function CheckoutProduct(props) {
   const [count, setCount] = useState(props.count);
-  const [cart, setCart] = UseStateValue().cart;
+  const [, setCart] = UseStateValue().cart;
   const [token] = UseStateValue().token;
   const [gift, setGift] = UseStateValue().gift;
   const [loading, setLoading] = UseStateValue().loading;
@@ -16,16 +15,11 @@ function CheckoutProduct(props) {
       const checkedBoxes = document.querySelectorAll(
         'input[name="checkoutProductGiftCheckbox"]:checked'
       );
-      if (checkedBoxes.length > 0) {
-        setGift(true);
-      } else {
-        setGift(false);
-      }
+      checkedBoxes.length > 0 ? setGift(true) : setGift(false);
     }
   };
 
   useEffect(() => {
-    // localStorage.setItem("Gift",gift);
     const target = document.querySelector('input[name="giftCheckbox"]');
     if (target) target.checked = gift;
   }, [gift]);
@@ -44,53 +38,29 @@ function CheckoutProduct(props) {
     setCount(count + 1);
     setLoading(false);
   };
-
-  const updateCart = (c) => {
-    setLoading(true);
-    const index = cart.findIndex((cartItem) => cartItem._id === props.id);
-    if (index > -1 && c > 0) {
-      console.log(cart[index]);
-      axios
-        .patch(
-          "/user/cart/update",
-          { count: c, product: props.id },
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((e) => {
-          console.log(e.data);
-          setCart(e.data);
-        });
-    }
-    // setLoading(false);
-  };
-
   const deleteFromCart = () => {
     setLoading(true);
-
-    const index = cart.findIndex((cartItem) => cartItem._id === props.id);
-    if (index > -1) {
-      console.log(cart[index]);
-      axios
-        .patch(
-          "/user/cart/delete",
-          { cart: cart[index] },
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((e) => {
-          console.log(e.data);
-          setCart(e.data);
-        })
-        .catch((e) => console.log(e));
-    }
+    updateCart(0);
+    setCount(0);
+    console.log(count);
     setLoading(false);
+  };
+
+  const updateCart = (c) => {
+    axios
+      .patch(
+        "/user/cart/update",
+        { count: c, product: props.id },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((e) => {
+        console.log(e.data);
+        setCart(e.data);
+      });
   };
 
   return (
@@ -120,7 +90,7 @@ function CheckoutProduct(props) {
           </div>
           <button
             className="countButton"
-            onClick={props.count > 1 ? decrement : deleteFromCart}
+            onClick={decrement}
             disabled={loading}
           >
             -
