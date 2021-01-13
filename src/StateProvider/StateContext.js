@@ -33,13 +33,15 @@ export const StateProvider = ({ children }) => {
           .then((m) => {
             const errorMsg = m.data.errorMsg;
             if (errorMsg) {
-              console.log(errorMsg)
+              console.log(errorMsg); //The Error message is when user is not logged in.
             } else {
               setToken(m.data.accesstoken);
               setTimeout(() => {
                 refreshToken();
               }, 24 * 60 * 60 * 1000); //1 day
-          }}).catch(e=>console.log(e));
+            }
+          })
+          .catch((e) => console.log(e));
       };
       refreshToken();
     }
@@ -84,7 +86,7 @@ export const StateProvider = ({ children }) => {
             const errorMsg = m.data.errorMsg;
             if (errorMsg) {
               console.log(errorMsg);
-              alert("Some error oocured.");
+              alert("Uh Oh! Some error Occured.");
             } else {
               setIsLogged(true);
               setCart(m.data.cart);
@@ -93,7 +95,7 @@ export const StateProvider = ({ children }) => {
             }
           })
           .catch((e) => {
-            alert("Some error oocured.");
+            alert("Uh Oh! Some error Occured.");
             console.log(e);
           });
       };
@@ -118,11 +120,12 @@ export const StateProvider = ({ children }) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) {
             console.log(errorMsg);
-            alert("Some error oocured.");
+            alert("Uh Oh! Some error Occured.");
           } else setAddress(m.data);
         })
         .catch((e) => {
-          alert("Some error oocured.");
+          alert("Uh Oh! Some error Occured.");
+
           console.log(e);
         });
     } else {
@@ -155,7 +158,7 @@ export const StateProvider = ({ children }) => {
           }
         })
         .catch((e) => {
-          alert("Some error oocured.");
+          alert("Uh Oh! Some error Occured.");
           console.log(e);
         });
     } else {

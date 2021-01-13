@@ -9,16 +9,18 @@ function OrderHistory() {
   const [token] = UseStateValue().token;
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   localStorage.removeItem("Payment");
 
   useEffect(() => {
     setLoading(true);
+    setError("");
     axios
       .get("/order/history", { headers: { Authorization: token } })
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) console.log(errorMsg);
+        if (errorMsg) setError(errorMsg);
         else {
           console.log(m.data);
           var data = [];
@@ -39,15 +41,19 @@ function OrderHistory() {
           setOrders(data);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
     setLoading(false);
   }, [token]);
 
   return (
     <div className="orderHistory">
       <h4 className="orderHistoryHeading">Your Orders</h4>
+      <div className="errorMsgNew"> {error}</div>
       {loading ? <Loading /> : orders}
-      {orders.length===0 && <div>No orders to display</div>}
+      {orders.length === 0 && <div>No orders to display</div>}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ConfirmOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import OrderDetails from "./OrderDetails";
@@ -15,10 +15,12 @@ function ConfirmOrder() {
   const [, setDeliverySpeed] = UseStateValue().deliverySpeed;
   const [token] = UseStateValue().token;
   const [, setFinalCost] = UseStateValue().finalCost;
+  const [error, setError] = useState("");
 
   const handleSpeedUpdate = (event) => {
     console.log(event.target.value);
     setLoading(true);
+    setError("");
     axios
       .patch(
         "/delivery/update_speed",
@@ -27,7 +29,7 @@ function ConfirmOrder() {
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert("Some error occured. Try again!");
+        if (errorMsg) setError("Some error occured. Try again!");
         else {
           console.log(m.data);
           setDeliverySpeed(m.data.speed);
@@ -36,7 +38,7 @@ function ConfirmOrder() {
       })
       .catch((e) => {
         console.log(e);
-        alert("Some error occured. Try again!");
+        setError("Some error occured. Try again!");
       });
     setLoading(false);
   };
@@ -81,7 +83,7 @@ function ConfirmOrder() {
   };
   console.log(deliveryAddress);
 
-  return !_.isEmpty(deliveryAddress) ? (
+  return _.isEmpty(deliveryAddress) ? (
     <div>You cannot access this page</div>
   ) : (
     <div className="confirmOrderMain">
@@ -167,6 +169,8 @@ function ConfirmOrder() {
                 <span className="deliveryDay">Tomorrow by 9pm</span>- One-Day
                 Delivery at Rs. 100.
               </label>
+
+              <div className="errorMsgNew"> {error}</div>
             </div>
           </div>
           <hr />

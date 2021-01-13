@@ -35,7 +35,7 @@ function Login() {
         }
       })
       .catch((e) => {
-        setError("Some error oocured. Try again.");
+        setError("Uh Oh! Some error Occured.");
         console.log(e);
       });
     setLoading(false);

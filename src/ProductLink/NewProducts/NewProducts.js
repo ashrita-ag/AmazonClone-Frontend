@@ -7,14 +7,17 @@ import axios from "axios";
 function NewProducts() {
   const [productList, setproductList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setLoading(true);
+    setError("");
+
     axios
       .get("/product/cat/3")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert("Some error occured. Try again!");
+        if (errorMsg) setError("Some error occured. Try again!");
         else {
           var allNewProducts = [];
           allNewProducts = m.data.map((i) => (
@@ -33,7 +36,7 @@ function NewProducts() {
       })
       .catch((e) => {
         console.log(e);
-        alert("Some error occured. Try again!");
+        setError("Some error occured. Try again!");
       });
   }, []);
 
@@ -43,6 +46,8 @@ function NewProducts() {
         image="https://images-eu.ssl-images-amazon.com/images/G/31/IN-hq/2020/img/Certified_Refurbished/XCM_Manual_ORIGIN_1263493_1343243_IN_in_adapt_asin_refresh_1170648_in_en_3342970_1500x300_en_IN.jpg"
         backcolor="#15ba92"
       />
+      <div className="errorMsgProduct"> {error}</div>
+
       {loading ? <Loading /> : productList}
     </div>
   );

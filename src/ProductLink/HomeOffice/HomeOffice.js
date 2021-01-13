@@ -7,14 +7,17 @@ import axios from "axios";
 function HomeOffice() {
   const [productList, setproductList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setLoading(true);
+    setError("");
+
     axios
       .get("/product/cat/2")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert("Some error occured. Try again!");
+        if (errorMsg) setError("Some error occured. Try again!");
         else {
           var HomeOfficeProducts = [];
           HomeOfficeProducts = m.data.map((i) => (
@@ -33,7 +36,7 @@ function HomeOffice() {
       })
       .catch((e) => {
         console.log(e);
-        alert("Some error occured. Try again!");
+        setError("Some error occured. Try again!");
       });
   }, []);
 
@@ -43,6 +46,8 @@ function HomeOffice() {
         image="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Laptops/Self_Reliant_Store/WFH/IN_PC_WFH_Central_Store_1500.jpg"
         backcolor="#e1dad4 "
       />
+      <div className="errorMsgProduct"> {error}</div>
+
       {loading ? <Loading /> : productList}
     </div>
   );

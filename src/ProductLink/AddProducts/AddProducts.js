@@ -7,14 +7,16 @@ import axios from "axios";
 function AddProducts() {
   const [productList, setproductList] = useState([]);
   const [loadingComponent, setLoadingComponent] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setLoadingComponent(true);
+    setError("");
     axios
       .get("/product/cat/1")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert("Some error occured. Try again!");
+        if (errorMsg) setError("Some error occured. Refresh to try again!");
         else {
           var AdditionalProducts = [];
           AdditionalProducts = m.data.map((i) => (
@@ -28,14 +30,15 @@ function AddProducts() {
             />
           ));
           setproductList(AdditionalProducts);
-          setLoadingComponent(false);
         }
       })
       .catch((e) => {
         console.log(e);
-        alert("Some error occured. Try again!");
+        setError("Some error occured. Refresh to try again!");
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    setLoadingComponent(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -44,6 +47,7 @@ function AddProducts() {
         image="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2020/HOLIDAY/BrowsePages2/desktop/L0/FGG-hero-3.jpg"
         backcolor="#1c3f21"
       />
+      <div className="errorMsgProduct"> {error}</div>
 
       {loadingComponent ? <Loading /> : productList}
     </div>

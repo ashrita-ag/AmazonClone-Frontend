@@ -57,3 +57,10 @@
   font-size: 13px;
   padding: 5px;
 }
+
+/* For component */
+.errorMsgProduct {
+  color: red !important;
+  font-size: 13px !important;
+  text-align: center !important;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UseStateValue } from "../../StateProvider/StateContext.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -12,9 +12,11 @@ function AddressComponent(props) {
   const [, setCost] = UseStateValue().cost;
   const [, setFinalCost] = UseStateValue().finalCost;
   const [, setCart] = UseStateValue().cart;
+  const [error, setError] = useState("");
 
   const handleSetAddress = () => {
     setLoading(true);
+    setError("");
     axios
       .post(
         "/delivery/update_address",
@@ -23,7 +25,7 @@ function AddressComponent(props) {
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert(errorMsg);
+        if (errorMsg) setError(errorMsg);
         else {
           setDeliveryAddress(m.data.address);
           setFinalCost(m.data.finalcost);
@@ -34,7 +36,7 @@ function AddressComponent(props) {
         }
       })
       .catch((e) => {
-        alert("Some error oocured. Try again.");
+        setError("Uh Oh! Some error Occured.");
         console.log(e);
       });
     setLoading(false);
@@ -42,6 +44,7 @@ function AddressComponent(props) {
 
   const deleteAddress = () => {
     setLoading(true);
+    setError("");
     axios
       .patch(
         "/address/delete",
@@ -54,14 +57,14 @@ function AddressComponent(props) {
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert(errorMsg);
+        if (errorMsg) setError(errorMsg);
         else {
           console.log(m.data);
           setAddress(address.filter((a) => a._id !== props.id));
         }
       })
       .catch((e) => {
-        alert("Some error oocured. Try again.");
+        setError("Uh Oh! Some error Occured.");
         console.log(e);
       });
     setLoading(false);
@@ -80,6 +83,7 @@ function AddressComponent(props) {
         </div>
         <div>{props.country}</div>
       </div>
+      <div className="errorMsgNew"> {error}</div>
 
       <Link to="/payment/confirm_order">
         <button

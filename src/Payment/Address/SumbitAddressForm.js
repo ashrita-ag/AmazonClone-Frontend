@@ -7,6 +7,7 @@ function SumbitAddressForm() {
   const [token] = UseStateValue().token;
   const [address, setAddress] = UseStateValue().address;
   const [loading, setLoading] = UseStateValue().loading;
+  const [error, setError] = useState("");
 
   const [formAddress, setFormAddress] = useState({
     name: "",
@@ -28,6 +29,7 @@ function SumbitAddressForm() {
   const submitAddress = (event) => {
     event.preventDefault();
     setLoading(true);
+    setError("");
     // console.log(formAddress);
     axios
       .post("/address/save", formAddress, {
@@ -37,15 +39,15 @@ function SumbitAddressForm() {
       })
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert(errorMsg);
+        if (errorMsg) setError(errorMsg);
         else {
           // console.log(m.data);
           setAddress([...address, m.data]);
+          window.scrollTo(0, 0);
         }
-        window.scrollTo(0, 0);
       })
       .catch((e) => {
-        alert("Some error oocured. Try again.");
+        setError("Uh Oh! Some error Occured.");
         console.log(e);
       });
     setLoading(false);
@@ -137,6 +139,7 @@ function SumbitAddressForm() {
           value={formAddress.state}
           id="state"
         />
+        <div className="errorMsgNew"> {error}</div>
         <button
           className="amazonButton addressSubmit"
           type="submit"

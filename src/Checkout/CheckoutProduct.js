@@ -9,6 +9,8 @@ function CheckoutProduct(props) {
   const [token] = UseStateValue().token;
   const [gift, setGift] = UseStateValue().gift;
   const [loading, setLoading] = UseStateValue().loading;
+  const [error, setError] = useState("");
+
 
   const handleClickGiftBox = () => {
     if (document) {
@@ -40,7 +42,7 @@ function CheckoutProduct(props) {
 
   const updateCart = (c) => {
     setLoading(true);
-
+    setError("");
     axios
       .patch(
         "/user/cart/update",
@@ -53,14 +55,14 @@ function CheckoutProduct(props) {
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
-        if (errorMsg) alert("Some error Occured. Please Try Again.");
+        if (errorMsg) setError("Some error Occured. Please Try Again.");
         else {
           console.log(m.data);
           setCart(m.data);
         }
       })
       .catch((e) => {
-        alert("Some error Occured. Please Try Again.");
+        setError("Some error Occured. Please Try Again.");
         console.log(e);
       });
     setLoading(false);
@@ -107,8 +109,6 @@ function CheckoutProduct(props) {
             +
           </button>
 
-          {/* <DeleteIcon /> */}
-
           <button
             className="deletebtn amazonButton"
             onClick={deleteFromCart}
@@ -116,7 +116,10 @@ function CheckoutProduct(props) {
           >
             Delete
           </button>
+          <div className="errorMsgNew"> {error}</div>
+        
         </div>
+
       </div>
       <div className="checkoutProductRight">{props.price}.00</div>
     </div>
