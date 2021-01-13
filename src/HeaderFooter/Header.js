@@ -16,6 +16,7 @@ export default function Header() {
     <div className="header">
       <HeaderTogglerMenu />
 
+      {/* fix these Link */}
       <Link to="/" className="headerLink">
         <img
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
