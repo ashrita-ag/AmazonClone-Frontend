@@ -14,6 +14,10 @@ export default function Method() {
   const [deliveryAddress] = UseStateValue().deliveryAddress;
   const [cart] = UseStateValue().cart;
 
+  const handleCardNumberClick = (e) =>{
+    console.log(e); //to do (Automically fill card number)
+  }
+
   return _.isEmpty(deliveryAddress) ? (
     <div>You cannot access this page</div>
   ) : (
@@ -41,8 +45,10 @@ export default function Method() {
 
           <div className="seperator20"></div>
           <div className="checkoutLine2">
-            This is a test payment. Use Card Number 4242 4242 4242 4242 for
-            Confirming Order.
+            This is a test payment. Use Card Number{" "}
+            <span className="cardNumber" onClick={handleCardNumberClick}>4242 4242 4242 4242</span> for
+            Successful Payment. This test card number work with any CVC, postal
+            code and future expiry date.
           </div>
         </div>
       ) : (

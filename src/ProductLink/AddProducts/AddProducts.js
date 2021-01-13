@@ -50,6 +50,7 @@ function AddProducts() {
       <div className="errorMsgProduct"> {error}</div>
 
       {loadingComponent ? <Loading /> : productList}
+      {productList.length === 0 && <div>No products for this category</div>}
     </div>
   );
 }
