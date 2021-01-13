@@ -73,7 +73,7 @@ function PlaceOrder() {
       />
     ));
 
-  return !_.isEmpty(deliveryAddress) ? (
+  return _.isEmpty(deliveryAddress) ? (
     <div>You cannot access this page</div>
   ) : (
     <div className="placeOrder">

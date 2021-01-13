@@ -27,24 +27,25 @@
 
 .result-message {
   line-height: 22px;
-  font-size: 16px;
+  font-size: 14px;
 }
-.result-message a {
-  color: rgb(89, 111, 214);
-  font-weight: 600;
-  text-decoration: none;
-}
+
 .hidden {
   display: none;
 }
+/* .card-error {
+  font-size: 13px;
+  margin: 5px 0;
+} */
 
-#card-error {
+.card-error {
   color: rgb(105, 115, 134);
   font-size: 16px;
   line-height: 20px;
   margin-top: 12px;
   text-align: center;
 }
+
 #card-element {
   border-radius: 4px 4px 0 0;
   padding: 12px;

@@ -8,11 +8,12 @@ export default function CheckoutForm() {
   const [token] = UseStateValue().token;
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState("");
+  const [processing, setProcessing] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [intent, setIntent] = useState(false);
+  const [, setCart] = UseStateValue().cart;
 
   useEffect(() => {
     if (succeeded) setTimeout(() => setRedirect(true), 3000);
@@ -77,16 +78,22 @@ export default function CheckoutForm() {
 
   const paymentSuccess = () => {
     setError(null);
-    setProcessing(false);
     setSucceeded(true);
 
     axios
-      .get("/delivery/update_payment", { headers: { Authorization: token } })
+      .post(
+        "/delivery/update_payment",
+        {},
+        { headers: { Authorization: token } }
+      )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg)
           setError("Some error occured. Refresh the Page and Try again!");
-        else console.log(m.data);
+        else {
+          console.log(m.data);
+          setCart([]);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -102,9 +109,12 @@ export default function CheckoutForm() {
         card: elements.getElement(CardElement),
       },
     });
+    setProcessing(false);
+
     if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
+      setError(
+        `Payment failed ${payload.error.message} Refresh the page to try again.`
+      );
     } else {
       paymentSuccess();
     }
@@ -135,14 +145,18 @@ export default function CheckoutForm() {
           </div>
         )}
 
-        <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, redirecting to Homepage...
-          {redirect && window.location.replace("/")}
-          {/* <Link to={`https://dashboard.stripe.com/test/payments`}>
-            Stripe dashboard.
-          </Link>
-          Refresh the page to pay again. */}
+        <p className={processing ? "card-error" : "card-error hidden"}>
+          Payment in progress. Do not refresh the page.
         </p>
+
+        <p className={succeeded ? "result-message" : "result-message hidden"}>
+          Payment succeeded, redirecting to Your Orders...
+          {redirect && window.location.replace("/orders")}
+        </p>
+
+        {/* <Link to={`https://dashboard.stripe.com/test/payments`}>
+            Stripe dashboard.
+          </Link>  */}
       </form>
     </div>
   );
