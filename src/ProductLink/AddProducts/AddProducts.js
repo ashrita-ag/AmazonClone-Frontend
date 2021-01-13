@@ -6,10 +6,10 @@ import axios from "axios";
 
 function AddProducts() {
   const [productList, setproductList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingComponent, setLoadingComponent] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadingComponent(true);
     axios
       .get("/product/cat/1")
       .then((m) => {
@@ -28,7 +28,7 @@ function AddProducts() {
             />
           ));
           setproductList(AdditionalProducts);
-          setLoading(false);
+          setLoadingComponent(false);
         }
       })
       .catch((e) => {
@@ -45,7 +45,7 @@ function AddProducts() {
         backcolor="#1c3f21"
       />
 
-      {loading ? <Loading /> : productList}
+      {loadingComponent ? <Loading /> : productList}
     </div>
   );
 }

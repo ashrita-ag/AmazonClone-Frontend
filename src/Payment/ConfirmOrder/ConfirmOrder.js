@@ -4,6 +4,7 @@ import { UseStateValue } from "../../StateProvider/StateContext";
 import OrderDetails from "./OrderDetails";
 import axios from "axios";
 import { Link } from "react-router-dom";
+const _ = require("lodash");
 
 function ConfirmOrder() {
   // const paymentItem = localStorage.getItem("Payment");
@@ -78,18 +79,98 @@ function ConfirmOrder() {
     const d = new Date();
     return (d.getDay() + 2) % 7;
   };
+  console.log(deliveryAddress);
 
-  return (
+  return !_.isEmpty(deliveryAddress) ? (
+    <div>You cannot access this page</div>
+  ) : (
     <div className="confirmOrderMain">
       <img
         src="https://images-eu.ssl-images-amazon.com/images/G/31/x-locale/checkout/checkout-spc-address-banner._CB485947649_.gif"
         alt="amazonLogo"
         className="confirmOrderImg"
       />
+      {cart.length > 0 ? (
+        <div>
+          <div className="confirmOrderHeadingContainer">
+            <div className="confirmOrderHeading">
+              Choose your delivery options
+            </div>
+            {/* {!loading && ( */}
+            <div className="confirmOrderGreyBtn">
+              <Link to="/payment/place_order">
+                <button
+                  className="amazonButton confirmOrderContinueBtn"
+                  disabled={loading}
+                >
+                  Continue
+                </button>
+              </Link>
+            </div>
+            {/* )} */}
+          </div>
 
-      <div className="confirmOrderHeadingContainer">
-        <div className="confirmOrderHeading">Choose your delivery options</div>
-        {/* {!loading && ( */}
+          <hr />
+          <div className="confirmOrderShipmentContainer">
+            <div className="confirmOrderLeft">
+              <h5>Shipment</h5>
+              <h6>
+                Shipping from Amazon<span> </span>
+                <img
+                  src="https://images-na.ssl-images-amazon.com/images/G/31/marketing/fba/fba-badge_18px._V384100965_.png"
+                  alt="amazonAssured"
+                />
+              </h6>
+              <div className="confirmOrderDeliveryAddress">
+                {deliveryAddress ? finalAddress() : "Deliver to : Loading..."}
+              </div>
+              <div className="confirmOrderOrderDetails">{order()}</div>
+              <Link to="/payment/edit_order" className="editOrderLink">
+                Change quantities or delete
+              </Link>
+            </div>
+            <div className="confirmOrderRight">
+              <h6>Choose a delivery speed</h6>
+              <input
+                type="radio"
+                name="deliverySpeed"
+                defaultChecked
+                value={0}
+                onClick={handleSpeedUpdate}
+              />
+              <label>
+                <span className="deliveryDay">4-5 days</span>- FREE delivery for
+                eligible orders
+              </label>
+              <br />
+              <input
+                type="radio"
+                name="deliverySpeed"
+                value={80}
+                onClick={handleSpeedUpdate}
+              />
+
+              <label>
+                <span className="deliveryDay">{dayOfWeek(today())}</span>-
+                Two-Day Delivery at Rs. 80.
+              </label>
+              <br />
+
+              <input
+                type="radio"
+                name="deliverySpeed"
+                value={100}
+                onClick={handleSpeedUpdate}
+              />
+
+              <label>
+                <span className="deliveryDay">Tomorrow by 9pm</span>- One-Day
+                Delivery at Rs. 100.
+              </label>
+            </div>
+          </div>
+          <hr />
+          {/* {!loading && ( */}
           <div className="confirmOrderGreyBtn">
             <Link to="/payment/place_order">
               <button
@@ -100,81 +181,11 @@ function ConfirmOrder() {
               </button>
             </Link>
           </div>
-        {/* )} */}
-      </div>
-
-      <hr />
-      <div className="confirmOrderShipmentContainer">
-        <div className="confirmOrderLeft">
-          <h5>Shipment</h5>
-          <h6>
-            Shipping from Amazon<span> </span>
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/G/31/marketing/fba/fba-badge_18px._V384100965_.png"
-              alt="amazonAssured"
-            />
-          </h6>
-          <div className="confirmOrderDeliveryAddress">
-            {deliveryAddress ? finalAddress() : "Deliver to : Loading..."}
-          </div>
-          <div className="confirmOrderOrderDetails">{order()}</div>
-          <Link to="/payment/edit_order" className="editOrderLink">
-            Change quantities or delete
-          </Link>
+          {/* )} */}
         </div>
-        <div className="confirmOrderRight">
-          <h6>Choose a delivery speed</h6>
-          <input
-            type="radio"
-            name="deliverySpeed"
-            defaultChecked
-            value={0}
-            onClick={handleSpeedUpdate}
-          />
-          <label>
-            <span className="deliveryDay">4-5 days</span>- FREE delivery for
-            eligible orders
-          </label>
-          <br />
-          <input
-            type="radio"
-            name="deliverySpeed"
-            value={80}
-            onClick={handleSpeedUpdate}
-          />
-
-          <label>
-            <span className="deliveryDay">{dayOfWeek(today())}</span>- Two-Day
-            Delivery at Rs. 80.
-          </label>
-          <br />
-
-          <input
-            type="radio"
-            name="deliverySpeed"
-            value={100}
-            onClick={handleSpeedUpdate}
-          />
-
-          <label>
-            <span className="deliveryDay">Tomorrow by 9pm</span>- One-Day
-            Delivery at Rs. 100.
-          </label>
-        </div>
-      </div>
-      <hr />
-      {/* {!loading && ( */}
-        <div className="confirmOrderGreyBtn">
-          <Link to="/payment/place_order">
-            <button
-              className="amazonButton confirmOrderContinueBtn"
-              disabled={loading}
-            >
-              Continue
-            </button>
-          </Link>
-        </div>
-      {/* )} */}
+      ) : (
+        <div>Cart cannot be empty</div>
+      )}
     </div>
   );
 }

@@ -44,16 +44,22 @@ function Address() {
         alt="amazonLogo"
         className="addressImg"
       />
-      <h4>Select a delivery address</h4>
-      <div className="addressText">
-        Is the address you'd like to use displayed below? If so, click the
-        corresponding "Deliver to this address" button. Or you can enter a new
-        delivery address.
-      </div>
-      <div className="address">{loading ? <Loading /> : userAddress()}</div>
-      {address.length > 0 && <hr />}
+      {cart.length > 0 ? (
+        <div>
+          <h4>Select a delivery address</h4>
+          <div className="addressText">
+            Is the address you'd like to use displayed below? If so, click the
+            corresponding "Deliver to this address" button. Or you can enter a
+            new delivery address.
+          </div>
+          <div className="address">{loading ? <Loading /> : userAddress()}</div>
+          {address.length > 0 && <hr />}
 
-      <SumbitAddressForm />
+          <SumbitAddressForm />
+        </div>
+      ) : (
+        <div>Cart cannot be empty</div>
+      )}
     </div>
   );
 }

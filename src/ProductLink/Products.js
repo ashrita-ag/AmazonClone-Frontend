@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Products.css";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import StarRateIcon from "@material-ui/icons/StarRate";
@@ -9,14 +9,14 @@ function Products(props) {
   const [cart, setCart] = state.cart;
   const [isLogged] = state.isLogged;
   const [token] = state.token;
-  const [loading, setLoading] = UseStateValue().loading;
+  // const [loading, setLoading] = UseStateValue().loading;
+  const [loading, setLoading] = useState(false);
 
   const addToCart = () => {
     if (isLogged) {
       setLoading(true);
       const index = cart.findIndex((cartItem) => cartItem._id === props.id);
       if (index > -1) {
-        // console.log(cart[index]);
         axios
           .patch(
             "/user/cart/update",
