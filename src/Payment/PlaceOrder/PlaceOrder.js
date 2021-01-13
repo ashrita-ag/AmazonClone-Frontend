@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./PlaceOrder.css";
 import { UseStateValue } from "../../StateProvider/StateContext";
 import POproduct from "./POproduct";

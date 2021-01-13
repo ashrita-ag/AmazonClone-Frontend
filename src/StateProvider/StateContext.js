@@ -4,13 +4,12 @@ import axios from "axios";
 export const StateContext = createContext();
 
 export const StateProvider = ({ children }) => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [cart, setCart] = useState([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(null);
   const [totalItems, setTotalItems] = useState(0);
   const [cost, setCost] = useState(0);
 
@@ -44,37 +43,33 @@ export const StateProvider = ({ children }) => {
           .catch((e) => console.log(e));
       };
       refreshToken();
+    } else {
+      setToken(null);
     }
     // console.log("Got Token");
   }, [isLogged]);
 
-  //Update Number of Items in Cart
+  //Set total cost and items of cart items
   useEffect(() => {
-    // console.log("Setting Total Items in Cart");
+    // console.log("Setting Total cost and items of Cart");
     if (isLogged) {
       setTotalItems(cart?.reduce((amt, item) => amt + parseInt(item.count), 0));
-    } else setTotalItems(0);
-    // console.log("Set Total Items in Cart");
-  }, [cart, isLogged]);
-
-  //Set total cost of cart items
-  useEffect(() => {
-    // console.log("Setting Total Cost of Cart");
-    if (isLogged) {
       setCost(
         cart?.reduce(
           (amt, item) => amt + parseInt(item.price) * parseInt(item.count),
           0
         )
       );
-    } else setCost(0);
-    // console.log("Set Total Cost of Cart");
+    } else {
+      setTotalItems(0);
+      setCost(0);
+    }
+    // console.log("Set Total cost and items of Cart");
   }, [cart, isLogged]);
 
   //Getting User Info
   useEffect(() => {
     // console.log("Getting User Info");
-
     if (token) {
       const currUser = () => {
         axios
@@ -91,7 +86,6 @@ export const StateProvider = ({ children }) => {
               setIsLogged(true);
               setCart(m.data.cart);
               setName(m.data.Fname);
-              setEmail(m.data.email);
             }
           })
           .catch((e) => {
@@ -99,13 +93,11 @@ export const StateProvider = ({ children }) => {
             console.log(e);
           });
       };
-
       currUser();
     } else {
       setIsLogged(false);
       setCart([]);
       setName("");
-      setEmail("");
     }
     // console.log("Got User Info");
   }, [token]);
@@ -143,13 +135,8 @@ export const StateProvider = ({ children }) => {
         .get("/delivery/details", { headers: { Authorization: token } })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
-          if (errorMsg) {
-            setDeliveryAddress({});
-            setCost(0);
-            setGift(false);
-            setDeliverySpeed(0);
-            setFinalCost(0);
-          } else {
+          if (errorMsg) console.log(errorMsg);
+          else {
             setDeliveryAddress(m.data.address);
             setCost(m.data.cost);
             setGift(m.data.gift);
@@ -174,7 +161,6 @@ export const StateProvider = ({ children }) => {
   const initialState = {
     token: [token, setToken], //Access Token
     name: [name, setName],
-    email: [email, setEmail],
     isLogged: [isLogged, setIsLogged],
     cart: [cart, setCart],
     totalItems: [totalItems, setTotalItems], //number of Items in cart
