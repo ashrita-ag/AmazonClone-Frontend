@@ -33,15 +33,13 @@ export const StateProvider = ({ children }) => {
           .then((m) => {
             const errorMsg = m.data.errorMsg;
             if (errorMsg) {
-              alert(errorMsg);
-              window.location.href = "/login";
+              console.log(errorMsg)
             } else {
               setToken(m.data.accesstoken);
               setTimeout(() => {
                 refreshToken();
               }, 24 * 60 * 60 * 1000); //1 day
-            }
-          });
+          }}).catch(e=>console.log(e));
       };
       refreshToken();
     }
@@ -82,16 +80,16 @@ export const StateProvider = ({ children }) => {
             headers: { Authorization: token },
             withCredentials: true,
           })
-          .then((res) => {
-            const errorMsg = res.data.errorMsg;
+          .then((m) => {
+            const errorMsg = m.data.errorMsg;
             if (errorMsg) {
               console.log(errorMsg);
               alert("Some error oocured.");
             } else {
               setIsLogged(true);
-              setCart(res.data.cart);
-              setName(res.data.Fname);
-              setEmail(res.data.email);
+              setCart(m.data.cart);
+              setName(m.data.Fname);
+              setEmail(m.data.email);
             }
           })
           .catch((e) => {
@@ -116,12 +114,12 @@ export const StateProvider = ({ children }) => {
     if (token) {
       axios
         .get("/address/show", { headers: { Authorization: token } })
-        .then((e) => {
-          const errorMsg = e.data.errorMsg;
+        .then((m) => {
+          const errorMsg = m.data.errorMsg;
           if (errorMsg) {
             console.log(errorMsg);
             alert("Some error oocured.");
-          } else setAddress(e.data);
+          } else setAddress(m.data);
         })
         .catch((e) => {
           alert("Some error oocured.");
@@ -140,8 +138,8 @@ export const StateProvider = ({ children }) => {
     if (paymentStarted && token) {
       axios
         .get("/delivery/details", { headers: { Authorization: token } })
-        .then((e) => {
-          const errorMsg = e.data.errorMsg;
+        .then((m) => {
+          const errorMsg = m.data.errorMsg;
           if (errorMsg) {
             setDeliveryAddress({});
             setCost(0);
@@ -149,11 +147,11 @@ export const StateProvider = ({ children }) => {
             setDeliverySpeed(0);
             setFinalCost(0);
           } else {
-            setDeliveryAddress(e.data.address);
-            setCost(e.data.cost);
-            setGift(e.data.gift);
-            setDeliverySpeed(e.data.speed);
-            setFinalCost(e.data.finalcost);
+            setDeliveryAddress(m.data.address);
+            setCost(m.data.cost);
+            setGift(m.data.gift);
+            setDeliverySpeed(m.data.speed);
+            setFinalCost(m.data.finalcost);
           }
         })
         .catch((e) => {

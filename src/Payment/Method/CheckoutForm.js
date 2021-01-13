@@ -82,11 +82,11 @@ export default function CheckoutForm() {
 
     axios
       .get("/delivery/update_payment", { headers: { Authorization: token } })
-      .then((e) => {
-        const errorMsg = e.data.errorMsg;
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
         if (errorMsg)
           setError("Some error occured. Refresh the Page and Try again!");
-        else console.log(e.data);
+        else console.log(m.data);
       })
       .catch((e) => {
         console.log(e);

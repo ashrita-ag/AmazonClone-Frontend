@@ -21,16 +21,16 @@ function AddressComponent(props) {
         { address: props, gift: gift },
         { headers: { Authorization: token } }
       )
-      .then((e) => {
-        const errorMsg = e.data.errorMsg;
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
         if (errorMsg) alert(errorMsg);
         else {
-          setDeliveryAddress(e.data.address);
-          setFinalCost(e.data.finalcost);
-          setCost(e.data.cost);
-          setCart(e.data.cart);
-          setGift(e.data.gift);
-          console.log(e.data);
+          setDeliveryAddress(m.data.address);
+          setFinalCost(m.data.finalcost);
+          setCost(m.data.cost);
+          setCart(m.data.cart);
+          setGift(m.data.gift);
+          console.log(m.data);
         }
       })
       .catch((e) => {
@@ -52,11 +52,11 @@ function AddressComponent(props) {
           },
         }
       )
-      .then((e) => {
-        const errorMsg = e.data.errorMsg;
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
         if (errorMsg) alert(errorMsg);
         else {
-          console.log(e.data);
+          console.log(m.data);
           setAddress(address.filter((a) => a._id !== props.id));
         }
       })

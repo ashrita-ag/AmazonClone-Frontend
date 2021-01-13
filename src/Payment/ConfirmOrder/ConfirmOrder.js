@@ -15,22 +15,22 @@ function ConfirmOrder() {
   const [token] = UseStateValue().token;
   const [, setFinalCost] = UseStateValue().finalCost;
 
-  const handleSpeedUpdate = (e) => {
-    console.log(e.target.value);
+  const handleSpeedUpdate = (event) => {
+    console.log(event.target.value);
     setLoading(true);
     axios
       .patch(
         "/delivery/update_speed",
-        { speed: e.target.value },
+        { speed: event.target.value },
         { headers: { Authorization: token } }
       )
-      .then((e) => {
-        const errorMsg = e.data.errorMsg;
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
         if (errorMsg) alert("Some error occured. Try again!");
         else {
-          console.log(e.data);
-          setDeliverySpeed(e.data.speed);
-          setFinalCost(e.data.finalCost);
+          console.log(m.data);
+          setDeliverySpeed(m.data.speed);
+          setFinalCost(m.data.finalCost);
         }
       })
       .catch((e) => {

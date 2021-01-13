@@ -20,13 +20,13 @@ function SumbitAddressForm() {
     country: "India",
   });
 
-  const onChangeAddress = (e) => {
-    const { name, value } = e.target;
+  const onChangeAddress = (event) => {
+    const { name, value } = event.target;
     setFormAddress({ ...formAddress, [name]: value });
   };
 
-  const submitAddress = (e) => {
-    e.preventDefault();
+  const submitAddress = (event) => {
+    event.preventDefault();
     setLoading(true);
     // console.log(formAddress);
     axios
@@ -35,12 +35,12 @@ function SumbitAddressForm() {
           Authorization: token,
         },
       })
-      .then((e) => {
-        const errorMsg = e.data.errorMsg;
+      .then((m) => {
+        const errorMsg = m.data.errorMsg;
         if (errorMsg) alert(errorMsg);
         else {
-          // console.log(e.data);
-          setAddress([...address, e.data]);
+          // console.log(m.data);
+          setAddress([...address, m.data]);
         }
         window.scrollTo(0, 0);
       })

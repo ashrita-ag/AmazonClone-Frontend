@@ -57,12 +57,12 @@ function Products(props) {
                     },
                   }
                 )
-                .then((n) => {
-                  const errorMsg = n.data.errorMsg;
+                .then((m) => {
+                  const errorMsg = m.data.errorMsg;
                   if (errorMsg) alert("Some error occured. Try again!");
                   else {
-                    console.log(n.data);
-                    setCart(n.data);
+                    console.log(m.data);
+                    setCart(m.data);
                   }
                 })
                 .catch((e) => {

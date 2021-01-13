@@ -30,13 +30,13 @@ export default function Method() {
             },
           }
         )
-        .then((res) => {
-          const errorMsg = res.data.errorMsg;
+        .then((m) => {
+          const errorMsg = m.data.errorMsg;
           if (errorMsg) alert("Some error occured. Try again!");
           else {
             // console.log("UserCart Deleted");
-            console.log(res.data);
-            setCart(res.data.cart);
+            console.log(m.data);
+            setCart(m.data.cart);
           }
         })
         .catch((e) => {
