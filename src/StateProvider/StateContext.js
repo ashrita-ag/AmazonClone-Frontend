@@ -45,6 +45,7 @@ export const StateProvider = ({ children }) => {
       refreshToken();
     } else {
       setToken(null);
+      setIsLogged(false); //check if infinite loop
     }
     // console.log("Got Token");
   }, [isLogged]);

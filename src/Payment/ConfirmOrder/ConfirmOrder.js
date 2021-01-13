@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const _ = require("lodash");
 
 function ConfirmOrder() {
-  // const paymentItem = localStorage.getItem("Payment");
-  // console.log({ paymentItem });
   const [deliveryAddress] = UseStateValue().deliveryAddress;
   const [loading, setLoading] = UseStateValue().loading;
   const [cart] = UseStateValue().cart;

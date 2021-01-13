@@ -5,6 +5,7 @@ import { UseStateValue } from "../StateProvider/StateContext";
 function Logout() {
   localStorage.removeItem("Payment");
   const [, setIsLogged] = UseStateValue().isLogged;
+  const [, setToken] = UseStateValue().token;
   const [error, setError] = useState("Redirecting to HomePage");
 
   useEffect(() => {
@@ -18,6 +19,7 @@ function Logout() {
           else {
             localStorage.removeItem("firstLogin");
             setIsLogged(false);
+            setToken(null);
           }
         })
         .catch((e) => {

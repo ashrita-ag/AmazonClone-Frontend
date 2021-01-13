@@ -41,9 +41,9 @@ function OrderHistory() {
           setOrders(data);
         }
       })
-      .catch((err) => {
-        console.log(err);
-        setError(err);
+      .catch((e) => {
+        console.log(e);
+        setError(e);
       });
     setLoading(false);
   }, [token]);
