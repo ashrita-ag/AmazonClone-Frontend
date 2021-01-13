@@ -1,6 +1,8 @@
 .checkoutLeft {
   width: 100%;
   margin-right: 20px;
+  background: white;
+  padding: 5px 10px;
 }
 .checkoutLeftHeading {
   display: flex;

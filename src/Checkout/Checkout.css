@@ -1,10 +1,12 @@
 .checkout {
-  margin: 15px 20px;
+  padding: 15px 20px;
+  background: #ececec;
+  min-height: calc(100vh - 180px);
 }
 .checkoutContainer {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 }
 
 .checkoutLine1 {

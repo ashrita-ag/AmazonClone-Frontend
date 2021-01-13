@@ -11,7 +11,6 @@ function CheckoutProduct(props) {
   const [loading, setLoading] = UseStateValue().loading;
   const [error, setError] = useState("");
 
-
   const handleClickGiftBox = () => {
     if (document) {
       const checkedBoxes = document.querySelectorAll(
@@ -70,18 +69,23 @@ function CheckoutProduct(props) {
 
   return (
     <div className="checkoutProduct">
-      <div className="checkoutProductLeft">
-        <div className="checkoutProductImg">
-          <img src={props.img} alt="checkoutProductImage" />
-        </div>
-
-        <div className="checkoutProductText">
+      <div className="checkoutProductImageContainer">
+        <img
+          src={props.img}
+          alt="checkoutProductImage"
+          className="checkoutProductImg"
+        />
+      </div>
+      <div className="checkoutProductText">
+        <div className="checkoutProductLeft">
           <div className="checkoutProductHeading">{props.heading}</div>
+          <div className="checkoutInStock">In stock</div>
+          <div className="checkoutFreeDelivery">Eligible for FREE Shipping</div>
           <img
             src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png"
             alt="amazonFulfilled"
-          />
-
+            className="checkoutProductAmazonFulfilled"
+          />{" "}
           <div className="checkoutProductGift">
             <input
               type="checkbox"
@@ -93,35 +97,37 @@ function CheckoutProduct(props) {
             />
             This will be a gift.
           </div>
-          <button
-            className="countButton"
-            onClick={decrement}
-            disabled={loading}
-          >
-            -
-          </button>
-          <span className="count">{props.count}</span>
-          <button
-            className="countButton"
-            onClick={increment}
-            disabled={loading}
-          >
-            +
-          </button>
-
-          <button
-            className="deletebtn amazonButton"
-            onClick={deleteFromCart}
-            disabled={loading}
-          >
-            Delete
-          </button>
+          <div className="checkoutProductButtonContainer">
+            {" "}
+            <button
+              className="countButton"
+              onClick={decrement}
+              disabled={loading}
+            >
+              -
+            </button>
+            <div className="count">{props.count}</div>
+            <button
+              className="countButton"
+              onClick={increment}
+              disabled={loading}
+            >
+              +
+            </button>
+            <div
+              className={loading ? "deletebtn clickDeleteBtn" : "deletebtn"}
+              onClick={deleteFromCart}
+            >
+              Delete
+            </div>
+          </div>
           <div className="errorMsgNew"> {error}</div>
-        
         </div>
-
+        <div className="checkoutProductRight">
+          <span className="productDetailsCurrency">&#8377; </span>
+          {props.price}.00
+        </div>
       </div>
-      <div className="checkoutProductRight">{props.price}.00</div>
     </div>
   );
 }

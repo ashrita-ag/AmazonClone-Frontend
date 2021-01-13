@@ -40,7 +40,7 @@ function CheckoutRight() {
           <sup className="productDetailsCurrency">&#8377;</sup>
           <span id="totalCost">{cost}.00</span>
         </div>
-        <div style={{ fontSize: "14px" }}>
+        <div style={{ fontSize: "13px" }}>
           <input
             type="checkbox"
             name="giftCheckbox"
