@@ -9,7 +9,7 @@
 .homeGridItemImage > img {
   display: block;
   margin: auto;
-  height: 250px;
+  height: 200px;
 }
 
 .homeAuthBox {
@@ -20,8 +20,7 @@
   justify-content: space-between;
 }
 
-.homeAuthLink
-{
+.homeAuthLink {
   font-size: 10px;
   text-align: right;
 }
@@ -35,4 +34,8 @@
 .homeAuthBoxHeading {
   font-size: 20px;
   font-weight: 750;
+}
+.homeGridItemtext {
+  font-size: 14px;
+  margin-top: 5px;
 }

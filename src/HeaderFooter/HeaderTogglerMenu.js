@@ -23,17 +23,35 @@ function HeaderTogglerMenu() {
           &times;
         </Link>
 
-        <Link to="/">Home</Link>
-        <Link to="/orders">Your Orders</Link>
-        <Link to="/checkout">Cart</Link>
-        <Link to="# ">Shop with Us</Link>
-        <Link to="/like-new-products" className="headerTogglerNavOption">
+        <Link to="/" onClick={headerTogglerCloseNav}>
+          Home
+        </Link>
+        <Link to="/orders" onClick={headerTogglerCloseNav}>
+          Your Orders
+        </Link>
+        <Link to="/checkout" onClick={headerTogglerCloseNav}>
+          Cart
+        </Link>
+        <Link to="# " className="headerTogglerNotLink">Shop with Us</Link>
+        <Link
+          to="/like-new-products"
+          className="headerTogglerNavOption"
+          onClick={headerTogglerCloseNav}
+        >
           Like-New Products
         </Link>
-        <Link to="/home-office" className="headerTogglerNavOption">
+        <Link
+          to="/home-office"
+          className="headerTogglerNavOption"
+          onClick={headerTogglerCloseNav}
+        >
           Home Office Utilities
         </Link>
-        <Link to="/additional-items" className="headerTogglerNavOption">
+        <Link
+          to="/additional-items"
+          className="headerTogglerNavOption"
+          onClick={headerTogglerCloseNav}
+        >
           Explore Additional Items
         </Link>
       </div>
