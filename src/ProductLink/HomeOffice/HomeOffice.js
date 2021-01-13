@@ -31,13 +31,13 @@ function HomeOffice() {
             />
           ));
           setproductList(HomeOfficeProducts);
-          setLoading(false);
         }
       })
       .catch((e) => {
         console.log(e);
         setError("Some error occured. Try again!");
       });
+      setLoading(false);
   }, []);
 
   return (
