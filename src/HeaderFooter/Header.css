@@ -9,62 +9,56 @@
   color: white;
 }
 
-a.headerLink :hover {
-  border: 1px solid white;
-}
-
-a.headerLink div :hover {
-  border: none;
-}
-
-.header a {
-  text-decoration: none;
-}
 .headerLogo {
+  display: block;
   width: 100px;
-  object-fit: contain;
-  padding: 10px 10px 0 3px;
-  margin: 5px 30px 0px 2px;
+  padding: 10px 3px 0px 3px;
   border: 1px solid transparent;
 }
-
 .headerSearch {
   display: flex;
   flex: 1;
+  margin: auto 10px;
   align-items: center;
-  border-radius: 25px;
 }
-
 .headerSearchInput {
-  width: 100%;
-  padding: 7px 5px;
+  flex: 1;
+  padding: 5px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  border: none;
   color: #131921;
+  border: none;
 }
 .headerSearchIcon {
-  padding: 7px;
+  padding: 5px;
   background-color: #f8b257;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  box-sizing: content-box;
   color: #131921;
+  box-sizing: content-box;
+  cursor: pointer;
 }
 
 .headerNavbar {
   display: flex;
-  /* justify-content: space-evenly;   */
 }
-.headerNavOption {
+.headerLanguageIcon {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 7px 13px;
+  height: auto;
+  width: 55px;
+}
+a.headerLink {
   color: white;
-  display: flex;
-  flex-direction: column;
-  margin: auto 2px;
-  border: 1px solid transparent;
-  padding: 4px 13px;
 }
 
+.headerNavOption {
+  border: 1px solid transparent;
+  padding: 4px 10px;
+}
 .headerNavText1 {
   font-size: 11px;
 }
@@ -72,19 +66,26 @@ a.headerLink div :hover {
   font-size: 13px;
   font-weight: 750;
 }
-
 .headerCart {
-  color: white;
   display: flex;
-  margin: auto 2px;
-  display: flex;
+  margin-right: 3px;
   border: 1px solid transparent;
-  padding: 4px 13px;
+  align-items: center;
+  padding: 10px;
 }
-
 .headerCartItems {
   color: #f8b257;
   font-size: 15px;
   font-weight: 750;
-  margin-top: auto;
+}
+
+.header :hover {
+  text-decoration: none;
+}
+
+a.headerLink :hover {
+  border: 1px solid white;
+}
+a.headerLink div :hover {
+  border: none;
 }
