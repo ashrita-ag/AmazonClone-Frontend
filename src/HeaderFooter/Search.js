@@ -3,7 +3,6 @@ import axios from "axios";
 import { UseStateValue } from "../StateProvider/StateContext.js";
 import Products from "../ProductLink/Products.js";
 import Loading from "../Components/Loading";
-import "./Search.css";
 
 function Search() {
   const [foundProducts, setFoundProducts] = useState([]);

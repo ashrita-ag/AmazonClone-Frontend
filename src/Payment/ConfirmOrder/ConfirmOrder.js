@@ -125,9 +125,6 @@ function ConfirmOrder() {
                 {deliveryAddress ? finalAddress() : "Deliver to : Loading..."}
               </div>
               <div className="confirmOrderOrderDetails">{order()}</div>
-              <Link to="/payment/edit_order" className="editOrderLink">
-                Change quantities or delete
-              </Link>
             </div>
             <div className="confirmOrderRight">
               <h6>Choose a delivery speed</h6>

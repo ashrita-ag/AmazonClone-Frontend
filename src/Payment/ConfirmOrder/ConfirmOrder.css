@@ -40,25 +40,18 @@
      display:flex;
      flex-direction: column;
 }
-/*.confirmOrderLeft h5 {
-}
-.confirmOrderLeft h6 {
-} */
+
 .confirmOrderDeliveryAddress {
   color: #979797;
   line-height: 1.2;
   margin: -5px 0 0 5px;
 }
-/* .confirmOrderOrderDetails {
-}
-.editOrderLink {
-} */
+
 .confirmOrderRight {
   font-size: 12px;
   margin-right: 100px !important;
 }
-/* .confirmOrderRight h6 {
-} */
+
 .confirmOrderRight label {
   margin-left: 5px;
 }

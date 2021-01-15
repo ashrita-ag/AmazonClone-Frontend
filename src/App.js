@@ -23,7 +23,6 @@ import NewAcc from "./AuthPages/NewAcc";
 import Logout from "./AuthPages/Logout.js";
 import Address from "./Payment/Address/Address";
 import ConfirmOrder from "./Payment/ConfirmOrder/ConfirmOrder";
-import EditOrder from "./Payment/EditOrder/EditOrder";
 import PlaceOrder from "./Payment/PlaceOrder/PlaceOrder";
 import Method from "./Payment/Method/Method";
 import OrderHistory from "./OrderHistory/OrderHistory";
@@ -82,9 +81,6 @@ function App() {
             </Route>
             <Route exact path="/payment/confirm_order">
               <ConfirmOrder />
-            </Route>
-            <Route exact path="/payment/edit_order">
-              <EditOrder />
             </Route>
             <Route exact path="/payment/place_order">
               <PlaceOrder />
