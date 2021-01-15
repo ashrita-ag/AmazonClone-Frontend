@@ -12,6 +12,7 @@ import { UseStateValue } from "./StateProvider/StateContext";
 // Components
 import Header from "./HeaderFooter/Header.js";
 import Footer from "./HeaderFooter/Footer";
+import Search from "./HeaderFooter/Search";
 import Home from "./HomePage/Home.js";
 import AddProducts from "./ProductLink/AddProducts/AddProducts.js";
 import HomeOffice from "./ProductLink/HomeOffice/HomeOffice.js";
@@ -39,6 +40,10 @@ function App() {
             <Route exact path="/">
               <Header />
               <Home />
+            </Route>
+            <Route exact path="/search">
+              <Header />
+              <Search />
             </Route>
 
             <Route exact path="/like-new-products">

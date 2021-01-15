@@ -7,6 +7,7 @@ export const StateProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const [cart, setCart] = useState([]);
   const [name, setName] = useState(null);
@@ -172,6 +173,7 @@ export const StateProvider = ({ children }) => {
     gift: [gift, setGift], //Gift or not (from Backend)
     finalCost: [finalCost, setFinalCost], //Final Cost to be paid
     loading: [loading, setLoading],
+    searchText: [searchText, setSearchText],
   };
 
   return (

@@ -37,7 +37,7 @@ function HomeOffice() {
         console.log(e);
         setError("Some error occured. Try again!");
       });
-      setLoading(false);
+    setLoading(false);
   }, []);
 
   return (
@@ -50,7 +50,6 @@ function HomeOffice() {
 
       {loading ? <Loading /> : productList}
       {productList.length === 0 && <div>No products for this category</div>}
-
     </div>
   );
 }
