@@ -11,13 +11,7 @@ export default function CheckoutForm() {
   const [processing, setProcessing] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
-  const [redirect, setRedirect] = useState(false);
   const [intent, setIntent] = useState(false);
-  const [, setCart] = UseStateValue().cart;
-
-  useEffect(() => {
-    if (succeeded) setTimeout(() => setRedirect(true), 3000);
-  }, [succeeded]);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -92,7 +86,9 @@ export default function CheckoutForm() {
           setError("Some error occured. Refresh the Page and Try again!");
         else {
           console.log(m.data);
-          setCart([]);
+          window.location.replace("/orders");
+          // setCart([]);
+          // setDeliveryAddress({});
         }
       })
       .catch((e) => {
@@ -150,8 +146,7 @@ export default function CheckoutForm() {
         </p>
 
         <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment succeeded, redirecting to Your Orders...
-          {redirect && window.location.replace("/orders")}
+          Payment succeeded, redirecting to Your Orders....
         </p>
 
         {/* <Link to={`https://dashboard.stripe.com/test/payments`}>
