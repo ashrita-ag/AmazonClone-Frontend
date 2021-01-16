@@ -1,7 +1,0 @@
-{
-    "proxies": {
-      "/": {
-        "origin": "https://amazon-clone-backend-server.herokuapp.com/"
-      }
-    }
-  }
