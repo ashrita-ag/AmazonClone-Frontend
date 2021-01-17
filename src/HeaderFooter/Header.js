@@ -27,7 +27,7 @@ export default function Header() {
 
         <Link to="/" className="headerLink">
           <img
-            src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+            src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
             alt="AmazonLogo"
             className="headerLogo"
           />
