@@ -19,7 +19,7 @@ function Products(props) {
       if (index > -1) {
         axios
           .patch(
-            "/user/cart/update",
+            "/api/user/cart/update",
             { count: cart[index].count + 1, product: props.id },
             {
               headers: {
@@ -49,7 +49,7 @@ function Products(props) {
               m.data["count"] = 1;
               axios
                 .patch(
-                  "/user/cart/add",
+                  "/api/user/cart/add",
                   { cart: m.data },
                   {
                     headers: {

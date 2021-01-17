@@ -19,7 +19,7 @@ function AddressComponent(props) {
     setError("");
     axios
       .post(
-        "/delivery/update_address",
+        "/api/delivery/update_address",
         { address: props, gift: gift },
         { headers: { Authorization: token } }
       )
@@ -47,7 +47,7 @@ function AddressComponent(props) {
     setError("");
     axios
       .patch(
-        "/address/delete",
+        "/api/address/delete",
         { id: props.id },
         {
           headers: {

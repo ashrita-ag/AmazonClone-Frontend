@@ -22,7 +22,7 @@ function NewAcc() {
 
     axios
       .post(
-        "/user/register",
+        "/api/user/register",
         {
           name: name,
           email: email,
