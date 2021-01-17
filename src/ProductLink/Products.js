@@ -41,7 +41,7 @@ function Products(props) {
           });
       } else {
         axios
-          .get("/product/detail/" + props.id)
+          .get("/api/product/detail/" + props.id)
           .then((m) => {
             const errorMsg = m.data.errorMsg;
             if (errorMsg) alert("Some error occured. Try again!");

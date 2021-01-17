@@ -12,7 +12,7 @@ function Logout() {
     // console.log("Logging Out");
     const logout = () => {
       axios
-        .get("/user/logout", { withCredentials: true })
+        .get("/api/user/logout", { withCredentials: true })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) setError("Some error occured. Refresh to try again!");

@@ -14,7 +14,7 @@ function NewProducts() {
     setError("");
 
     axios
-      .get("/product/cat/3")
+      .get("/api/product/cat/3")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg) setError("Some error occured. Try again!");

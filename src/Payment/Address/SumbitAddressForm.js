@@ -32,7 +32,7 @@ function SumbitAddressForm() {
     setError("");
     // console.log(formAddress);
     axios
-      .post("/address/save", formAddress, {
+      .post("/api/address/save", formAddress, {
         headers: {
           Authorization: token,
         },
