@@ -2,4 +2,5 @@
   margin: auto;
   background-color: #e6e1e1;
   padding-bottom: 50px;
+  min-height: calc(100vh - 180px);
 }

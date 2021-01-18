@@ -1,6 +1,7 @@
 .homeProductsContainer {
   background-color: #dbd6d6a2;
   padding-bottom: 50px;
+  min-height: calc(100vh - 180px);
 }
 
 .bannerImage {

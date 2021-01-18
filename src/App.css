@@ -4,6 +4,7 @@
 }
 html{
   scroll-behavior: smooth;
+  min-width:635px;
 }
 .content {
   /* padding-bottom: 85px; */
