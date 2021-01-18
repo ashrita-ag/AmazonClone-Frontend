@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { UseStateValue } from "../StateProvider/StateContext";
 
 function Logout() {
   localStorage.removeItem("Payment");
   const [, setIsLogged] = UseStateValue().isLogged;
   const [, setToken] = UseStateValue().token;
-  const [error, setError] = useState("Redirecting to HomePage");
 
   useEffect(() => {
-    // console.log("Logging Out");
     const logout = () => {
-      axios
-        .get("/api/user/logout", { withCredentials: true })
-        .then((m) => {
-          const errorMsg = m.data.errorMsg;
-          if (errorMsg) setError("Some error occured. Refresh to try again!");
-          else {
-            localStorage.removeItem("firstLogin");
-            setIsLogged(false);
-            setToken(null);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          setError("Some error occured. Refresh to try again!");
-        });
+      localStorage.removeItem("firstLogin");
+      setIsLogged(false);
+      setToken(null);
+      localStorage.removeItem("refreshtoken");
     };
     logout();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,7 +20,7 @@ function Logout() {
   return (
     <div>
       <h2>Logging out...</h2>
-      <div>{error}</div>
+      <div>Redirecting to HomePage</div>
     </div>
   );
 }

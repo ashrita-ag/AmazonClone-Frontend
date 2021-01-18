@@ -28,12 +28,13 @@ function NewAcc() {
           email: email,
           password: pwd,
         },
-        { withCredentials: true }
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg) setError(errorMsg);
         else {
+          const refreshtoken = m.data.refreshtoken;
+          localStorage.setItem("refreshtoken", refreshtoken);
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
           // console.log("New Account Success");

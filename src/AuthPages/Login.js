@@ -22,13 +22,14 @@ function Login() {
     axios
       .post(
         "/api/user/login",
-        { email: email, password: pwd },
-        { withCredentials: true }
+        { email: email, password: pwd }
       )
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg) setError(errorMsg);
         else {
+          const refreshtoken = m.data.refreshtoken;
+          localStorage.setItem("refreshtoken", refreshtoken);
           localStorage.setItem("firstLogin", true);
           setIsLogged(true);
           // console.log("Logging Success");

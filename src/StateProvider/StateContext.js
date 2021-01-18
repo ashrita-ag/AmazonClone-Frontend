@@ -25,25 +25,26 @@ export const StateProvider = ({ children }) => {
     // console.log("Getting Token");
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin || isLogged) {
-      const refreshToken = () => {
+      const getRefreshToken = () => {
+        const refreshtoken = localStorage.getItem("refreshtoken");
         axios
-          .get("/api/user/token", {
-            withCredentials: true,
-          })
+          .post("/api/user/token", { refreshtoken: refreshtoken })
           .then((m) => {
             const errorMsg = m.data.errorMsg;
             if (errorMsg) {
-              console.log(errorMsg); //The Error message is when user is not logged in.
+              console.log(errorMsg);
+              setToken(null);
+              setIsLogged(false); //The Error message is when user is not logged in.
             } else {
               setToken(m.data.accesstoken);
               setTimeout(() => {
-                refreshToken();
+                getRefreshToken();
               }, 24 * 60 * 60 * 1000); //1 day
             }
           })
           .catch((e) => console.log(e));
       };
-      refreshToken();
+      getRefreshToken();
     } else {
       setToken(null);
       setIsLogged(false); //check if infinite loop
@@ -77,7 +78,6 @@ export const StateProvider = ({ children }) => {
         axios
           .get("/api/user/info", {
             headers: { Authorization: token },
-            withCredentials: true,
           })
           .then((m) => {
             const errorMsg = m.data.errorMsg;
