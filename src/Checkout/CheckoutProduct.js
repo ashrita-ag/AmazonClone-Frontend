@@ -44,7 +44,7 @@ function CheckoutProduct(props) {
     setError("");
     axios
       .patch(
-        "/user/cart/update",
+        "/api/user/cart/update",
         { count: c, product: props._id },
         {
           headers: {

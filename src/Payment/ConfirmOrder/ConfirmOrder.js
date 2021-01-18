@@ -21,7 +21,7 @@ function ConfirmOrder() {
     setError("");
     axios
       .patch(
-        "/delivery/update_speed",
+        "/api/delivery/update_speed",
         { speed: event.target.value },
         { headers: { Authorization: token } }
       )

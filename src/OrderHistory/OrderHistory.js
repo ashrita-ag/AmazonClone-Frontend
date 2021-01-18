@@ -19,7 +19,7 @@ function OrderHistory() {
       setLoading(true);
       setError("");
       axios
-        .get("/order/history", { headers: { Authorization: token } })
+        .get("/api/order/history", { headers: { Authorization: token } })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) setError(errorMsg);

@@ -21,7 +21,7 @@ export default function CheckoutForm() {
       // console.log("Creating Payment Intent");
       axios
         .post(
-          "/checkout/create-payment-intent",
+          "/api/checkout/create-payment-intent",
           {},
           {
             headers: {
@@ -76,7 +76,7 @@ export default function CheckoutForm() {
 
     axios
       .post(
-        "/delivery/update_payment",
+        "/api/delivery/update_payment",
         {},
         { headers: { Authorization: token } }
       )

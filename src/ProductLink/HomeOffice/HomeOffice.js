@@ -14,7 +14,7 @@ function HomeOffice() {
     setError("");
 
     axios
-      .get("/product/cat/2")
+      .get("/api/product/cat/2")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg) setError("Some error occured. Try again!");

@@ -19,7 +19,7 @@ function Search() {
       setError(null);
 
       axios
-        .post("/product/search", { searchItem: searchText })
+        .post("/api/product/search", { searchItem: searchText })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) setError("Some error occured. Try again!");

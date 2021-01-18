@@ -27,7 +27,7 @@ export const StateProvider = ({ children }) => {
     if (firstLogin || isLogged) {
       const refreshToken = () => {
         axios
-          .get("/user/token", {
+          .get("/api/user/token", {
             withCredentials: true,
           })
           .then((m) => {
@@ -75,7 +75,7 @@ export const StateProvider = ({ children }) => {
     if (token) {
       const currUser = () => {
         axios
-          .get("/user/info", {
+          .get("/api/user/info", {
             headers: { Authorization: token },
             withCredentials: true,
           })
@@ -109,7 +109,7 @@ export const StateProvider = ({ children }) => {
     // console.log("Setting the addresses");
     if (token) {
       axios
-        .get("/address/show", { headers: { Authorization: token } })
+        .get("/api/address/show", { headers: { Authorization: token } })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) {
@@ -134,7 +134,7 @@ export const StateProvider = ({ children }) => {
     const paymentStarted = localStorage.getItem("Payment");
     if (paymentStarted && token) {
       axios
-        .get("/delivery/details", { headers: { Authorization: token } })
+        .get("/api/delivery/details", { headers: { Authorization: token } })
         .then((m) => {
           const errorMsg = m.data.errorMsg;
           if (errorMsg) console.log(errorMsg);

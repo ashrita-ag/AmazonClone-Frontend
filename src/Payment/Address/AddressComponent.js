@@ -19,7 +19,7 @@ function AddressComponent(props) {
     setError("");
     axios
       .post(
-        "/delivery/update_address",
+        "/api/delivery/update_address",
         { address: props, gift: gift },
         { headers: { Authorization: token } }
       )

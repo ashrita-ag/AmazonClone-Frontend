@@ -13,7 +13,7 @@ function AddProducts() {
     setLoadingComponent(true);
     setError("");
     axios
-      .get("/product/cat/1")
+      .get("/api/product/cat/1")
       .then((m) => {
         const errorMsg = m.data.errorMsg;
         if (errorMsg) setError("Some error occured. Refresh to try again!");
