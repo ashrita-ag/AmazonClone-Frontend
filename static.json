@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://amazon-clone-backend-server.herokuapp.com"
+      "origin": "https://my-amazon-clone-backend.herokuapp.com"
     }
   }
 }
