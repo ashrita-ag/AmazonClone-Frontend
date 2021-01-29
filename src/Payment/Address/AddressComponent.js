@@ -47,7 +47,7 @@ function AddressComponent(props) {
     setError("");
     axios
       .patch(
-        "/address/delete",
+        "/api/address/delete",
         { id: props.id },
         {
           headers: {
